@@ -1,0 +1,71 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="toolbarElevation">4dp</dimen>
+    <dimen name="appBarTopMargin">0dp</dimen>
+    <dimen name="statusBarHeight">0dp</dimen>
+
+
+    <dimen name="detail_backdrop_height">256dp</dimen>
+    <dimen name="card_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="list_item_avatar_size">40dp</dimen>
+
+    <dimen name="grid_item_padding_left">8.0dip</dimen>
+    <dimen name="grid_item_padding_right">5.0dip</dimen>
+    <dimen name="grid_bottom_height">44dip</dimen>
+
+    <dimen name="spacing_card">10dp</dimen>
+    <dimen name="spacing_card_album_grid">3dp</dimen>
+
+    <item name="letter_to_tile_ratio" type="dimen">53%</item>
+
+    <dimen name="header_height">370dp</dimen>
+    <dimen name="min_header_height">270dp</dimen>
+    <dimen name="header_logo_size">100dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="appbar_padding_top">8dp</dimen>
+
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_height">160dp</dimen>
+    <dimen name="activity_horizontal_margin_big_activity">16dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="app_bar_height_image_view">180dp</dimen>
+    <dimen name="text_margin_small">8dp</dimen>
+    <dimen name="text_margin_very_small">4dp</dimen>
+    <dimen name="btn_padding">20dp</dimen>
+    <dimen name="btn_margin">14dp</dimen>
+    <dimen name="my_app_bar_height">128dp</dimen>
+    <dimen name="my_app_bar_overlap">56dp</dimen>
+
+    <dimen name="card_margin_horizontal">8dp</dimen>
+    <dimen name="card_margin_vertical">8dp</dimen>
+    <dimen name="card_margin_horizontal_big_activity">8dp</dimen>
+    <dimen name="card_margin_vertical_big_activity">4dp</dimen>
+    <dimen name="card_recycler_corner_radius">2dp</dimen>
+    <dimen name="card_recycler_elevation">2dp</dimen>
+
+    <dimen name="main_card_margin_horizontal">8dp</dimen>
+    <dimen name="my_apps_card_margin_horizontal">16dp</dimen>
+    <dimen name="main_card_margin_vertical">8dp</dimen>
+    <dimen name="main_card_margin_horizontal_big_activity">8dp</dimen>
+
+    <dimen name="card_title_margin_top">24dp</dimen>
+    <dimen name="card_title_margin">16dp</dimen>
+    <dimen name="card_subtitle_margin">16dp</dimen>
+    <dimen name="card_button_margin">8dp</dimen>
+
+    <dimen name="zero_horizontal_margin">0dp</dimen>
+    <dimen name="zero_horizontal_margin_big_activity">0dp</dimen>
+
+    <dimen name="start_page_image_size">144dp</dimen>
+    <dimen name="share_view_round_margin">16dp</dimen>
+
+    <dimen name="big_activity_margin_vertical">96dp</dimen>
+    <dimen name="big_activity_margin_horizontal">72dp</dimen>
+    <dimen name="big_activity_fab_margin">16dp</dimen>
+    <dimen name="big_activity_text_margin">16dp</dimen>
+
+</resources>

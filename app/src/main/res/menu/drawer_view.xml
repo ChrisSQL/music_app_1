@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:id="@+id/groupEvents"
+        android:checkableBehavior="none">
+
+        <item
+            android:id="@+id/nav_events"
+            android:title="@string/events" />
+
+    </group>
+
+    <group
+        android:id="@+id/groupOnlineTechnoTitle">
+
+        <item
+            android:id="@+id/nav_online_Title"
+            android:title="Online Music" />
+
+    </group>
+
+    <group
+        android:id="@+id/groupOnlineTechno"
+        android:checkableBehavior="none">
+
+        <item
+            android:id="@+id/djs"
+            android:title="@string/djs" />
+
+        <item
+            android:id="@+id/nav_festivals"
+            android:title="@string/festivals" />
+
+        <item
+            android:id="@+id/nav_members_sets"
+            android:title="@string/member_sets" />
+
+        <!--<item-->
+            <!--android:id="@+id/nav_sets_techno"-->
+            <!--android:title="@string/techno_sets" />-->
+
+        <!--<item-->
+            <!--android:id="@+id/nav_sets_trance"-->
+            <!--android:title="@string/trance_sets" />-->
+
+        <!--<item-->
+            <!--android:id="@+id/nav_soundcloud"-->
+            <!--android:title="@string/soundcloud" />-->
+
+    </group>
+
+    <group
+        android:id="@+id/groupOfflineTitle"
+        android:checkableBehavior="none">
+
+        <item
+            android:id="@+id/nav_offlineTitle"
+            android:title="Offline Music"/>
+
+    </group>
+
+    <group
+        android:id="@+id/groupOffline"
+        android:checkableBehavior="none">
+
+        <item
+            android:id="@+id/nav_library"
+            android:title="@string/library" />
+        <item
+            android:id="@+id/nav_playlists"
+            android:title="@string/playlists" />
+        <item
+            android:id="@+id/nav_folders"
+            android:title="@string/folders" />
+        <item
+            android:id="@+id/nav_queue"
+            android:title="@string/playing_queue" />
+
+    </group>
+
+    <group
+        android:id="@+id/groupSettings"
+        android:checkableBehavior="none">
+
+        <item
+            android:id="@+id/nav_account"
+            android:title="@string/account" />
+        <item
+            android:id="@+id/nav_settings"
+            android:title="@string/settings" />
+
+    </group>
+
+    <!--<group-->
+        <!--android:id="@+id/group1"-->
+        <!--android:checkableBehavior="single">-->
+        <!--<item-->
+            <!--android:id="@+id/nav_online"-->
+
+            <!--android:title="@string/online" />-->
+
+        <!--<item-->
+            <!--android:id="@+id/nav_nowplaying"-->
+            <!--android:checkable="false"-->
+            <!--android:title="@string/now_playing" />-->
+
+    <!--</group>-->
+
+    <!--<group-->
+        <!--android:id="@+id/group2"-->
+        <!--android:checkableBehavior="none">-->
+
+
+        <!--&lt;!&ndash;<item&ndash;&gt;-->
+
+            <!--&lt;!&ndash;android:id="@+id/nav_about"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:title="@string/about" />&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<item&ndash;&gt;-->
+            <!--&lt;!&ndash;android:id="@+id/nav_donate"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:title="Support development" />&ndash;&gt;-->
+
+    <!--</group>-->
+
+</menu>

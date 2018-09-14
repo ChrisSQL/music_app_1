@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.area52.techno">
+
+    <uses-sdk tools:overrideLibrary="de.Maxr1998.trackselectorlib" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="com.android.vending.BILLING" />
+
+    <application
+        android:name=".TimberApp"
+        android:allowBackup="false"
+        android:icon="@drawable/ic_launcher"
+        android:label="SESH"
+        android:theme="@style/AppTheme.FullScreen.Light"
+        tools:replace="android:allowBackup, android:label">
+        <activity
+            android:name=".FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name">
+        </activity>
+        <activity
+            android:name=".FacebookActivityFirebase"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.CATEGORY_APP_MUSIC" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.MainActivity"
+            android:label="SESH"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="file" />
+                <data android:mimeType="audio/*" />
+                <data android:mimeType="application/ogg" />
+                <data android:mimeType="application/x-ogg" />
+                <data android:mimeType="application/itunes" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="http" />
+                <data android:mimeType="audio/*" />
+                <data android:mimeType="application/ogg" />
+                <data android:mimeType="application/x-ogg" />
+                <data android:mimeType="application/itunes" />
+            </intent-filter>
+            <intent-filter android:priority="-1">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="content" />
+                <data android:mimeType="audio/*" />
+                <data android:mimeType="application/ogg" />
+                <data android:mimeType="application/x-ogg" />
+                <data android:mimeType="application/itunes" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.facebook.accountkit.ui.AccountKitEmailRedirectActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/ak_login_protocol_scheme" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.SettingsActivity"
+            android:theme="@style/AppThemeNormalLight" />
+        <activity
+            android:name=".firebaserecyclerviewtutorial.MainActivityList"
+            android:theme="@style/AppThemeNormalLight" />
+        <activity
+            android:name=".firebaserecyclerviewtutorial.NewsActivity"
+            android:theme="@style/AppThemeNormalLight" />
+        <activity
+            android:name=".firebaserecyclerviewtutorial.NewsWebView"
+            android:theme="@style/AppThemeNormalLight" />
+        <activity
+            android:name=".activities.PlaylistDetailActivity"
+            android:theme="@style/AppTheme.FullScreen.Light" />
+        <activity
+            android:name=".activities.SearchActivity"
+            android:theme="@style/AppThemeNormalLight" />
+        <activity
+            android:name=".activities.NowPlayingActivity"
+            android:theme="@style/AppTheme.FullScreen.Light" />
+        <activity android:name=".activities.DonateActivity" />
+        <activity
+            android:name=".cast.ExpandedControlsActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.ExpandedCastController" />
+        <activity
+            android:name="com.facebook.accountkit.ui.AccountKitActivity"
+            android:theme="@style/AppThemeNormalLight"
+            tools:replace="android:theme" />
+
+        <receiver android:name=".helpers.MediaButtonIntentReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON" />
+                <action android:name="android.media.AUDIO_BECOMING_NOISY" />
+            </intent-filter>
+        </receiver>
+        <!-- Music service -->
+        <service
+            android:name=".MusicService"
+            android:label="@string/app_name"
+            android:process=":main" />
+        <service
+            android:name=".WearBrowserService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.media.browse.MediaBrowserService" />
+            </intent-filter>
+        </service>
+
+        <!-- use your own api key for fabric -->
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="83531156d0fb41c48a88d3c3ab1307c76cdfbcc8" />
+        <meta-data
+            android:name="com.google.android.gms.cast.framework.OPTIONS_PROVIDER_CLASS_NAME"
+            android:value="com.area52.techno.cast.CastOptionsProvider" />
+        <meta-data
+            android:name="com.facebook.accountkit.ApplicationName"
+            android:value="@string/app_name" />
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/FACEBOOK_APP_ID" />
+        <meta-data
+            android:name="com.facebook.accountkit.ClientToken"
+            android:value="@string/ACCOUNT_KIT_CLIENT_TOKEN" />
+
+        <receiver
+            android:name=".widgets.desktop.StandardWidget"
+            android:label="@string/widget_standard">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.area52.techno.metachanged" />
+                <action android:name="com.area52.techno.playstatechanged" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_standard" />
+        </receiver>
+        <receiver
+            android:name=".widgets.desktop.WhiteWidget"
+            android:label="@string/widget_white">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.area52.techno.metachanged" />
+                <action android:name="com.area52.techno.playstatechanged" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_white" />
+        </receiver>
+        <receiver
+            android:name=".widgets.desktop.SmallWidget"
+            android:label="@string/widget_small">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.area52.techno.metachanged" />
+                <action android:name="com.area52.techno.playstatechanged" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_small" />
+        </receiver>
+
+        <activity android:name=".VideoActivity" />
+        <activity
+            android:name=".MyAccountActivity"
+            android:label="@string/title_activity_my_account"
+            android:theme="@style/AppTheme.FullScreen.Light" />
+        <activity
+            android:name=".activities.OnlineActivity"
+            android:label="@string/title_activity_online"
+            android:theme="@style/AppTheme.FullScreen.Light" />
+        <activity android:name=".activities.Awakenings2018" />
+        <activity android:name=".activities.YoutubePlaylist2" />
+        <activity android:name=".activities.VideoActivitySets" />
+        <activity android:name=".youtube.YouTubeActivityTechnoSets" />
+        <activity android:name=".youtube.YouTubeActivityTranceSets" />
+        <activity android:name=".youtube.YouTubeActivityPlaylist" />
+        <activity android:name=".festivals.AwakeningsActivity" />
+        <activity android:name=".festivals.TimeWarpActivity" />
+        <activity android:name=".festivals.FuturActivity" />
+        <activity android:name=".festivals.ADE" />
+        <activity android:name=".festivals.LuminosityActivity" />
+        <activity android:name=".activities.PlatformsActivity" />
+        <activity android:name=".soundcloud.MixCloudActivity"
+            android:launchMode="singleTop"
+            />
+        <activity android:name=".soundcloud.SoundCloudActivity"
+            android:launchMode="singleTop"
+            />
+        <activity
+            android:name=".activities.YoutubePlayer"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_youtube_player"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".YouTubePlayerActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_youtube_player"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".activities.WebViewActivity"
+            android:screenOrientation="sensor" />
+        <activity android:name=".activities.YoutubePlaylist" />
+        <activity
+            android:name=".activities.EventsActivity"
+            android:label="@string/title_activity_events" />
+        <activity android:name=".activities.FestivalsActivity" />
+        <activity
+            android:name=".activities.StreamActivity"
+            android:label="@string/title_activity_stream"
+            android:theme="@style/AppTheme.FullScreen.Light"></activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_events_tickets"
+        android:orderInCategory="9"
+        android:title="@string/get_tickets"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_events_music"
+        android:orderInCategory="9"
+        android:title="Music"
+        app:showAsAction="never" />
+
+
+
+</menu>

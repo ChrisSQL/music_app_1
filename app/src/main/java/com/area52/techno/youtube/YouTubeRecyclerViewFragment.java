@@ -1,5 +1,6 @@
 package com.area52.techno.youtube;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
 import android.app.ProgressDialog;

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.area52.techno.R;
 import com.area52.techno.festivals.ADE;
@@ -18,10 +19,18 @@ import com.area52.techno.youtube.YouTubeActivityPlaylist;
 
 public class FestivalsActivity extends AppCompatActivity {
 
+    Intent intentPlatform;
+    String festival;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_festivals);
+
+        intentPlatform = getIntent();
+        festival = intentPlatform.getStringExtra("festival");
+
+        if(festival != null){Toast.makeText(this, festival, Toast.LENGTH_SHORT).show();}
 
         final Button button2018 = (Button) findViewById(R.id.AwakeningsButton);
         button2018.setOnClickListener(new View.OnClickListener() {

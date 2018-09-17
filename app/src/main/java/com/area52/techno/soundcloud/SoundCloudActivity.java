@@ -16,6 +16,7 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.graphics.Palette;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
@@ -27,6 +28,9 @@ import android.widget.Toast;
 
 import com.area52.techno.MusicService;
 import com.area52.techno.R;
+import com.area52.techno.activities.FestivalsActivity;
+import com.area52.techno.activities.PlatformsActivity;
+import com.area52.techno.festivals.AwakeningsActivity;
 import com.area52.techno.utils.NavigationUtils;
 import com.area52.techno.utils.TimberUtils;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -38,13 +42,15 @@ public class SoundCloudActivity extends Activity  {
     private WebView wv1;
     private String url;
     Intent intentPlatform;
-    String platforms, festival;
+    String platform, festival;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sound_cloud);
 
         intentPlatform = getIntent();
+        platform = intentPlatform.getStringExtra("platform");
+        festival = intentPlatform.getStringExtra("festival");
         url = intentPlatform.getStringExtra("url");
 
         //url = "https://soundcloud.com/awakenings/sets/awakenings-festival-2018";
@@ -96,6 +102,26 @@ public class SoundCloudActivity extends Activity  {
         }
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)  {
+        if (Integer.parseInt(android.os.Build.VERSION.SDK) > 5
+                && keyCode == KeyEvent.KEYCODE_BACK
+                && event.getRepeatCount() == 0) {
+            Log.d("CDA", "onKeyDown Called");
+            onBackPressed();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
+
+    @Override
+    public void onBackPressed() {
+
+        Intent i = new Intent(SoundCloudActivity.this, FestivalsActivity.class);
+        i.putExtra("festival", festival);
+        SoundCloudActivity.this.startActivity(i);
+
+    }
 
 }

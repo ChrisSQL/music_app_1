@@ -57,11 +57,12 @@ public class YouTubeActivityPlaylist extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.youtube_activity);
 
-
         intent = getIntent();
         playlist = intent.getStringExtra("playlist");
         PlaylistArray = new String[]{playlist};
         festival = intent.getStringExtra("festival");
+
+        Toast.makeText(this, festival, Toast.LENGTH_SHORT).show();
 
         Toolbar toolbar = findViewById(R.id.toolbarEvents);
         setSupportActionBar(toolbar);

@@ -36,10 +36,11 @@ public class PlatformsActivity extends AppCompatActivity {
         platforms = intentPlatform.getStringExtra("platforms");
         festival = intentPlatform.getStringExtra("festival");
 
+        Toast.makeText(this, festival, Toast.LENGTH_SHORT).show();
+
         buttonHeader = (Button) findViewById(R.id.buttonHeader);
 
         if(festival != null){ setHeaderImage();}
-
 
         final Button button2018 = (Button) findViewById(R.id.YoutubeButton);
         button2018.setOnClickListener(new View.OnClickListener() {
@@ -49,36 +50,42 @@ public class PlatformsActivity extends AppCompatActivity {
                     case "Awakenings": {
                         Intent i = new Intent(PlatformsActivity.this, AwakeningsActivity.class);
                         i.putExtra("platform", "Youtube");
+                        i.putExtra("festival", festival);
                         PlatformsActivity.this.startActivity(i);
                         break;
                     }
                     case "TimeWarp": {
                         Intent i = new Intent(PlatformsActivity.this, TimeWarpActivity.class);
                         i.putExtra("platform", "Youtube");
+                        i.putExtra("festival", festival);
                         PlatformsActivity.this.startActivity(i);
                         break;
                     }
                     case "Futur": {
                         Intent i = new Intent(PlatformsActivity.this, FuturActivity.class);
                         i.putExtra("platform", "Youtube");
+                        i.putExtra("festival", festival);
                         PlatformsActivity.this.startActivity(i);
                         break;
                     }
                     case "Printworks": {
                         Intent i = new Intent(PlatformsActivity.this, PrintworksActivity.class);
                         i.putExtra("platform", "Youtube");
+                        i.putExtra("festival", festival);
                         PlatformsActivity.this.startActivity(i);
                         break;
                     }
                     case "ADE": {
                         Intent i = new Intent(PlatformsActivity.this, ADE.class);
                         i.putExtra("platform", "Youtube");
+                        i.putExtra("festival", festival);
                         PlatformsActivity.this.startActivity(i);
                         break;
                     }
                     case "Lumo": {
                         Intent i = new Intent(PlatformsActivity.this, LuminosityActivity.class);
                         i.putExtra("platform", "Youtube");
+                        i.putExtra("festival", festival);
                         PlatformsActivity.this.startActivity(i);
                         break;
                     }
@@ -100,36 +107,42 @@ public class PlatformsActivity extends AppCompatActivity {
                     case "Awakenings": {
                         Intent i = new Intent(PlatformsActivity.this, AwakeningsActivity.class);
                         i.putExtra("platform", "SoundCloud");
+                        i.putExtra("festival", festival);
                         PlatformsActivity.this.startActivity(i);
                         break;
                     }
                     case "TimeWarp": {
                         Intent i = new Intent(PlatformsActivity.this, TimeWarpActivity.class);
                         i.putExtra("platform", "SoundCloud");
+                        i.putExtra("festival", festival);
                         PlatformsActivity.this.startActivity(i);
                         break;
                     }
                     case "Futur": {
                         Intent i = new Intent(PlatformsActivity.this, FuturActivity.class);
                         i.putExtra("platform", "SoundCloud");
+                        i.putExtra("festival", festival);
                         PlatformsActivity.this.startActivity(i);
                         break;
                     }
                     case "Printworks": {
                         Intent i = new Intent(PlatformsActivity.this, PrintworksActivity.class);
                         i.putExtra("platform", "SoundCloud");
+                        i.putExtra("festival", festival);
                         PlatformsActivity.this.startActivity(i);
                         break;
                     }
                     case "ADE": {
                         Intent i = new Intent(PlatformsActivity.this, ADE.class);
                         i.putExtra("platform", "SoundCloud");
+                        i.putExtra("festival", festival);
                         PlatformsActivity.this.startActivity(i);
                         break;
                     }
                     case "Lumo": {
                         Intent i = new Intent(PlatformsActivity.this, LuminosityActivity.class);
                         i.putExtra("platform", "SoundCloud");
+                        i.putExtra("festival", festival);
                         PlatformsActivity.this.startActivity(i);
                         break;
                     }
@@ -147,36 +160,42 @@ public class PlatformsActivity extends AppCompatActivity {
                     case "Awakenings": {
                         Intent i = new Intent(PlatformsActivity.this, AwakeningsActivity.class);
                         i.putExtra("platform", "MixCloud");
+                        i.putExtra("festival", festival);
                         PlatformsActivity.this.startActivity(i);
                         break;
                     }
                     case "TimeWarp": {
                         Intent i = new Intent(PlatformsActivity.this, TimeWarpActivity.class);
                         i.putExtra("platform", "MixCloud");
+                        i.putExtra("festival", festival);
                         PlatformsActivity.this.startActivity(i);
                         break;
                     }
                     case "Futur": {
                         Intent i = new Intent(PlatformsActivity.this, FuturActivity.class);
                         i.putExtra("platform", "MixCloud");
+                        i.putExtra("festival", festival);
                         PlatformsActivity.this.startActivity(i);
                         break;
                     }
                     case "Printworks": {
                         Intent i = new Intent(PlatformsActivity.this, PrintworksActivity.class);
                         i.putExtra("platform", "MixCloud");
+                        i.putExtra("festival", festival);
                         PlatformsActivity.this.startActivity(i);
                         break;
                     }
                     case "ADE": {
                         Intent i = new Intent(PlatformsActivity.this, ADE.class);
                         i.putExtra("platform", "MixCloud");
+                        i.putExtra("festival", festival);
                         PlatformsActivity.this.startActivity(i);
                         break;
                     }
                     case "Lumo": {
                         Intent i = new Intent(PlatformsActivity.this, LuminosityActivity.class);
                         i.putExtra("platform", "MixCloud");
+                        i.putExtra("festival", festival);
                         PlatformsActivity.this.startActivity(i);
                         break;
                     }
@@ -242,10 +261,13 @@ public class PlatformsActivity extends AppCompatActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(PlatformsActivity.this, FestivalsActivity.class));
+
+        Intent i = new Intent(PlatformsActivity.this, FestivalsActivity.class);
+        i.putExtra("festival", festival);
+        PlatformsActivity.this.startActivity(i);
+
     }
 
     public void goToFestival(String festivalIn){

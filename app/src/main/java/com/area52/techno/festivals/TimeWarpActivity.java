@@ -16,10 +16,17 @@ import com.area52.techno.youtube.YouTubeActivityPlaylist;
 
 public class TimeWarpActivity extends AppCompatActivity {
 
+    Intent intentPlatform;
+    String platform, festival;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_festivals_timewarp_years);
+
+        intentPlatform = getIntent();
+        platform = intentPlatform.getStringExtra("platform");
+        festival = intentPlatform.getStringExtra("festival");
 
         final Button button2018 = (Button) findViewById(R.id.n2018Button);
         button2018.setOnClickListener(new View.OnClickListener() {
@@ -94,7 +101,7 @@ public class TimeWarpActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent i = new Intent(TimeWarpActivity.this, PlatformsActivity.class);
-        i.putExtra("festival", "TimeWarp");
+        i.putExtra("festival", festival);
         TimeWarpActivity.this.startActivity(i);
     }
 

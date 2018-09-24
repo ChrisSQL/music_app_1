@@ -65,6 +65,29 @@ public class MixCloudActivity extends Activity  {
 
     }
 
+    private void notificationTwo() {
+
+        Intent intent = new Intent(getApplicationContext(), MixCloudActivity.class);
+        PendingIntent pIntent = PendingIntent.getActivity(getApplicationContext(), (int)System.currentTimeMillis(), intent, 0);
+
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(MixCloudActivity.this, CHANNEL_ID)
+                .setSmallIcon(R.drawable.video_icon_48)
+                .setContentTitle("Sesh")
+                .setContentText(url)
+                .setContentIntent(pIntent);
+
+        NotificationManager notificationManager = (NotificationManager) MixCloudActivity.this.getSystemService(
+                NOTIFICATION_SERVICE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID, "Sesh", NotificationManager.IMPORTANCE_HIGH);
+
+            notificationManager.createNotificationChannel(mChannel);
+        }
+
+        notificationManager.notify(0, mBuilder.build());
+    }
+
     private void notification() {
 
         Intent intent = new Intent(getApplicationContext(), MixCloudActivity.class);

@@ -10,8 +10,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.area52.techno.R;
-import com.area52.techno.activities.FestivalsActivity;
-import com.area52.techno.activities.MainActivity;
 import com.area52.techno.activities.PlatformsActivity;
 import com.area52.techno.soundcloud.MixCloudActivity;
 import com.area52.techno.soundcloud.SoundCloudActivity;

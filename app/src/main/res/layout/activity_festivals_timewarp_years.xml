@@ -22,7 +22,25 @@
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:background="@drawable/timewarp3" />
+            android:background="@drawable/timewarp_square_1500"
+            android:padding="5dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/nHeaderButtonPlatform"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/youtube_1500"
+            android:padding="5dp" />
 
     </LinearLayout>
 
@@ -36,15 +54,28 @@
             android:id="@+id/n2018Button"
             android:layout_width="0dip"
             android:layout_height="match_parent"
+            android:layout_margin="5dp"
             android:layout_weight="1"
+            android:background="@color/colorPrimaryLightDefault"
             android:text="2018" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/n2017Button"
             android:layout_width="0dip"
             android:layout_height="match_parent"
+            android:layout_margin="5dp"
             android:layout_weight="1"
+            android:background="@color/colorPrimaryLightDefault"
             android:text="2017" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -58,14 +89,27 @@
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:background="@color/colorPrimaryLightDefault"
             android:text="2016" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/n2015Button"
             android:layout_width="0dip"
             android:layout_height="match_parent"
+            android:layout_margin="5dp"
             android:layout_weight="1"
+            android:background="@color/colorPrimaryLightDefault"
             android:text="2015" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -79,13 +123,27 @@
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:background="@color/colorPrimaryLightDefault"
             android:text="2014" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/n2013Button"
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:background="@color/colorPrimaryLightDefault"
             android:text="2013" />
+
     </LinearLayout>
+
 </LinearLayout>

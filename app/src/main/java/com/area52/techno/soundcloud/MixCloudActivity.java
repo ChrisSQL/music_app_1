@@ -40,6 +40,7 @@ public class MixCloudActivity extends Activity  {
         setContentView(R.layout.activity_sound_cloud);
 
         VIDEO_URL = "133075162";
+        VIDEO_URL = "133075162";
 
         intentPlatform = getIntent();
         platform = intentPlatform.getStringExtra("platform");

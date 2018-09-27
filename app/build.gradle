@@ -10,12 +10,12 @@ android {
             storePassword 'Dublin12'
         }
     }
-    compileSdkVersion rootProject.compileSdkVersion
+    compileSdkVersion 27
     defaultConfig {
         applicationId "com.area52.techno"
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
-        versionCode 60
+        versionCode 61
         versionName "1.0"
         //renderscript support mode is not supported for 21+ with gradle version 2.0
         renderscriptTargetApi 20
@@ -57,8 +57,8 @@ android {
     productFlavors {
     }
     compileOptions {
-        targetCompatibility 1.8
-        sourceCompatibility 1.8
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
     }
 }
 

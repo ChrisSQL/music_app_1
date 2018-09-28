@@ -42,7 +42,7 @@ public class PlatformsActivity extends AppCompatActivity {
 
         if(festival != null){ setHeaderImage();}
 
-        final Button button2018 = (Button) findViewById(R.id.YoutubeButton);
+        final Button button2018 = (Button) findViewById(R.id.YoutubeButton2018);
         button2018.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
@@ -99,7 +99,7 @@ public class PlatformsActivity extends AppCompatActivity {
 
             }
         });
-        final Button button2017 = (Button) findViewById(R.id.SoundcloudButton);
+        final Button button2017 = (Button) findViewById(R.id.SoundcloudButton2018);
         button2017.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
@@ -152,7 +152,7 @@ public class PlatformsActivity extends AppCompatActivity {
                 }
             }
         });
-        final Button button2016 = (Button) findViewById(R.id.MixcloudButton);
+        final Button button2016 = (Button) findViewById(R.id.MixcloudButton2018);
         button2016.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click

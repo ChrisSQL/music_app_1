@@ -26,6 +26,8 @@
 
     </LinearLayout>
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dip"
@@ -33,7 +35,16 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/YoutubeButton"
+            android:id="@+id/Button2018"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:text="2018"
+            android:padding="5dp" />
+
+        <Button
+            android:id="@+id/YoutubeButton2018"
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
@@ -42,22 +53,24 @@
             android:background="@drawable/youtube_1500"
             android:padding="5dp" />
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dip"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-
         <Button
-            android:id="@+id/SoundcloudButton"
+            android:id="@+id/SoundcloudButton2018"
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:layout_weight="1"
             android:background="@drawable/soundcloud_1500"
             android:padding="5dp" />
+
+        <Button
+            android:id="@+id/MixcloudButton2018"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/mixcloud_1500"
+            android:padding="5dp" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -67,13 +80,228 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/MixcloudButton"
+            android:id="@+id/Button2017"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:text="2017"
+            android:padding="5dp" />
+
+        <Button
+            android:id="@+id/YoutubeButton2017"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+
+            android:background="@drawable/youtube_1500"
+            android:padding="5dp" />
+
+        <Button
+            android:id="@+id/SoundcloudButton2017"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/soundcloud_1500"
+            android:padding="5dp" />
+
+        <Button
+            android:id="@+id/MixcloudButton2017"
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:layout_weight="1"
             android:background="@drawable/mixcloud_1500"
             android:padding="5dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/Button2016"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:text="2016"
+            android:padding="5dp" />
+
+        <Button
+            android:id="@+id/YoutubeButton2016"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+
+            android:background="@drawable/youtube_1500"
+            android:padding="5dp" />
+
+        <Button
+            android:id="@+id/SoundcloudButton2016"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/soundcloud_1500"
+            android:padding="5dp" />
+
+        <Button
+            android:id="@+id/MixcloudButton2016"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/mixcloud_1500"
+            android:padding="5dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/Button2015"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:text="2015"
+            android:padding="5dp" />
+
+        <Button
+            android:id="@+id/YoutubeButton2015"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+
+            android:background="@drawable/youtube_1500"
+            android:padding="5dp" />
+
+        <Button
+            android:id="@+id/SoundcloudButton2015"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/soundcloud_1500"
+            android:padding="5dp" />
+
+        <Button
+            android:id="@+id/MixcloudButton2015"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/mixcloud_1500"
+            android:padding="5dp" />
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/Button2014"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:text="2014"
+            android:padding="5dp" />
+
+        <Button
+            android:id="@+id/YoutubeButton2014"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+
+            android:background="@drawable/youtube_1500"
+            android:padding="5dp" />
+
+        <Button
+            android:id="@+id/SoundcloudButton2014"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/soundcloud_1500"
+            android:padding="5dp" />
+
+        <Button
+            android:id="@+id/MixcloudButton2014"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/mixcloud_1500"
+            android:padding="5dp" />
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/Button2013"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:text="2013"
+            android:padding="5dp" />
+
+        <Button
+            android:id="@+id/YoutubeButton2013"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+
+            android:background="@drawable/youtube_1500"
+            android:padding="5dp" />
+
+        <Button
+            android:id="@+id/SoundcloudButton20153"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/soundcloud_1500"
+            android:padding="5dp" />
+
+        <Button
+            android:id="@+id/MixcloudButton2013"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/mixcloud_1500"
+            android:padding="5dp" />
+
+
+
     </LinearLayout>
 
 

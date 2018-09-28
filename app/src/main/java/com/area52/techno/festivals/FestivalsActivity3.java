@@ -65,6 +65,7 @@ public class FestivalsActivity3 extends AppCompatActivity {
                     FestivalsActivity3.this.startActivity(i);
 
                 }else if(platform.equals("SoundCloud")){
+
                     Intent i=new Intent(FestivalsActivity3.this,SoundCloudActivity.class);
 
                     if(festival.equals("Awakenings")){

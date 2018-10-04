@@ -21,7 +21,6 @@ public class FestivalsActivity3 extends AppCompatActivity {
     String platform, festival;
     Button buttonHeader, buttonHeader2;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +36,6 @@ public class FestivalsActivity3 extends AppCompatActivity {
         if(festival != null){ setHeaderImage();}
 
         // Toast.makeText(FestivalsActivity3.this, platform, Toast.LENGTH_SHORT).show();
-
 
         final Button button2018 = (Button) findViewById(R.id.n2018Button);
         button2018.setOnClickListener(new View.OnClickListener() {
@@ -96,8 +94,6 @@ public class FestivalsActivity3 extends AppCompatActivity {
                     FestivalsActivity3.this.startActivity(i);
 
                 }
-
-
 
             }
         });
@@ -420,7 +416,6 @@ public class FestivalsActivity3 extends AppCompatActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-
     @Override
     public void onBackPressed() {
 
@@ -429,7 +424,5 @@ public class FestivalsActivity3 extends AppCompatActivity {
         FestivalsActivity3.this.startActivity(i);
 
     }
-
-
 
 }

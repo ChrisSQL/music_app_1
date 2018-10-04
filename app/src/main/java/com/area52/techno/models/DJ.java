@@ -15,10 +15,13 @@
 package com.area52.techno.models;
 
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DJ {
 
     // Required
+    public String id;
     public String name;
     public String image;
     public String djLogoImage;
@@ -39,7 +42,8 @@ public class DJ {
     public String bookingEmail;
     public String genre;
 
-    public DJ(String name, String image, String djLogoImage, String county, String country, String email, String phoneNumber, String facebookUserID, String bio, String soundcloudLink, String youtubeLink, String mixcloudLink, String facebookLink, String instagramLink, String spotifyLink, String bookingEmail, String genre) {
+    public DJ(String id, String name, String image, String djLogoImage, String county, String country, String email, String phoneNumber, String facebookUserID, String bio, String soundcloudLink, String youtubeLink, String mixcloudLink, String facebookLink, String instagramLink, String spotifyLink, String bookingEmail, String genre) {
+
         this.name = name;
         this.image = image;
         this.djLogoImage = djLogoImage;
@@ -57,6 +61,22 @@ public class DJ {
         this.spotifyLink = spotifyLink;
         this.bookingEmail = bookingEmail;
         this.genre = genre;
+    }
+
+    public DJ(String email, String name) {
+
+     this.email = email;
+     this.name = name;
+
+    }
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -193,5 +213,14 @@ public class DJ {
 
     public void setGenre(String genre) {
         this.genre = genre;
+    }
+
+    public Map<String, Object> toMap() {
+
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("name", this.name);
+        result.put("bio", this.bio);
+
+        return result;
     }
 }

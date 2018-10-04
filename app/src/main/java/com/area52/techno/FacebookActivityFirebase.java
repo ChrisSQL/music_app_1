@@ -28,7 +28,9 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -57,6 +59,8 @@ public class FacebookActivityFirebase extends BaseActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_facebook_firebase);
 
+
+
         // Views
         mStatusTextView = findViewById(R.id.status);
         mDetailTextView = findViewById(R.id.detail);
@@ -78,7 +82,7 @@ public class FacebookActivityFirebase extends BaseActivity implements
             public void onSuccess(LoginResult loginResult) {
                 Log.d(TAG, "facebook:onSuccess:" + loginResult);
                 handleFacebookAccessToken(loginResult.getAccessToken());
-                addUser();
+
                 Intent myIntent = new Intent(FacebookActivityFirebase.this, MainActivity.class);
                 FacebookActivityFirebase.this.startActivity(myIntent);
             }
@@ -100,6 +104,9 @@ public class FacebookActivityFirebase extends BaseActivity implements
             }
         });
         // [END initialize_fblogin]
+
+        addUser();
+        getUser();
     }
 
     public void addUser() {
@@ -141,6 +148,28 @@ public class FacebookActivityFirebase extends BaseActivity implements
                     }
                 });
         // [END add_alan_turing]
+    }
+
+    public void getUser(){
+
+        db.collection("users")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (DocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+
+                            }
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+
+
+
     }
 
     // [START on_start_check_user]

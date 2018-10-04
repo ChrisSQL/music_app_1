@@ -2,15 +2,15 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group
-        android:id="@+id/groupEvents"
-        android:checkableBehavior="none">
+    <!--<group-->
+        <!--android:id="@+id/groupEvents"-->
+        <!--android:checkableBehavior="none">-->
 
-        <item
-            android:id="@+id/nav_events"
-            android:title="@string/events" />
+        <!--<item-->
+            <!--android:id="@+id/nav_events"-->
+            <!--android:title="@string/events" />-->
 
-    </group>
+    <!--</group>-->
 
     <group
         android:id="@+id/groupOnlineTechnoTitle">

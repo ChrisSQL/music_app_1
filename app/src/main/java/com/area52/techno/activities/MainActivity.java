@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -28,6 +29,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.afollestad.appthemeengine.customizers.ATEActivityThemeCustomizer;
 import com.anjlab.android.iab.v3.BillingProcessor;
@@ -51,9 +53,20 @@ import com.area52.techno.subfragments.LyricsFragment;
 import com.area52.techno.utils.Constants;
 import com.area52.techno.utils.NavigationUtils;
 import com.area52.techno.utils.TimberUtils;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -69,6 +82,8 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
     private Runnable runnable;
     private DrawerLayout mDrawerLayout;
     private boolean isDarkTheme;
+    private FirebaseFirestore db;
+    private static final String TAG = "Firebase123";
 
     private Runnable navigateLibrary = new Runnable() {
         public void run() {
@@ -90,6 +105,52 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
 //
 //        }
 //    };
+
+    public void getUser(){
+
+
+        db.collection("visits")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (DocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                Toast.makeText(MainActivity.this, document.toString(), Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+
+    }
+
+    public void addUser() {
+        // [START add_alan_turing]
+        // Create a new user with a first, middle, and last name
+        Map<String, Object> visit = new HashMap<>();
+        visit.put("name","Darren Connolly");
+        visit.put("timestamp",new Date());
+
+        // Add a new document with a generated ID
+        db.collection("visits")
+                .add(visit)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error adding document", e);
+                    }
+                });
+        // [END add_alan_turing]
+    }
 
     private Runnable navigatePlaylist = new Runnable() {
         public void run() {
@@ -172,7 +233,6 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
         }
     };
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
@@ -182,6 +242,7 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
         isDarkTheme = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("dark_theme", true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        db = FirebaseFirestore.getInstance();
 
     //    expandableMenu();
 
@@ -339,7 +400,7 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
 
         if (!isDarkTheme) {
 
-            navigationView.getMenu().findItem(R.id.nav_events).setIcon(R.drawable.ic_dashboard_black_24dp);
+        //    navigationView.getMenu().findItem(R.id.nav_events).setIcon(R.drawable.ic_dashboard_black_24dp);
             navigationView.getMenu().findItem(R.id.djs).setIcon(R.drawable.library_music);
 
             navigationView.getMenu().findItem(R.id.nav_members_sets).setIcon(R.drawable.library_music);
@@ -361,7 +422,7 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
 
         } else {
 
-            navigationView.getMenu().findItem(R.id.nav_events).setIcon(R.drawable.ic_dashboard_white_24dp);
+        //    navigationView.getMenu().findItem(R.id.nav_events).setIcon(R.drawable.ic_dashboard_white_24dp);
             navigationView.getMenu().findItem(R.id.djs).setIcon(R.drawable.library_music_white);
 
             navigationView.getMenu().findItem(R.id.nav_members_sets).setIcon(R.drawable.library_music_white);
@@ -396,11 +457,11 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
 
         switch (menuItem.getItemId()) {
 
-            case R.id.nav_events:
-                //runnable = navigateEvents;
-                startActivity(new Intent(MainActivity.this, EventsActivity.class));
-                //startActivity(new Intent(MediaPlayerMain.this, FestivalsActivity.class));
-                break;
+//            case R.id.nav_events:
+//                //runnable = navigateEvents;
+//                startActivity(new Intent(MainActivity.this, EventsActivity.class));
+//                //startActivity(new Intent(MediaPlayerMain.this, FestivalsActivity.class));
+//                break;
             case R.id.nav_members_sets:
                 startActivity(new Intent(MainActivity.this, YouTubeActivityTechnoSets.class));
                 break;

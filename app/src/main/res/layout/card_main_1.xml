@@ -31,7 +31,7 @@
             android:layout_alignBottom="@id/img_main_card_1"
             android:layout_margin="@dimen/card_title_margin"
             android:gravity="center"
-            android:text="Sunil Sharpe @ Project"
+            android:text="Sunil Sharpe"
             android:textColor="@color/cardview_light_background"/>
 
         <!--<TextView-->

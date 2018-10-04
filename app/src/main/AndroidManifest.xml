@@ -21,37 +21,32 @@
         android:theme="@style/AppTheme.FullScreen.Light"
         tools:replace="android:allowBackup, android:label">
         <activity
-            android:name=".FacebookActivity"
-            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name">
-        </activity>
-        <activity
-            android:name=".FacebookActivityFirebase"
-            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name">
-            <intent-filter>
-                <category android:name="android.intent.category.CATEGORY_APP_MUSIC" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".activities.MainActivity"
             android:label="SESH"
             android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
+                <action android:name="android.intent.action.view" />
+            </intent-filter>
+            <intent-filter>
                 <data android:scheme="file" />
                 <data android:mimeType="audio/*" />
                 <data android:mimeType="application/ogg" />
                 <data android:mimeType="application/x-ogg" />
                 <data android:mimeType="application/itunes" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".FacebookActivityFirebase"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name">
 
+            <intent-filter>
+                <category android:name="android.intent.category.CATEGORY_APP_MUSIC" />
+            </intent-filter>
         </activity>
         <activity android:name="com.facebook.accountkit.ui.AccountKitEmailRedirectActivity">
             <intent-filter>
@@ -68,7 +63,12 @@
             android:theme="@style/AppThemeNormalLight" />
         <activity
             android:name=".firebaserecyclerviewtutorial.MainActivityList"
-            android:theme="@style/AppThemeNormalLight" />
+            android:theme="@style/AppThemeNormalLight">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".firebaserecyclerviewtutorial.NewsActivity"
             android:theme="@style/AppThemeNormalLight" />
@@ -192,12 +192,12 @@
         <activity android:name=".festivals.ADE" />
         <activity android:name=".festivals.LuminosityActivity" />
         <activity android:name=".activities.PlatformsActivity" />
-        <activity android:name=".soundcloud.MixCloudActivity"
-            android:launchMode="singleTop"
-            />
-        <activity android:name=".soundcloud.SoundCloudActivity"
-            android:launchMode="singleTop"
-            />
+        <activity
+            android:name=".soundcloud.MixCloudActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".soundcloud.SoundCloudActivity"
+            android:launchMode="singleTop" />
         <activity
             android:name=".activities.YoutubePlayer"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -218,10 +218,7 @@
         <activity android:name=".festivals.FestivalsActivity" />
         <activity android:name=".festivals.FestivalsActivity2" />
         <activity android:name=".festivals.FestivalsActivity3" />
-        <activity
-            android:name=".activities.StreamActivity"
-            android:label="@string/title_activity_stream"
-            android:theme="@style/AppTheme.FullScreen.Light"></activity>
+
     </application>
 
 </manifest>

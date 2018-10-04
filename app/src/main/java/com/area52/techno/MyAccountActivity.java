@@ -78,6 +78,7 @@ public class MyAccountActivity extends AppCompatActivity {
         ImageView profilePicture = (ImageView) findViewById(R.id.friendProfilePicture);
         LinearLayout profileBackground = (LinearLayout) findViewById(R.id.profileBackground);
         TextView ProfileName = (TextView) findViewById(R.id.ProfileName);
+
         ProfileName.setText(user.getDisplayName());
 
         // find the Facebook profile and get the user's id

@@ -24,7 +24,7 @@ public class FestivalsActivity3 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_festivals_years_rework);
+        setContentView(R.layout.activity_main);
 
         intentPlatform = getIntent();
         platform = intentPlatform.getStringExtra("platform");

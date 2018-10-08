@@ -34,6 +34,7 @@ import android.widget.Toast;
 import com.afollestad.appthemeengine.customizers.ATEActivityThemeCustomizer;
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.area52.techno.MyAccountActivity;
+import com.area52.techno.djs.DJs;
 import com.area52.techno.festivals.FestivalsActivity;
 import com.area52.techno.fragments.EventsFragmentNew;
 import com.area52.techno.youtube.YouTubeActivityTechnoSets;
@@ -462,6 +463,9 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
 //                startActivity(new Intent(MainActivity.this, EventsActivity.class));
 //                //startActivity(new Intent(MediaPlayerMain.this, FestivalsActivity.class));
 //                break;
+            case R.id.djs:
+                startActivity(new Intent(MainActivity.this, DJs.class));
+                break;
             case R.id.nav_members_sets:
                 startActivity(new Intent(MainActivity.this, YouTubeActivityTechnoSets.class));
                 break;

@@ -25,6 +25,10 @@
             android:label="SESH"
             android:screenOrientation="portrait">
             <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.view" />
             </intent-filter>
             <intent-filter>
@@ -214,14 +218,12 @@
         <activity android:name=".festivals.FestivalsActivity" />
         <activity android:name=".festivals.FestivalsActivity2" />
         <activity android:name=".festivals.FestivalsActivity3" />
+        <activity android:name=".djs.AddItemActivity" />
         <activity
             android:name=".djs.DJs"
             android:label="@string/title_activity_djs"
             android:theme="@style/AppTheme.FullScreen.Light">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
     </application>
 

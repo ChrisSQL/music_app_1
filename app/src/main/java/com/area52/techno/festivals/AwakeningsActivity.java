@@ -43,13 +43,13 @@ public class AwakeningsActivity extends AppCompatActivity {
                     AwakeningsActivity.this.startActivity(i);
                 }else if(platform.equals("SoundCloud")){
                     Intent i=new Intent(AwakeningsActivity.this,SoundCloudActivity.class);
-                    i.putExtra("url", "https://soundcloud.com/awakenings/sets/awakenings-festival-2018");
+                    i.putExtra("url", "https://soundcloud.com/awakenings/sets/awakenings-festival-text2018");
                     i.putExtra("festival", "Awakenings");
                     AwakeningsActivity.this.startActivity(i);
 
                 }else if(platform.equals("MixCloud")){
                     Intent i=new Intent(AwakeningsActivity.this,MixCloudActivity.class);
-                    i.putExtra("playlist", "https://m.mixcloud.com/chris-maher7/playlists/awakenings-2018/");
+                    i.putExtra("playlist", "https://m.mixcloud.com/chris-maher7/playlists/awakenings-text2018/");
                     i.putExtra("festival", "Awakenings");
                     AwakeningsActivity.this.startActivity(i);
                 }

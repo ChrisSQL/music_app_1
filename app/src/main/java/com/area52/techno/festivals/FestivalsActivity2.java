@@ -90,7 +90,7 @@ public class FestivalsActivity2 extends AppCompatActivity {
                 Intent i=new Intent(FestivalsActivity2.this,MixCloudActivity.class);
 
                 if(festival.equals("Awakenings")){
-                    i.putExtra("playlist", "https://m.mixcloud.com/chris-maher7/playlists/awakenings-2018/");
+                    i.putExtra("playlist", "https://m.mixcloud.com/chris-maher7/playlists/awakenings-text2018/");
                 }else if(festival.equals("TimeWarp")){
 
                 }else if(festival.equals("Futur")){

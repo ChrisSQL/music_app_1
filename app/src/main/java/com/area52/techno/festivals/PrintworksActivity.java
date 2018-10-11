@@ -38,12 +38,12 @@ public class PrintworksActivity extends AppCompatActivity {
                     PrintworksActivity.this.startActivity(i);
                 }else if(platform.equals("Soundcloud")){
                     Intent i=new Intent(PrintworksActivity.this,SoundCloudActivity.class);
-                    i.putExtra("url", "https://soundcloud.com/awakenings/sets/awakenings-festival-2018");
+                    i.putExtra("url", "https://soundcloud.com/awakenings/sets/awakenings-festival-text2018");
                     PrintworksActivity.this.startActivity(i);
 
                 }else if(platform.equals("Mixcloud")){
                     Intent i=new Intent(PrintworksActivity.this,MixCloudActivity.class);
-                    i.putExtra("playlist", "https://www.mixcloud.com/chris-maher7/playlists/awakenings-2018/");
+                    i.putExtra("playlist", "https://www.mixcloud.com/chris-maher7/playlists/awakenings-text2018/");
                     PrintworksActivity.this.startActivity(i);
 
                 }

@@ -91,13 +91,9 @@ public class FestivalsActivity extends AppCompatActivity {
 
     public void goToFestival(String festivalIn){
 
-        Intent intentPlatform=new Intent(FestivalsActivity.this,FestivalsActivity2.class);
+        Intent intentPlatform=new Intent(FestivalsActivity.this,PlatformsActivityYears.class);
         intentPlatform.putExtra("festival", festivalIn);
         FestivalsActivity.this.startActivity(intentPlatform);
-
-
-
-
 
     }
 

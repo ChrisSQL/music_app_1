@@ -51,14 +51,14 @@ public class DJs extends AppCompatActivity {
 
         fab=(FloatingActionButton)findViewById(R.id.fab);
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(DJs.this,AddItemActivity.class);
-                startActivity(i);
-                finish();
-            }
-        });
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(DJs.this,AddItemActivity.class);
+//                startActivity(i);
+//                finish();
+//            }
+//        });
 
     }
 

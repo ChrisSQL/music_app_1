@@ -192,6 +192,8 @@
         <activity android:name=".festivals.ADE" />
         <activity android:name=".festivals.LuminosityActivity" />
         <activity android:name=".activities.PlatformsActivity" />
+        <activity android:name=".festivals.PlatformsActivityYears" />
+
         <activity
             android:name=".soundcloud.MixCloudActivity"
             android:launchMode="singleTop" />

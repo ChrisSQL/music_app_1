@@ -1,7 +1,7 @@
 package com.area52.techno.firebaserecyclerviewtutorial;
 
 /**
- * Created by xrezut on 03/03/2018.
+ * Created by xrezut on 03/03/text2018.
  */
 
 public class News {

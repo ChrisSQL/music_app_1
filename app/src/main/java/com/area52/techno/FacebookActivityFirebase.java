@@ -105,8 +105,8 @@ public class FacebookActivityFirebase extends BaseActivity implements
         });
         // [END initialize_fblogin]
 
-        addUser();
-        getUser();
+//        addUser();
+//        getUser();
     }
 
     public void addUser() {
@@ -178,7 +178,7 @@ public class FacebookActivityFirebase extends BaseActivity implements
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        addUser();
+    //    addUser();
         updateUI(currentUser);
 
 

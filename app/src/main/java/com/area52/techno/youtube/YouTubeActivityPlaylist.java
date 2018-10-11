@@ -14,15 +14,18 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.area52.techno.R;
 import com.area52.techno.activities.PlatformsActivity;
 import com.area52.techno.festivals.ADE;
 import com.area52.techno.festivals.AwakeningsActivity;
+import com.area52.techno.festivals.FestivalsActivity;
 import com.area52.techno.festivals.FestivalsActivity3;
 import com.area52.techno.festivals.FuturActivity;
 import com.area52.techno.festivals.LuminosityActivity;
+import com.area52.techno.festivals.PlatformsActivityYears;
 import com.area52.techno.festivals.PrintworksActivity;
 import com.area52.techno.festivals.TimeWarpActivity;
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -57,17 +60,17 @@ public class YouTubeActivityPlaylist extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.youtube_activity);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         intent = getIntent();
         playlist = intent.getStringExtra("playlist");
         PlaylistArray = new String[]{playlist};
         festival = intent.getStringExtra("festival");
 
-        Toast.makeText(this, playlist, Toast.LENGTH_SHORT).show();
+    //    Toast.makeText(this, playlist, Toast.LENGTH_SHORT).show();
 
         Toolbar toolbar = findViewById(R.id.toolbarEvents);
         setSupportActionBar(toolbar);
-
         
         if(!isConnected()){
             Toast.makeText(YouTubeActivityPlaylist.this,"No Internet Connection Detected",Toast.LENGTH_LONG).show();
@@ -144,7 +147,7 @@ public class YouTubeActivityPlaylist extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        Intent i = new Intent(YouTubeActivityPlaylist.this, FestivalsActivity3.class);
+        Intent i = new Intent(YouTubeActivityPlaylist.this, FestivalsActivity.class);
         i.putExtra("festival", festival);
         i.putExtra("platform", "Youtube");
         YouTubeActivityPlaylist.this.startActivity(i);

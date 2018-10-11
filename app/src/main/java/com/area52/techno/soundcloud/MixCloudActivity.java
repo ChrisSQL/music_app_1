@@ -41,7 +41,7 @@ public class MixCloudActivity extends Activity  {
         playlist = intentPlatform.getStringExtra("playlist");
         //String url = "<iframe width=\"100%\" height=\"400\" src=\"" + playlist + "\" frameborder=\"0\" ></iframe>";
 
-        String frameVideo = "<html><body><iframe width=\"100%\" height=\"100%\" src=\"https://www.mixcloud.com/widget/iframe/?autoplay=1&feed=%2Fchris-maher7%2Fplaylists%2Fawakenings-2018%2F\" frameborder=\"0\" ></iframe></body></html>";
+        String frameVideo = "<html><body><iframe width=\"100%\" height=\"100%\" src=\"https://www.mixcloud.com/widget/iframe/?autoplay=1&feed=%2Fchris-maher7%2Fplaylists%2Fawakenings-text2018%2F\" frameborder=\"0\" ></iframe></body></html>";
 
         WebView displayYoutubeVideo = (WebView) findViewById(R.id.webView);
         displayYoutubeVideo.setWebViewClient(new WebViewClient() {

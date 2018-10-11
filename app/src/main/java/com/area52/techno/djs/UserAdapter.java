@@ -27,16 +27,18 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
     @Override
     public UserAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dj_item_row,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dj_item_row_2,parent,false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(UserAdapter.ViewHolder holder, int position) {
-        holder.name.setText(items.get(position).getTitle());
-        holder.time.setText(items.get(position).getTime());
-        holder.djImage.setImageResource(R.drawable.gracey_friel_card2);
 
+        holder.dj_text1.setText(items.get(position).getTitle());
+        holder.dj_image_left.setImageResource(R.drawable.sesh_logo);
+
+        holder.dj_text2.setText(items.get(position).getTitle());
+        holder.dj_image_right.setImageResource(R.drawable.sesh_logo);
 
     }
 
@@ -46,15 +48,21 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        public TextView name;
-        public TextView time;
-        public ImageView djImage;
+
+        public TextView dj_text1;
+        public ImageView dj_image_left;
+
+        public TextView dj_text2;
+        public ImageView dj_image_right;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.name);
-            time= itemView.findViewById(R.id.time);
-            djImage = itemView.findViewById((R.id.dj_list_image));
+
+            dj_text1 = itemView.findViewById(R.id.dj_text1);
+            dj_image_left = itemView.findViewById((R.id.dj_image_left));
+
+            dj_text2 = itemView.findViewById(R.id.dj_text2);
+            dj_image_right = itemView.findViewById((R.id.dj_image_right));
 
         }
     }

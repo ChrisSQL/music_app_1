@@ -20,8 +20,8 @@
             android:id="@+id/festivalYearsHeaderImage"
             android:layout_width="0dip"
             android:layout_height="match_parent"
+            android:layout_margin="5dp"
             android:layout_weight="1"
-            android:background="@drawable/awakenings2"
             android:padding="5dp" />
 
     </LinearLayout>
@@ -36,22 +36,19 @@
             android:id="@+id/n2018Button"
             android:layout_width="0dip"
             android:layout_height="match_parent"
+            android:layout_margin="5dp"
             android:layout_weight="1"
-            android:text="2018" />
+            android:background="@drawable/text2018" />
 
         <Button
             android:id="@+id/n2017Button"
             android:layout_width="0dip"
             android:layout_height="match_parent"
+            android:layout_margin="5dp"
             android:layout_weight="1"
-            android:text="2017" />
+            android:background="@drawable/text2018" />
 
-        <Button
-            android:id="@+id/n20171Button"
-            android:layout_width="0dip"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="2017" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -64,15 +61,17 @@
             android:id="@+id/n2016Button"
             android:layout_width="0dip"
             android:layout_height="match_parent"
+            android:layout_margin="5dp"
             android:layout_weight="1"
-            android:text="2016" />
+            android:background="@drawable/text2018" />
 
         <Button
             android:id="@+id/n2015Button"
             android:layout_width="0dip"
             android:layout_height="match_parent"
+            android:layout_margin="5dp"
             android:layout_weight="1"
-            android:text="2015" />
+            android:background="@drawable/text2018" />
     </LinearLayout>
 
     <LinearLayout
@@ -85,14 +84,16 @@
             android:id="@+id/n2014Button"
             android:layout_width="0dip"
             android:layout_height="match_parent"
+            android:layout_margin="5dp"
             android:layout_weight="1"
-            android:text="2014" />
+            android:background="@drawable/text2018" />
 
         <Button
             android:id="@+id/n2013Button"
             android:layout_width="0dip"
             android:layout_height="match_parent"
+            android:layout_margin="5dp"
             android:layout_weight="1"
-            android:text="2013" />
+            android:background="@drawable/text2018" />
     </LinearLayout>
 </LinearLayout>

@@ -33,10 +33,12 @@ import android.widget.Toast;
 
 import com.afollestad.appthemeengine.customizers.ATEActivityThemeCustomizer;
 import com.anjlab.android.iab.v3.BillingProcessor;
+import com.area52.techno.FacebookActivityFirebase;
 import com.area52.techno.MyAccountActivity;
 import com.area52.techno.djs.DJs;
 import com.area52.techno.festivals.FestivalsActivity;
 import com.area52.techno.fragments.EventsFragmentNew;
+import com.area52.techno.models.User;
 import com.area52.techno.youtube.YouTubeActivityTechnoSets;
 import com.google.android.gms.cast.framework.media.widget.ExpandedControllerActivity;
 import com.area52.techno.MusicPlayer;
@@ -58,6 +60,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.api.client.util.DateTime;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -66,10 +73,13 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.sql.Timestamp;
+import java.time.Instant;
 
 public class MainActivity extends BaseActivity implements ATEActivityThemeCustomizer, EventsFragmentNew.OnFragmentInteractionListener {
 
@@ -83,8 +93,8 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
     private Runnable runnable;
     private DrawerLayout mDrawerLayout;
     private boolean isDarkTheme;
-    private FirebaseFirestore db;
     private static final String TAG = "Firebase123";
+    // [START declare_auth]
 
     private Runnable navigateLibrary = new Runnable() {
         public void run() {
@@ -106,52 +116,6 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
 //
 //        }
 //    };
-
-    public void getUser(){
-
-
-        db.collection("visits")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (DocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-                                Toast.makeText(MainActivity.this, document.toString(), Toast.LENGTH_SHORT).show();
-                            }
-                        } else {
-                            Log.w(TAG, "Error getting documents.", task.getException());
-                        }
-                    }
-                });
-
-    }
-
-    public void addUser() {
-        // [START add_alan_turing]
-        // Create a new user with a first, middle, and last name
-        Map<String, Object> visit = new HashMap<>();
-        visit.put("name","Darren Connolly");
-        visit.put("timestamp",new Date());
-
-        // Add a new document with a generated ID
-        db.collection("visits")
-                .add(visit)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error adding document", e);
-                    }
-                });
-        // [END add_alan_turing]
-    }
 
     private Runnable navigatePlaylist = new Runnable() {
         public void run() {
@@ -243,7 +207,9 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
         isDarkTheme = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("dark_theme", true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        db = FirebaseFirestore.getInstance();
+
+        // If logged in log Analytics
+    //    checkIfLoggedIn();
 
     //    expandableMenu();
 
@@ -627,6 +593,7 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
         }
         return super.onKeyDown(keyCode, event);
     }
+
 
 
 }

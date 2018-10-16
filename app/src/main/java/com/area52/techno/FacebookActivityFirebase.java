@@ -224,10 +224,12 @@ public class FacebookActivityFirebase extends BaseActivity implements
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             userRegistering.setuID(user.getUid());
-                            mDatabase.child("users").child(userRegistering.getuID()).setValue(userRegistering);
+                            mDatabase.child("usersID").child(userRegistering.getuID()).setValue(userRegistering);
+                            mDatabase.child("usersEmail").child(encodeUserEmail(userRegistering.getEmail())).setValue(userRegistering);
+                            mDatabase.child("usersUsername").child(userRegistering.getName()).setValue(userRegistering);
                             // mDatabase.child("users").child(userId).child("username").setValue(name);
-                            //    mStatusTextView.setText("Connected");
-                            //    showProgressDialog();
+                            // mStatusTextView.setText("Connected");
+                            // showProgressDialog();
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
@@ -291,12 +293,13 @@ public class FacebookActivityFirebase extends BaseActivity implements
                             JSONObject object,
                             GraphResponse response) {
                         try {
+
                             String facebook_id = object.getString("id");
                             String f_name = object.getString("name");
                             String email_id = object.getString("email");
+                        //    String email_cleaned =
                             String token = login_result.getAccessToken().getToken();
                             String picUrl = "https://graph.facebook.com/me/picture?type=normal&method=GET&access_token="+ token;
-
 
                             userRegistering.setFbID(facebook_id);
                             userRegistering.setName(f_name);
@@ -343,8 +346,13 @@ public class FacebookActivityFirebase extends BaseActivity implements
 
     private void onAuthSuccess(FirebaseUser user) {
 
+    }
 
-        // Go to MainActivity
+    static String encodeUserEmail(String userEmail) {
+        return userEmail.replace(".", ",");
+    }
 
+    static String decodeUserEmail(String userEmail) {
+        return userEmail.replace(",", ".");
     }
 }

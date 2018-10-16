@@ -24,7 +24,10 @@
             android:name=".activities.MainActivity"
             android:label="SESH"
             android:screenOrientation="portrait">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.view" />
             </intent-filter>
@@ -44,10 +47,7 @@
             android:name=".FacebookActivityFirebase"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
             <intent-filter>
                 <category android:name="android.intent.category.CATEGORY_APP_MUSIC" />
             </intent-filter>
@@ -67,9 +67,7 @@
             android:theme="@style/AppThemeNormalLight" />
         <activity
             android:name=".firebaserecyclerviewtutorial.MainActivityList"
-            android:theme="@style/AppThemeNormalLight">
-
-        </activity>
+            android:theme="@style/AppThemeNormalLight"></activity>
         <activity
             android:name=".firebaserecyclerviewtutorial.NewsActivity"
             android:theme="@style/AppThemeNormalLight" />
@@ -194,7 +192,6 @@
         <activity android:name=".festivals.LuminosityActivity" />
         <activity android:name=".activities.PlatformsActivity" />
         <activity android:name=".festivals.PlatformsActivityYears" />
-
         <activity
             android:name=".soundcloud.MixCloudActivity"
             android:launchMode="singleTop" />
@@ -226,6 +223,19 @@
             android:name=".djs.DJs"
             android:label="@string/title_activity_djs"
             android:theme="@style/AppTheme.FullScreen.Light">
+
+        </activity>
+        <activity
+            android:name=".users.UserList"
+            android:label="@string/title_activity_user_list"
+            android:theme="@style/AppTheme.FullScreen.Light">
+
+        </activity>
+        <activity
+            android:name=".users.MainActivityUser"
+            android:label="@string/title_activity_djs"
+            android:theme="@style/AppTheme.FullScreen.Light">
+
         </activity>
     </application>
 

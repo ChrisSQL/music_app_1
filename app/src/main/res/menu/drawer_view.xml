@@ -13,6 +13,23 @@
     <!--</group>-->
 
     <group
+        android:id="@+id/groupEvents">
+
+        <item
+        android:id="@+id/nav_events"
+        android:title="@string/events" />
+
+        <item
+            android:id="@+id/users"
+            android:title="@string/users" />
+
+        <!--<item-->
+            <!--android:id="@+id/nav_djs"-->
+            <!--android:title="@string/djs_menu" />-->
+
+    </group>
+
+    <group
         android:id="@+id/groupOnlineTechnoTitle">
 
         <item

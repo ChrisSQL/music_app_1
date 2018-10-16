@@ -239,5 +239,8 @@
     <string name="sign_out">Sign Out</string>
     <string name="desc_firebase_lockup">Locked</string>
     <string name="title_activity_djs">DJs</string>
+    <string name="title_activity_user_list">UserList</string>
+    <string name="djs_menu">DJs</string>
+    <string name="users">Users</string>
 
 </resources>

@@ -39,6 +39,7 @@ import com.area52.techno.djs.DJs;
 import com.area52.techno.festivals.FestivalsActivity;
 import com.area52.techno.fragments.EventsFragmentNew;
 import com.area52.techno.models.User;
+import com.area52.techno.users.MainActivityUser;
 import com.area52.techno.youtube.YouTubeActivityTechnoSets;
 import com.google.android.gms.cast.framework.media.widget.ExpandedControllerActivity;
 import com.area52.techno.MusicPlayer;
@@ -424,14 +425,17 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
 
         switch (menuItem.getItemId()) {
 
-//            case R.id.nav_events:
-//                //runnable = navigateEvents;
-//                startActivity(new Intent(MainActivity.this, EventsActivity.class));
-//                //startActivity(new Intent(MediaPlayerMain.this, FestivalsActivity.class));
-//                break;
-            case R.id.djs:
-                startActivity(new Intent(MainActivity.this, DJs.class));
+            case R.id.nav_events:
+               //runnable = navigateEvents;
+                startActivity(new Intent(MainActivity.this, EventsActivity.class));
+                //startActivity(new Intent(MediaPlayerMain.this, FestivalsActivity.class));
                 break;
+             case R.id.users:
+                startActivity(new Intent(MainActivity.this, MainActivityUser.class));
+                break;
+//            case R.id.djs:
+//                startActivity(new Intent(MainActivity.this, UserList.class));
+//                break;
             case R.id.nav_members_sets:
                 startActivity(new Intent(MainActivity.this, YouTubeActivityTechnoSets.class));
                 break;
@@ -593,8 +597,6 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
         }
         return super.onKeyDown(keyCode, event);
     }
-
-
 
 }
 

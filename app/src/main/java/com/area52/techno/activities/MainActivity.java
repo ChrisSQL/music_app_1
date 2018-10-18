@@ -41,6 +41,7 @@ import com.area52.techno.fragments.EventsFragmentNew;
 import com.area52.techno.models.User;
 import com.area52.techno.users.MainActivityUser;
 import com.area52.techno.youtube.YouTubeActivityTechnoSets;
+import com.facebook.login.LoginManager;
 import com.google.android.gms.cast.framework.media.widget.ExpandedControllerActivity;
 import com.area52.techno.MusicPlayer;
 import com.area52.techno.R;
@@ -95,6 +96,7 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
     private DrawerLayout mDrawerLayout;
     private boolean isDarkTheme;
     private static final String TAG = "Firebase123";
+    private FirebaseAuth mAuth;
     // [START declare_auth]
 
     private Runnable navigateLibrary = new Runnable() {
@@ -210,7 +212,11 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
         setContentView(R.layout.activity_main);
 
         // If logged in log Analytics
-    //    checkIfLoggedIn();
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if(user == null){
+            startActivity(new Intent(MainActivity.this, FacebookActivityFirebase.class));
+        }
 
     //    expandableMenu();
 
@@ -369,6 +375,7 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
         if (!isDarkTheme) {
 
         //    navigationView.getMenu().findItem(R.id.nav_events).setIcon(R.drawable.ic_dashboard_black_24dp);
+            navigationView.getMenu().findItem(R.id.users).setIcon(R.drawable.ic_dashboard_black_24dp);
             navigationView.getMenu().findItem(R.id.djs).setIcon(R.drawable.library_music);
 
             navigationView.getMenu().findItem(R.id.nav_members_sets).setIcon(R.drawable.library_music);
@@ -391,6 +398,7 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
         } else {
 
         //    navigationView.getMenu().findItem(R.id.nav_events).setIcon(R.drawable.ic_dashboard_white_24dp);
+            navigationView.getMenu().findItem(R.id.users).setIcon(R.drawable.ic_dashboard_white_24dp);
             navigationView.getMenu().findItem(R.id.djs).setIcon(R.drawable.library_music_white);
 
             navigationView.getMenu().findItem(R.id.nav_members_sets).setIcon(R.drawable.library_music_white);
@@ -425,11 +433,11 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
 
         switch (menuItem.getItemId()) {
 
-            case R.id.nav_events:
-               //runnable = navigateEvents;
-                startActivity(new Intent(MainActivity.this, EventsActivity.class));
-                //startActivity(new Intent(MediaPlayerMain.this, FestivalsActivity.class));
-                break;
+//            case R.id.nav_events:
+//               //runnable = navigateEvents;
+//                startActivity(new Intent(MainActivity.this, EventsActivity.class));
+//                //startActivity(new Intent(MediaPlayerMain.this, FestivalsActivity.class));
+//                break;
              case R.id.users:
                 startActivity(new Intent(MainActivity.this, MainActivityUser.class));
                 break;
@@ -481,6 +489,9 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
             case R.id.nav_account:
                 startActivity(new Intent(MainActivity.this, MyAccountActivity.class));
                 break;
+            case R.id.log_out:
+                signOut();
+                break;
         //    case R.id.nav_donate:
         //        startActivity(new Intent(MediaPlayerMain.this, DonateActivity.class));
         //        break;
@@ -497,6 +508,12 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
                 }
             }, 350);
         }
+    }
+
+    public void signOut() {
+        mAuth.signOut();
+        LoginManager.getInstance().logOut();
+        startActivity(new Intent(MainActivity.this, FacebookActivityFirebase.class));
     }
 
     public void setDetailsToHeader() {

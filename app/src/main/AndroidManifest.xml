@@ -234,7 +234,8 @@
         <activity
             android:name=".users.MainActivityUser"
             android:label="@string/title_activity_djs"
-            android:theme="@style/AppTheme.FullScreen.Light">
+            android:theme="@style/AppTheme.FullScreen.Light"
+            android:screenOrientation="portrait">
 
         </activity>
     </application>

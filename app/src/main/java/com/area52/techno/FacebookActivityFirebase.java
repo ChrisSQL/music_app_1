@@ -230,12 +230,13 @@ public class FacebookActivityFirebase extends BaseActivity implements
                             // mDatabase.child("users").child(userId).child("username").setValue(name);
                             // mStatusTextView.setText("Connected");
                             // showProgressDialog();
-                            new Handler().postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    updateUI(user);
-                                }
-                            }, 1000);
+                            updateUI(user);
+//                            new Handler().postDelayed(new Runnable() {
+//                                @Override
+//                                public void run() {
+//
+//                                }
+//                            }, 20);
 
                         } else {
                             // If sign in fails, display a message to the user.
@@ -299,7 +300,7 @@ public class FacebookActivityFirebase extends BaseActivity implements
                             String email_id = object.getString("email");
                         //    String email_cleaned =
                             String token = login_result.getAccessToken().getToken();
-                            String picUrl = "https://graph.facebook.com/me/picture?type=normal&method=GET&access_token="+ token;
+                            String picUrl = "https://graph.facebook.com/me/picture?type=large&method=GET&access_token="+ token;
 
                             userRegistering.setFbID(facebook_id);
                             userRegistering.setName(f_name);
@@ -314,7 +315,7 @@ public class FacebookActivityFirebase extends BaseActivity implements
                     }
                 });
         Bundle permission_param = new Bundle();
-        permission_param.putString("fields", "id,name,email,picture.width(120).height(120)");
+        permission_param.putString("fields", "id,name,email,picture.width(500).height(500)");
         data_request.setParameters(permission_param);
         data_request.executeAsync();
         data_request.executeAsync();

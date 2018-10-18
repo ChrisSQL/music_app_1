@@ -15,9 +15,9 @@
     <group
         android:id="@+id/groupEvents">
 
-        <item
-        android:id="@+id/nav_events"
-        android:title="@string/events" />
+        <!--<item-->
+        <!--android:id="@+id/nav_events"-->
+        <!--android:title="@string/events" />-->
 
         <item
             android:id="@+id/users"
@@ -75,7 +75,6 @@
         <item
             android:id="@+id/nav_offlineTitle"
             android:title="Offline Music"/>
-
     </group>
 
     <group
@@ -94,7 +93,6 @@
         <item
             android:id="@+id/nav_queue"
             android:title="@string/playing_queue" />
-
     </group>
 
     <group
@@ -107,7 +105,9 @@
         <item
             android:id="@+id/nav_settings"
             android:title="@string/settings" />
-
+        <item
+            android:id="@+id/log_out"
+            android:title="@string/logout" />
     </group>
 
     <!--<group-->

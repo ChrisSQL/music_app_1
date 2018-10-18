@@ -61,10 +61,33 @@ public class MainActivityUser extends AppCompatActivity {
                 }
 
                 RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list,MainActivityUser.this);
-                RecyclerView.LayoutManager recyce = new GridLayoutManager(MainActivityUser.this,2);
+                 RecyclerView.LayoutManager recyce = new GridLayoutManager(MainActivityUser.this,2);
+//                GridLayoutManager manager = new GridLayoutManager(MainActivityUser.this, 12, GridLayoutManager.VERTICAL, false);
+//                manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+//                    @Override
+//                    public int getSpanSize(int position) {
+//                        // 7 is the sum of items in one repeated section
+//                        switch (position % 7) {
+//                            // first three items span 3 columns each
+//                            case 0:
+//                            case 1:
+//                            case 2:
+//                                return 4;
+//                            // next four items span 2 columns each
+//
+//                            case 3:
+//                            case 4:
+//                            case 5:
+//                            case 6:
+//                                return 3;
+//                        }
+//                        throw new IllegalStateException("internal error");
+//                    }
+//                });
+//                recycle.setLayoutManager(manager);
                 /// RecyclerView.LayoutManager recyce = new LinearLayoutManager(MainActivity.this);
                 // recycle.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
-                recycle.setLayoutManager(recyce);
+                 recycle.setLayoutManager(recyce);
                 recycle.setItemAnimator( new DefaultItemAnimator());
                 recycle.setAdapter(recyclerAdapter);
             }
@@ -75,6 +98,8 @@ public class MainActivityUser extends AppCompatActivity {
                 Log.w("Hello", "Failed to read value.", error.toException());
             }
         });
+
+
 
 //        view.setOnClickListener(new View.OnClickListener() {
 //            @Override

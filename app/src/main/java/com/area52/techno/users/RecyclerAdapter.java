@@ -1,6 +1,8 @@
 package com.area52.techno.users;
 
 import android.content.Context;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 import com.area52.techno.R;
 import com.area52.techno.models.User;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
 
@@ -41,10 +44,17 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
     public void onBindViewHolder(MyHoder holder, int position) {
         User mylist = list.get(position);
         holder.name.setText(mylist.getName());
-    //    holder.email.setText(mylist.getEmail());
+
         Glide.with(context)
                 .load(mylist.getPhotoUrl())
+                .apply(new RequestOptions()
+                .placeholder(R.drawable.sesh_logo))
                 .into(holder.thumbnail);
+
+//        ColorMatrix colorMatrix = new ColorMatrix();
+//        colorMatrix.setSaturation(0);
+//        ColorMatrixColorFilter filter = new ColorMatrixColorFilter(colorMatrix);
+//        holder.thumbnail.setColorFilter(filter);
 
     }
 

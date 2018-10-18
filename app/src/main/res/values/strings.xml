@@ -242,5 +242,6 @@
     <string name="title_activity_user_list">UserList</string>
     <string name="djs_menu">DJs</string>
     <string name="users">Users</string>
+    <string name="logout">Logout</string>
 
 </resources>

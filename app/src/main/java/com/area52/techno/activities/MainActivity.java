@@ -213,10 +213,10 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
 
         // If logged in log Analytics
         mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
-        if(user == null){
-            startActivity(new Intent(MainActivity.this, FacebookActivityFirebase.class));
-        }
+//        FirebaseUser user = mAuth.getCurrentUser();
+//        if(user == null){
+//            startActivity(new Intent(MainActivity.this, FacebookActivityFirebase.class));
+//        }
 
     //    expandableMenu();
 

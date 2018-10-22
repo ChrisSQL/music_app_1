@@ -38,7 +38,10 @@
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:background="@drawable/text2018" />
+            android:background="@android:color/background_light"
+            android:text="2018"
+            android:textColor="@android:color/background_dark"
+            android:textSize="30sp" />
 
         <Button
             android:id="@+id/n2017Button"
@@ -46,8 +49,10 @@
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:background="@drawable/text2018" />
-
+            android:background="@android:color/background_light"
+            android:text="2017"
+            android:textColor="@android:color/background_dark"
+            android:textSize="30sp" />
 
     </LinearLayout>
 
@@ -63,7 +68,10 @@
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:background="@drawable/text2018" />
+            android:background="@android:color/background_light"
+            android:text="2016"
+            android:textColor="@android:color/background_dark"
+            android:textSize="30sp" />
 
         <Button
             android:id="@+id/n2015Button"
@@ -71,7 +79,10 @@
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:background="@drawable/text2018" />
+            android:background="@android:color/background_light"
+            android:text="2015"
+            android:textColor="@android:color/background_dark"
+            android:textSize="30sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -86,7 +97,10 @@
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:background="@drawable/text2018" />
+            android:background="@android:color/background_light"
+            android:text="2014"
+            android:textColor="@android:color/background_dark"
+            android:textSize="30sp" />
 
         <Button
             android:id="@+id/n2013Button"
@@ -94,6 +108,9 @@
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:background="@drawable/text2018" />
+            android:background="@android:color/background_light"
+            android:text="2013"
+            android:textColor="@android:color/background_dark"
+            android:textSize="30sp" />
     </LinearLayout>
 </LinearLayout>

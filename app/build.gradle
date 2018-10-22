@@ -15,7 +15,7 @@ android {
         applicationId "com.area52.techno"
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
-        versionCode 94
+        versionCode 100
         versionName "1.0"
         //renderscript support mode is not supported for 21+ with gradle version 2.0
         renderscriptTargetApi 20
@@ -29,7 +29,6 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             manifestPlaceholders = [appNameSuffix: ""]
-
         }
         debug {
             ext.enableCrashlytics = false

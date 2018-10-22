@@ -13,7 +13,9 @@ import android.widget.TextView;
 import com.area52.techno.R;
 import com.area52.techno.models.User;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.Target;
 
 import java.util.List;
 
@@ -48,6 +50,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHode
         Glide.with(context)
                 .load(mylist.getPhotoUrl())
                 .apply(new RequestOptions()
+                        .fitCenter()
+                        .format(DecodeFormat.PREFER_ARGB_8888)
+                        .override(Target.SIZE_ORIGINAL)
                 .placeholder(R.drawable.sesh_logo))
                 .into(holder.thumbnail);
 

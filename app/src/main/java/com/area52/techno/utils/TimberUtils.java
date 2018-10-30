@@ -180,7 +180,7 @@ public class TimberUtils {
                 }
             }
 
-            throw new IllegalArgumentException("Unrecognized id: " + id);
+            throw new IllegalArgumentException("Unrecognized uID: " + id);
         }
     }
 

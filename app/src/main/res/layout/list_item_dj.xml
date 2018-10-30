@@ -11,7 +11,7 @@
         android:padding="16dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/image"
+            android:id="@+id/photoUrl"
             android:layout_width="80dp"
             android:layout_height="80dp"
             />
@@ -21,8 +21,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
-            android:layout_toEndOf="@id/image"
-            android:layout_toRightOf="@id/image"
+            android:layout_toEndOf="@id/photoUrl"
+            android:layout_toRightOf="@id/photoUrl"
             android:orientation="vertical">
 
             <TextView

@@ -35,6 +35,8 @@ import com.afollestad.appthemeengine.customizers.ATEActivityThemeCustomizer;
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.area52.techno.FacebookActivityFirebase;
 import com.area52.techno.MyAccountActivity;
+import com.area52.techno.dj.DJList;
+import com.area52.techno.dj.MainActivityDJ;
 import com.area52.techno.djs.DJs;
 import com.area52.techno.festivals.FestivalsActivity;
 import com.area52.techno.fragments.EventsFragmentNew;
@@ -97,11 +99,12 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
     private boolean isDarkTheme;
     private static final String TAG = "Firebase123";
     private FirebaseAuth mAuth;
+    FirebaseUser user;
     // [START declare_auth]
 
     private Runnable navigateLibrary = new Runnable() {
         public void run() {
-        //    navigationView.getMenu().findItem(R.id.nav_library).setChecked(true);
+        //    navigationView.getMenu().findItem(R.uID.nav_library).setChecked(true);
             Fragment fragment = new MainFragment();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, fragment).commitAllowingStateLoss();
@@ -111,18 +114,18 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
 
 //    private Runnable navigateEvents = new Runnable() {
 //        public void run() {
-//            navigationView.getMenu().findItem(R.id.nav_events).setChecked(true);
+//            navigationView.getMenu().findItem(R.uID.nav_events).setChecked(true);
 //            Fragment fragment = new EventsFragment();
 //            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//            transaction.hide(getSupportFragmentManager().findFragmentById(R.id.fragment_container));
-//            transaction.replace(R.id.fragment_container, fragment).commit();
+//            transaction.hide(getSupportFragmentManager().findFragmentById(R.uID.fragment_container));
+//            transaction.replace(R.uID.fragment_container, fragment).commit();
 //
 //        }
 //    };
 
     private Runnable navigatePlaylist = new Runnable() {
         public void run() {
-        //    navigationView.getMenu().findItem(R.id.nav_playlists).setChecked(true);
+        //    navigationView.getMenu().findItem(R.uID.nav_playlists).setChecked(true);
             Fragment fragment = new PlaylistFragment();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.hide(getSupportFragmentManager().findFragmentById(R.id.fragment_container));
@@ -133,7 +136,7 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
 
     private Runnable navigateFolder = new Runnable() {
         public void run() {
-        //    navigationView.getMenu().findItem(R.id.nav_folders).setChecked(true);
+        //    navigationView.getMenu().findItem(R.uID.nav_folders).setChecked(true);
             Fragment fragment = new FoldersFragment();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.hide(getSupportFragmentManager().findFragmentById(R.id.fragment_container));
@@ -144,7 +147,7 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
 
     private Runnable navigateQueue = new Runnable() {
         public void run() {
-        //    navigationView.getMenu().findItem(R.id.nav_queue).setChecked(true);
+        //    navigationView.getMenu().findItem(R.uID.nav_queue).setChecked(true);
             Fragment fragment = new QueueFragment();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.hide(getSupportFragmentManager().findFragmentById(R.id.fragment_container));
@@ -213,7 +216,7 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
 
         // If logged in log Analytics
         mAuth = FirebaseAuth.getInstance();
-//        FirebaseUser user = mAuth.getCurrentUser();
+        user = mAuth.getCurrentUser();
 //        if(user == null){
 //            startActivity(new Intent(MainActivity.this, FacebookActivityFirebase.class));
 //        }
@@ -374,54 +377,54 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
 
         if (!isDarkTheme) {
 
-        //    navigationView.getMenu().findItem(R.id.nav_events).setIcon(R.drawable.ic_dashboard_black_24dp);
+        //    navigationView.getMenu().findItem(R.uID.nav_events).setIcon(R.drawable.ic_dashboard_black_24dp);
             navigationView.getMenu().findItem(R.id.users).setIcon(R.drawable.ic_dashboard_black_24dp);
             navigationView.getMenu().findItem(R.id.djs).setIcon(R.drawable.library_music);
 
             navigationView.getMenu().findItem(R.id.nav_members_sets).setIcon(R.drawable.library_music);
-        //    navigationView.getMenu().findItem(R.id.nav_sets_techno).setIcon(R.drawable.video_icon_48);
+        //    navigationView.getMenu().findItem(R.uID.nav_sets_techno).setIcon(R.drawable.video_icon_48);
             navigationView.getMenu().findItem(R.id.nav_festivals).setIcon(R.drawable.library_music);
-        //    navigationView.getMenu().findItem(R.id.nav_soundcloud).setIcon(R.drawable.souncloud_48_black);
+        //    navigationView.getMenu().findItem(R.uID.nav_soundcloud).setIcon(R.drawable.souncloud_48_black);
 
-        //    navigationView.getMenu().findItem(R.id.nav_sets_trance).setIcon(R.drawable.video_icon_48);
+        //    navigationView.getMenu().findItem(R.uID.nav_sets_trance).setIcon(R.drawable.video_icon_48);
 
             navigationView.getMenu().findItem(R.id.nav_library).setIcon(R.drawable.library_music);
             navigationView.getMenu().findItem(R.id.nav_playlists).setIcon(R.drawable.playlist_play);
             navigationView.getMenu().findItem(R.id.nav_queue).setIcon(R.drawable.music_note);
             navigationView.getMenu().findItem(R.id.nav_folders).setIcon(R.drawable.ic_folder_open_black_24dp);
-        //    navigationView.getMenu().findItem(R.id.nav_nowplaying).setIcon(R.drawable.bookmark_music);
+        //    navigationView.getMenu().findItem(R.uID.nav_nowplaying).setIcon(R.drawable.bookmark_music);
             navigationView.getMenu().findItem(R.id.nav_settings).setIcon(R.drawable.settings);
-      //      navigationView.getMenu().findItem(R.id.nav_about).setIcon(R.drawable.information);
-      //      navigationView.getMenu().findItem(R.id.nav_donate).setIcon(R.drawable.payment_black);
+      //      navigationView.getMenu().findItem(R.uID.nav_about).setIcon(R.drawable.information);
+      //      navigationView.getMenu().findItem(R.uID.nav_donate).setIcon(R.drawable.payment_black);
             navigationView.getMenu().findItem(R.id.nav_account).setIcon(R.drawable.information);
 
         } else {
 
-        //    navigationView.getMenu().findItem(R.id.nav_events).setIcon(R.drawable.ic_dashboard_white_24dp);
+        //    navigationView.getMenu().findItem(R.uID.nav_events).setIcon(R.drawable.ic_dashboard_white_24dp);
             navigationView.getMenu().findItem(R.id.users).setIcon(R.drawable.ic_dashboard_white_24dp);
             navigationView.getMenu().findItem(R.id.djs).setIcon(R.drawable.library_music_white);
 
             navigationView.getMenu().findItem(R.id.nav_members_sets).setIcon(R.drawable.library_music_white);
-        //    navigationView.getMenu().findItem(R.id.nav_sets_techno).setIcon(R.drawable.video_icon_48_white);
+        //    navigationView.getMenu().findItem(R.uID.nav_sets_techno).setIcon(R.drawable.video_icon_48_white);
             navigationView.getMenu().findItem(R.id.nav_festivals).setIcon(R.drawable.library_music_white);
-        //    navigationView.getMenu().findItem(R.id.nav_soundcloud).setIcon(R.drawable.souncloud_48_white);
+        //    navigationView.getMenu().findItem(R.uID.nav_soundcloud).setIcon(R.drawable.souncloud_48_white);
 
-        //    navigationView.getMenu().findItem(R.id.nav_sets_trance).setIcon(R.drawable.video_icon_48_white);
+        //    navigationView.getMenu().findItem(R.uID.nav_sets_trance).setIcon(R.drawable.video_icon_48_white);
 
             navigationView.getMenu().findItem(R.id.nav_library).setIcon(R.drawable.library_music_white);
             navigationView.getMenu().findItem(R.id.nav_playlists).setIcon(R.drawable.playlist_play_white);
             navigationView.getMenu().findItem(R.id.nav_queue).setIcon(R.drawable.music_note_white);
             navigationView.getMenu().findItem(R.id.nav_folders).setIcon(R.drawable.ic_folder_open_white_24dp);
-        //    navigationView.getMenu().findItem(R.id.nav_nowplaying).setIcon(R.drawable.bookmark_music_white);
+        //    navigationView.getMenu().findItem(R.uID.nav_nowplaying).setIcon(R.drawable.bookmark_music_white);
             navigationView.getMenu().findItem(R.id.nav_settings).setIcon(R.drawable.settings_white);
-         //   navigationView.getMenu().findItem(R.id.nav_about).setIcon(R.drawable.information_white);
-         //   navigationView.getMenu().findItem(R.id.nav_donate).setIcon(R.drawable.payment_white);
+         //   navigationView.getMenu().findItem(R.uID.nav_about).setIcon(R.drawable.information_white);
+         //   navigationView.getMenu().findItem(R.uID.nav_donate).setIcon(R.drawable.payment_white);
             navigationView.getMenu().findItem(R.id.nav_account).setIcon(R.drawable.information_white);
         }
 
         try {
             if (!BillingProcessor.isIabServiceAvailable(this)) {
-               // navigationView.getMenu().removeItem(R.id.nav_donate);
+               // navigationView.getMenu().removeItem(R.uID.nav_donate);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -433,31 +436,31 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
 
         switch (menuItem.getItemId()) {
 
-//            case R.id.nav_events:
+//            case R.uID.nav_events:
 //               //runnable = navigateEvents;
 //                startActivity(new Intent(MainActivity.this, EventsActivity.class));
 //                //startActivity(new Intent(MediaPlayerMain.this, FestivalsActivity.class));
 //                break;
-             case R.id.users:
+            case R.id.users:
                 startActivity(new Intent(MainActivity.this, MainActivityUser.class));
                 break;
-//            case R.id.djs:
-//                startActivity(new Intent(MainActivity.this, UserList.class));
-//                break;
+            case R.id.djs:
+                startActivity(new Intent(MainActivity.this, MainActivityDJ.class));
+                break;
             case R.id.nav_members_sets:
                 startActivity(new Intent(MainActivity.this, YouTubeActivityTechnoSets.class));
                 break;
-//            case R.id.nav_sets_techno:
+//            case R.uID.nav_sets_techno:
 //                startActivity(new Intent(MainActivity.this, YouTubeActivityTechnoSets.class));
 //                break;
             case R.id.nav_festivals:
                 //startActivity(new Intent(MediaPlayerMain.this, Awakenings2018.class));
                 startActivity(new Intent(MainActivity.this, FestivalsActivity.class));
                 break;
-//            case R.id.nav_sets_trance:
+//            case R.uID.nav_sets_trance:
 //                startActivity(new Intent(MainActivity.this, YouTubeActivityTranceSets.class));
 //                break;
-//            case R.id.nav_soundcloud:
+//            case R.uID.nav_soundcloud:
 //                startActivity(new Intent(MainActivity.this, SoundCloudActivity.class));
 //                break;
             case R.id.nav_library:
@@ -472,7 +475,7 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
                 runnable = navigateFolder;
 
                 break;
-//            case R.id.nav_nowplaying:
+//            case R.uID.nav_nowplaying:
 //                if (getCastSession() != null) {
 //                    startActivity(new Intent(MediaPlayerMain.this, ExpandedControlsActivity.class));
 //                } else {
@@ -487,12 +490,25 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
                 NavigationUtils.navigateToSettings(MainActivity.this);
                 break;
             case R.id.nav_account:
-                startActivity(new Intent(MainActivity.this, MyAccountActivity.class));
+
+//                if (user.getUid() == null){
+//                    Intent i = new Intent(MainActivity.this, FacebookActivityFirebase.class);
+//                    startActivity(new Intent(MainActivity.this, FacebookActivityFirebase.class));
+//                   break;
+//                }else{
+
+                    Intent intent = new Intent(getBaseContext(), MyAccountActivity.class);
+                    intent.putExtra("userID", user.getUid());
+                //    intent.putExtra("userID", "YkpEQnxoIfhuutZD6uWE9dX3klv1");
+                    startActivity(intent);
+
+//                }
+
                 break;
             case R.id.log_out:
                 signOut();
                 break;
-        //    case R.id.nav_donate:
+        //    case R.uID.nav_donate:
         //        startActivity(new Intent(MediaPlayerMain.this, DonateActivity.class));
         //        break;
         }
@@ -511,6 +527,7 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
     }
 
     public void signOut() {
+        Toast.makeText(this, "Signing Out.", Toast.LENGTH_SHORT).show();
         mAuth.signOut();
         LoginManager.getInstance().logOut();
         startActivity(new Intent(MainActivity.this, FacebookActivityFirebase.class));

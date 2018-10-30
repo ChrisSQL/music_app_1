@@ -39,7 +39,7 @@ public class SoundCloudActivityNew extends AppCompatActivity {
     private void Exoplayer() {
 
 //        WebView mWebView;
-//        mWebView = (WebView)findViewById(R.id.webView);
+//        mWebView = (WebView)findViewById(R.uID.webView);
 //
 //        // Enable Javascript
 //        WebSettings webSettings = mWebView.getSettings();

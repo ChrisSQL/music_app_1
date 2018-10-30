@@ -166,7 +166,7 @@ public class YouTubeRecyclerViewFragment extends Fragment {
             // reload the UI with the existing playlist.  No need to fetch it again
             reloadUi(mPlaylistVideos, false);
         } else {
-            // otherwise create an empty playlist using the first item in the playlist id's array
+            // otherwise create an empty playlist using the first item in the playlist uID's array
             mPlaylistVideos = new PlaylistVideos(mPlaylistIds[0]);
             // and reload the UI with the selected playlist and kick off fetching the playlist content
             reloadUi(mPlaylistVideos, true);

@@ -165,7 +165,7 @@ public class SongPlayCount {
     /**
      * Increases the play count of a song by 1
      *
-     * @param songId The song id to increase the play count
+     * @param songId The song uID to increase the play count
      */
     public void bumpSongCount(final long songId) {
         if (songId < 0) {
@@ -180,7 +180,7 @@ public class SongPlayCount {
      * This creates a new entry that indicates a song has been played once as well as its score
      *
      * @param database a writeable database
-     * @param songId   the id of the track
+     * @param songId   the uID of the track
      */
     private void createNewPlayedEntry(final SQLiteDatabase database, final long songId) {
         // no row exists, create a new one
@@ -201,7 +201,7 @@ public class SongPlayCount {
      * for the current week by 1 if necessary
      *
      * @param database  a writeable database
-     * @param id        the id of the track to bump
+     * @param id        the uID of the track to bump
      * @param bumpCount whether to bump the current's week play count by 1 and adjust the score
      */
     private void updateExistingRow(final SQLiteDatabase database, final long id, boolean bumpCount) {
@@ -347,12 +347,12 @@ public class SongPlayCount {
         selection.append(ids[0]);
 
         for (int i = 1; i < ids.length; i++) {
-            // if the new id doesn't exist
+            // if the new uID doesn't exist
             if (uniqueIds.add(ids[i])) {
                 // append a separator
                 selection.append(",");
 
-                // append the id
+                // append the uID
                 selection.append(ids[i]);
 
                 // for performance reasons, only look at a certain number of songs
@@ -380,7 +380,7 @@ public class SongPlayCount {
 
             if (topSongsCursor != null && topSongsCursor.moveToFirst()) {
                 do {
-                    // for each id found, add it to the list and remove it from the unique ids
+                    // for each uID found, add it to the list and remove it from the unique ids
                     long id = topSongsCursor.getLong(0);
                     sortedList[idx++] = id;
                     uniqueIds.remove(id);
@@ -452,7 +452,7 @@ public class SongPlayCount {
      * Deletes the entry
      *
      * @param database database to use
-     * @param stringId id to delete
+     * @param stringId uID to delete
      */
     private void deleteEntry(final SQLiteDatabase database, final String stringId) {
         database.delete(SongPlayCountColumns.NAME, WHERE_ID_EQUALS, new String[]{stringId});

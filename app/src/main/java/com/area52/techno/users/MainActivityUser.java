@@ -4,12 +4,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.area52.techno.R;
 import com.area52.techno.models.User;
@@ -36,7 +33,7 @@ public class MainActivityUser extends AppCompatActivity {
         setContentView(R.layout.activity_user_list);
         recycle = (RecyclerView) findViewById(R.id.recycle);
         database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("usersEmail");
+        myRef = database.getReference("usersID");
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -51,16 +48,20 @@ public class MainActivityUser extends AppCompatActivity {
                     String name = value.getName();
                     String email = value.getName();
                     String photo = value.getPhotoUrl();
+                    String fbID = value.getFbID();
+                    String gid = value.getuID();
                     fire.setName(name);
                     fire.setEmail(email);
                     fire.setPhotoUrl(photo);
+                    fire.setFbID(fbID);
+                    fire.setuID(gid);
                     list.add(fire);
 
                 //    Toast.makeText(MainActivityUser.this, list.toString(), Toast.LENGTH_SHORT).show();
 
                 }
 
-                RecyclerAdapter recyclerAdapter = new RecyclerAdapter(list,MainActivityUser.this);
+                UserRecyclerAdapter userRecyclerAdapter = new UserRecyclerAdapter(list,MainActivityUser.this);
              //    RecyclerView.LayoutManager recyce = new GridLayoutManager(MainActivityUser.this,2);
                 GridLayoutManager manager = new GridLayoutManager(MainActivityUser.this, 12, GridLayoutManager.VERTICAL, false);
                 manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
@@ -89,7 +90,7 @@ public class MainActivityUser extends AppCompatActivity {
                 // recycle.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
                 // recycle.setLayoutManager(recyce);
                 recycle.setItemAnimator( new DefaultItemAnimator());
-                recycle.setAdapter(recyclerAdapter);
+                recycle.setAdapter(userRecyclerAdapter);
             }
 
             @Override

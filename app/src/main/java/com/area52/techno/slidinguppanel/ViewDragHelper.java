@@ -1282,7 +1282,7 @@ public class ViewDragHelper {
          * pointer-initiated.
          *
          * @param capturedChild   Child view that was captured
-         * @param activePointerId Pointer id tracking the child capture
+         * @param activePointerId Pointer uID tracking the child capture
          */
         public void onViewCaptured(View capturedChild, int activePointerId) {
         }

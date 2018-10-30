@@ -524,7 +524,7 @@ public class BaseNowplayingFragment extends Fragment implements MusicStateListen
     }
 
     public void updateSongDetails() {
-        //do not reload image if it was a play/pause change
+        //do not reload PhotoUrl if it was a play/pause change
         if (!duetoplaypause) {
             if (albumart != null) {
                 ImageLoader.getInstance().displayImage(TimberUtils.getAlbumArtUri(MusicPlayer.getCurrentAlbumId()).toString(), albumart,

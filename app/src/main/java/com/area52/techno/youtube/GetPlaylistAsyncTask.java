@@ -35,10 +35,10 @@ public abstract class GetPlaylistAsyncTask extends AsyncTask<String, Void, Pair<
 
     //see: https://developers.google.com/youtube/v3/docs/playlistItems/list
     private static final String YOUTUBE_PLAYLIST_PART = "snippet";
-    private static final String YOUTUBE_PLAYLIST_FIELDS = "pageInfo,nextPageToken,items(id,snippet(resourceId/videoId))";
+    private static final String YOUTUBE_PLAYLIST_FIELDS = "pageInfo,nextPageToken,items(uID,snippet(resourceId/videoId))";
     //see: https://developers.google.com/youtube/v3/docs/videos/list
     private static final String YOUTUBE_VIDEOS_PART = "snippet,contentDetails,statistics"; // video resource properties that the response will include.
-    private static final String YOUTUBE_VIDEOS_FIELDS = "items(id,snippet(title,description,thumbnails/high),contentDetails/duration,statistics)"; // selector specifying which fields to include in a partial response.
+    private static final String YOUTUBE_VIDEOS_FIELDS = "items(uID,snippet(title,description,thumbnails/high),contentDetails/duration,statistics)"; // selector specifying which fields to include in a partial response.
 
     private YouTube mYouTubeDataApi;
 
@@ -79,7 +79,7 @@ public abstract class GetPlaylistAsyncTask extends AsyncTask<String, Void, Pair<
 
         List<String> videoIds = new ArrayList();
 
-        // pull out the video id's from the playlist page
+        // pull out the video uID's from the playlist page
         for (PlaylistItem item : playlistItemListResponse.getItems()) {
             videoIds.add(item.getSnippet().getResourceId().getVideoId());
         }

@@ -14,16 +14,15 @@
 
 package com.area52.techno.models;
 
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
 public class DJ {
 
     // Required
-    public String id;
+    public String uID;
     public String name;
-    public String image;
+    public String PhotoUrl;
     public String djLogoImage;
     public String county;
     public String country;
@@ -42,10 +41,10 @@ public class DJ {
     public String bookingEmail;
     public String genre;
 
-    public DJ(String id, String name, String image, String djLogoImage, String county, String country, String email, String phoneNumber, String facebookUserID, String bio, String soundcloudLink, String youtubeLink, String mixcloudLink, String facebookLink, String instagramLink, String spotifyLink, String bookingEmail, String genre) {
+    public DJ(String uID, String name, String PhotoUrl, String djLogoImage, String county, String country, String email, String phoneNumber, String facebookUserID, String bio, String soundcloudLink, String youtubeLink, String mixcloudLink, String facebookLink, String instagramLink, String spotifyLink, String bookingEmail, String genre) {
 
         this.name = name;
-        this.image = image;
+        this.PhotoUrl = PhotoUrl;
         this.djLogoImage = djLogoImage;
         this.county = county;
         this.country = country;
@@ -70,21 +69,25 @@ public class DJ {
 
     }
 
+    public DJ() {
 
-    public String getId() {
-        return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+
+    public String getuID() {
+        return uID;
+    }
+
+    public void setuID(String uID) {
+        this.uID = uID;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getImage() {
-        return image;
+    public String getPhotoUrl() {
+        return PhotoUrl;
     }
 
     public String getDjLogoImage() {
@@ -151,8 +154,8 @@ public class DJ {
         this.name = name;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setPhotoUrl(String photoUrl) {
+        this.PhotoUrl = photoUrl;
     }
 
     public void setDjLogoImage(String djLogoImage) {

@@ -60,7 +60,7 @@ public class YoutubePlaylist extends AppCompatActivity implements YouTubeThumbna
         VideoId = new ArrayList<>();
         thumbnailView = new YouTubeThumbnailView(this);
         thumbnailView.initialize("AIzaSyBqirS7s6MeKSZQPzWT9lvD5RjacP1pqK4", this);
-        //playerFragment = (YouTubePlayerFragment) getFragmentManager().findFragmentById(R.id.VideoFragmentPlaylist);
+        //playerFragment = (YouTubePlayerFragment) getFragmentManager().findFragmentById(R.uID.VideoFragmentPlaylist);
         //playerFragment.initialize("AIzaSyBqirS7s6MeKSZQPzWT9lvD5RjacP1pqK4", this);
 
 
@@ -151,7 +151,7 @@ public class YoutubePlaylist extends AppCompatActivity implements YouTubeThumbna
 //                    Toast.makeText(YoutubePlaylist.this, "Clicked ", Toast.LENGTH_SHORT).show();
 
                     Intent myIntent = new Intent(YoutubePlaylist.this, WebViewActivity.class);
-                    myIntent.putExtra("id", VideoId.get(position));
+                    myIntent.putExtra("uID", VideoId.get(position));
                     YoutubePlaylist.this.startActivity(myIntent);
 
 

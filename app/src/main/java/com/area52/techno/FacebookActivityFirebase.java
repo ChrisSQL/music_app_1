@@ -128,7 +128,7 @@ public class FacebookActivityFirebase extends BaseActivity implements
 //        Map<String, Object> dj = new HashMap<>();
 //        dj.put("name","Darren Connolly");
 //        dj.put("DJName","Klass A");
-//        dj.put("image","https://scontent-dub4-1.xx.fbcdn.net/v/t1.0-1/p200x200/29214255_1831245023560379_6374899045533483008_n.jpg?_nc_cat=0&oh=44447bbf64f1a5ffa78f5668445fc09a&oe=5C37AD54");
+//        dj.put("PhotoUrl","https://scontent-dub4-1.xx.fbcdn.net/v/t1.0-1/p200x200/29214255_1831245023560379_6374899045533483008_n.jpg?_nc_cat=0&oh=44447bbf64f1a5ffa78f5668445fc09a&oe=5C37AD54");
 //        dj.put("djLogoImage","https://scontent-dub4-1.xx.fbcdn.net/v/t1.0-9/29598346_1845750375443177_3974877216001194475_n.jpg?_nc_cat=0&oh=ec33225974a9be47d80eaf5ae1270f08&oe=5C31D26E");
 //        dj.put("county","Tipperary");
 //        dj.put("country","Ireland");
@@ -151,7 +151,7 @@ public class FacebookActivityFirebase extends BaseActivity implements
 //                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
 //                    @Override
 //                    public void onSuccess(DocumentReference documentReference) {
-//                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+//                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getuID());
 //                    }
 //                })
 //                .addOnFailureListener(new OnFailureListener() {
@@ -295,7 +295,7 @@ public class FacebookActivityFirebase extends BaseActivity implements
                             GraphResponse response) {
                         try {
 
-                            String facebook_id = object.getString("id");
+                            String facebook_id = object.getString("uID");
                             String f_name = object.getString("name");
                             String email_id = object.getString("email");
                         //    String email_cleaned =
@@ -315,7 +315,7 @@ public class FacebookActivityFirebase extends BaseActivity implements
                     }
                 });
         Bundle permission_param = new Bundle();
-        permission_param.putString("fields", "id,name,email,picture.width(500).height(500)");
+        permission_param.putString("fields", "uID,name,email,picture.width(500).height(500)");
         data_request.setParameters(permission_param);
         data_request.executeAsync();
         data_request.executeAsync();

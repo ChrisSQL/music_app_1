@@ -67,7 +67,7 @@
             android:theme="@style/AppThemeNormalLight" />
         <activity
             android:name=".firebaserecyclerviewtutorial.MainActivityList"
-            android:theme="@style/AppThemeNormalLight"></activity>
+            android:theme="@style/AppThemeNormalLight" />
         <activity
             android:name=".firebaserecyclerviewtutorial.NewsActivity"
             android:theme="@style/AppThemeNormalLight" />
@@ -174,7 +174,8 @@
         <activity
             android:name=".MyAccountActivity"
             android:label="@string/title_activity_my_account"
-            android:theme="@style/AppTheme.FullScreen.Light" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.FullScreen.Light"></activity>
         <activity
             android:name=".activities.OnlineActivity"
             android:label="@string/title_activity_online"
@@ -222,22 +223,22 @@
         <activity
             android:name=".djs.DJs"
             android:label="@string/title_activity_djs"
-            android:theme="@style/AppTheme.FullScreen.Light">
-
-        </activity>
+            android:theme="@style/AppTheme.FullScreen.Light"></activity>
         <activity
             android:name=".users.UserList"
             android:label="@string/title_activity_user_list"
-            android:theme="@style/AppTheme.FullScreen.Light">
-
-        </activity>
+            android:theme="@style/AppTheme.FullScreen.Light"></activity>
         <activity
             android:name=".users.MainActivityUser"
             android:label="@string/title_activity_djs"
-            android:theme="@style/AppTheme.FullScreen.Light"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.FullScreen.Light"></activity>
+        <activity
+            android:name=".dj.MainActivityDJ"
+            android:label="@string/title_activity_djs"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.FullScreen.Light"></activity>
+        <activity android:name=".dj.DJList"></activity>
     </application>
 
 </manifest>

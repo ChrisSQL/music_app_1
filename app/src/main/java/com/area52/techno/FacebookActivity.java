@@ -48,7 +48,7 @@ public class FacebookActivity extends AppCompatActivity {
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        FbUserId = preferences.getString("id", "");;
+        FbUserId = preferences.getString("uID", "");;
 
     //    redirect();
 
@@ -137,13 +137,13 @@ public class FacebookActivity extends AppCompatActivity {
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
-                            String id = me.optString("id");
+                            String id = me.optString("uID");
                             String name = me.optString("name");
                             SharedPreferences.Editor editor = preferences.edit();
                             editor.putString("name", name);
-                            editor.putString("id", id);
+                            editor.putString("uID", id);
                             editor.apply();
-                            // send email and id to your web server
+                            // send email and uID to your web server
                             Log.e("Result1", response.getRawResponse());
                             Log.e("Result", me.toString());
 

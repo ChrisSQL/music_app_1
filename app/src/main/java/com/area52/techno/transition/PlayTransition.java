@@ -48,7 +48,7 @@ import java.util.ArrayList;
 public class PlayTransition extends Transition {
     private static final String PROPERTY_BOUNDS = "circleTransition:bounds";
     private static final String PROPERTY_POSITION = "circleTransition:position";
-    private static final String PROPERTY_IMAGE = "circleTransition:image";
+    private static final String PROPERTY_IMAGE = "circleTransition:PhotoUrl";
     private static final String[] TRANSITION_PROPERTIES = {
             PROPERTY_BOUNDS,
             PROPERTY_POSITION,

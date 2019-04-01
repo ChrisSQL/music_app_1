@@ -223,6 +223,8 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
 
     //    expandableMenu();
 
+
+
         navigationMap.put(Constants.NAVIGATE_LIBRARY, navigateLibrary);
         navigationMap.put(Constants.NAVIGATE_PLAYLIST, navigatePlaylist);
         navigationMap.put(Constants.NAVIGATE_QUEUE, navigateQueue);
@@ -380,7 +382,7 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
         //    navigationView.getMenu().findItem(R.id.nav_events).setIcon(R.drawable.ic_dashboard_black_24dp);
             navigationView.getMenu().findItem(R.id.users).setIcon(R.drawable.ic_dashboard_black_24dp);
             navigationView.getMenu().findItem(R.id.djs).setIcon(R.drawable.library_music);
-            navigationView.getMenu().findItem(R.id.sets).setIcon(R.drawable.library_music);
+        //    navigationView.getMenu().findItem(R.id.sets).setIcon(R.drawable.library_music);
             navigationView.getMenu().findItem(R.id.nav_members_sets).setIcon(R.drawable.library_music);
         //    navigationView.getMenu().findItem(R.id.nav_sets_techno).setIcon(R.drawable.video_icon_48);
             navigationView.getMenu().findItem(R.id.nav_festivals).setIcon(R.drawable.library_music);
@@ -403,7 +405,7 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
         //    navigationView.getMenu().findItem(R.id.nav_events).setIcon(R.drawable.ic_dashboard_white_24dp);
             navigationView.getMenu().findItem(R.id.users).setIcon(R.drawable.ic_dashboard_white_24dp);
             navigationView.getMenu().findItem(R.id.djs).setIcon(R.drawable.library_music_white);
-            navigationView.getMenu().findItem(R.id.sets).setIcon(R.drawable.library_music_white);
+        //    navigationView.getMenu().findItem(R.id.sets).setIcon(R.drawable.library_music_white);
 
             navigationView.getMenu().findItem(R.id.nav_members_sets).setIcon(R.drawable.library_music_white);
         //    navigationView.getMenu().findItem(R.id.nav_sets_techno).setIcon(R.drawable.video_icon_48_white);
@@ -442,15 +444,16 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
 //                startActivity(new Intent(MainActivity.this, EventsActivity.class));
 //                //startActivity(new Intent(MediaPlayerMain.this, FestivalsActivity.class));
 //                break;
+            case R.id.djs:
+                startActivity(new Intent(MainActivity.this, MainActivityDJ.class));
+                break;
             case R.id.users:
                 startActivity(new Intent(MainActivity.this, MainActivityUser.class));
                 break;
 //            case R.id.sets:
 //                startActivity(new Intent(MainActivity.this, MainActivitySet.class));
 //                break;
-            case R.id.djs:
-                startActivity(new Intent(MainActivity.this, MainActivityDJ.class));
-                break;
+//                break;
             case R.id.nav_members_sets:
                 startActivity(new Intent(MainActivity.this, YouTubeActivityTechnoSets.class));
                 break;
@@ -636,6 +639,11 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
         return super.onKeyDown(keyCode, event);
     }
 
+    public void share(View view) {
+
+        Toast.makeText(this, "Share", Toast.LENGTH_LONG).show();
+
+    }
 }
 
 

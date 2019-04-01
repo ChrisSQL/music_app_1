@@ -52,7 +52,7 @@
                 android:layout_weight="1"
                 android:clickable="true"
                 android:padding="8dp"
-                android:src="@drawable/ic_favorite" />
+                android:src="@drawable/facebook48" />
 
             <ImageView
                 android:id="@+id/img_main_card44_bookmark"
@@ -61,7 +61,7 @@
                 android:layout_weight="1"
                 android:clickable="true"
                 android:padding="8dp"
-                android:src="@drawable/bookmark_music" />
+                android:src="@drawable/ticket_86171" />
 
             <ImageView
                 android:id="@+id/img_main_card44_share"
@@ -70,7 +70,7 @@
                 android:layout_weight="1"
                 android:clickable="true"
                 android:padding="8dp"
-                android:src="@drawable/ic_share" />
+                android:src="@drawable/share_48" />
         </LinearLayout>
 
     </RelativeLayout>

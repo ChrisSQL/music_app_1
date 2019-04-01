@@ -22,7 +22,7 @@
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:background="@drawable/timewarp_square" />
+            android:background="@drawable/timewarp_square_1500" />
 
         <Button
             android:id="@+id/AwakeningsButton"
@@ -30,7 +30,7 @@
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:background="@drawable/awakenings_white_square" />
+            android:background="@drawable/awakenings_white_square_1500" />
     </LinearLayout>
 
     <LinearLayout
@@ -53,7 +53,7 @@
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:background="@drawable/printworks" />
+            android:background="@drawable/printworks_1500" />
     </LinearLayout>
 
     <LinearLayout

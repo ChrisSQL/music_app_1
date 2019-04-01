@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.area52.techno.MyAccountActivity;
+import com.area52.techno.MyDJActivity;
 import com.area52.techno.R;
 import com.area52.techno.models.DJ;
 import com.squareup.picasso.Picasso;
@@ -43,14 +44,14 @@ public class DJRecyclerAdapter extends RecyclerView.Adapter<DJRecyclerAdapter.My
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
-                Intent i=new Intent(context,MyAccountActivity.class);
+                Intent i=new Intent(context, MyDJActivity.class);
                 i.putExtra("userID", mylist.getuID());
                 context.startActivity(i);
             }
         });
 
 //        Glide.with(context)
-//                .load(mylist.getPhotoUrl())
+//                .load(mylist.getPhotoUrlDJ())
 //                .apply(new RequestOptions()
 //                        .fitCenter()
 //                        .format(DecodeFormat.PREFER_ARGB_8888)
@@ -59,7 +60,7 @@ public class DJRecyclerAdapter extends RecyclerView.Adapter<DJRecyclerAdapter.My
 //                .into(holder.thumbnail);
 
         Picasso.with(context)
-                .load(mylist.getPhotoUrl())
+                .load(mylist.getPhotoUrlDJ())
                 .placeholder(R.drawable.sesh_logo)
                 .into(holder.thumbnail);
 

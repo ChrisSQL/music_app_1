@@ -87,7 +87,7 @@ public class DJ {
         return name;
     }
 
-    public String getPhotoUrl() {
+    public String getPhotoUrlDJ() {
         return PhotoUrl;
     }
 
@@ -155,7 +155,7 @@ public class DJ {
         this.name = name;
     }
 
-    public void setPhotoUrl(String photoUrl) {
+    public void setPhoto(String photoUrl) {
         this.PhotoUrl = photoUrl;
     }
 

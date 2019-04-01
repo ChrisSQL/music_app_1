@@ -54,7 +54,7 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
         });
 
 //        Glide.with(context)
-//                .load(mylist.getPhotoUrl())
+//                .load(mylist.getPhotoUrlDJ())
 //                .apply(new RequestOptions()
 //                        .fitCenter()
 //                        .format(DecodeFormat.PREFER_ARGB_8888)

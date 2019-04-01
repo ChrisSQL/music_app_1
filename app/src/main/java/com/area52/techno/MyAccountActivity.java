@@ -138,7 +138,7 @@ public class MyAccountActivity extends AppCompatActivity {
                 updateGUI(user);
 
 //                //get country key
-//                String userPhoto = user.getPhotoUrl();
+//                String userPhoto = user.getPhotoUrlDJ();
 //                String userEmail = user.getEmail();
 //                String userName = user.getName();
 //                String userFBID = user.getFbID();
@@ -278,10 +278,10 @@ public class MyAccountActivity extends AppCompatActivity {
 //                    User fire = new User();
 //                    String name = value.getName();
 //                    String email = value.getName();
-//                    String photo = value.getPhotoUrl();
+//                    String photo = value.getPhotoUrlDJ();
 //                    fire.setName(name);
 //                    fire.setEmail(email);
-//                    fire.setPhotoUrl(photo);
+//                    fire.setPhoto(photo);
 //                    list.add(fire);
 //
 //                }
@@ -307,10 +307,10 @@ public class MyAccountActivity extends AppCompatActivity {
 //                    User fire = new User();
 //                    String name = value.getName();
 //                    String email = value.getName();
-//                    String photo = value.getPhotoUrl();
+//                    String photo = value.getPhotoUrlDJ();
 //                    fire.setName(name);
 //                    fire.setEmail(email);
-//                    fire.setPhotoUrl(photo);
+//                    fire.setPhoto(photo);
 //                    list.add(fire);
 //
 //                }

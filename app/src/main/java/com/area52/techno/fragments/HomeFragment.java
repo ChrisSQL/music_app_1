@@ -80,7 +80,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
     private ImageView btn_card_main1_action1, btn_card_main1_action2;
     private ImageView img_main_card_1, img_main_card_2, img_card_main_3, img_main_card_41, img_main_card_42, img_main_card_43, img_main_card_44,
             img_main_card41_favorite, img_main_card42_favorite, img_main_card41_bookmark, img_main_card42_bookmark,
-            img_main_card41_share, img_main_card42_share,
+            img_main_card41_share, img_main_card42_share, img_main_card42_share_1,
             img_main_card43_favorite, img_main_card44_favorite, img_main_card43_bookmark, img_main_card44_bookmark,
             img_main_card43_share, img_main_card44_share;
     private CardView card_main_1_1, card_main_1_2, card_main_1_3, card_main_1_4_1, card_main_1_4_2, card_main_1_4_3, card_main_1_4_4;
@@ -116,6 +116,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
         img_main_card42_bookmark = nestedScrollView.findViewById(R.id.img_main_card42_bookmark);
         img_main_card41_share = nestedScrollView.findViewById(R.id.img_main_card41_share);
         img_main_card42_share = nestedScrollView.findViewById(R.id.img_main_card42_share);
+        img_main_card42_share_1 = nestedScrollView.findViewById(R.id.img_main_card42_share_1);
 
         img_main_card43_favorite = nestedScrollView.findViewById(R.id.img_main_card43_favorite);
         img_main_card44_favorite = nestedScrollView.findViewById(R.id.img_main_card44_favorite);
@@ -137,7 +138,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
     //    Glide.with(getContext()).load(R.drawable.gracey_friel_card).apply(new RequestOptions().fitCenter()).into(img_card_main_3);
         Glide.with(getContext()).load(R.drawable.gracey_friel_card2).apply(new RequestOptions().fitCenter()).into(img_main_card_41);
         Glide.with(getContext()).load(R.drawable.argy).apply(new RequestOptions().fitCenter()).into(img_main_card_42);
-        Glide.with(getContext()).load(R.drawable.awakenings_white_square).apply(new RequestOptions().fitCenter()).into(img_main_card_43);
+        Glide.with(getContext()).load(R.drawable.awakenings_white_square_1500).apply(new RequestOptions().fitCenter()).into(img_main_card_43);
         Glide.with(getContext()).load(R.drawable.lumo_square).apply(new RequestOptions().fitCenter()).into(img_main_card_44);
 
 
@@ -164,6 +165,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
         img_main_card42_bookmark.setOnClickListener(this);
         img_main_card41_share.setOnClickListener(this);
         img_main_card42_share.setOnClickListener(this);
+        img_main_card42_share_1.setOnClickListener(this);
 
         img_main_card43_favorite.setOnClickListener(this);
         img_main_card44_favorite.setOnClickListener(this);
@@ -188,10 +190,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
         card_main_1_4_3.setOnTouchListener(this);
         card_main_1_4_4.setOnTouchListener(this);
 
+        img_main_card_42.setOnClickListener(this);
+        img_main_card_1.setOnClickListener(this);
+
         alphaAnimation = new AlphaAnimation(0.0f, 1.0f);
         alphaAnimation.setDuration(700);
-        img_main_card_1.startAnimation(alphaAnimation);
-        img_main_card_2.startAnimation(alphaAnimation);
+//        img_main_card_1.startAnimation(alphaAnimation);
+//        img_main_card_2.startAnimation(alphaAnimation);
+
+
 
         alphaAnimationShowIcon = new AlphaAnimation(0.2f, 1.0f);
         alphaAnimationShowIcon.setDuration(500);
@@ -215,6 +222,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
 //                    img_main_card2_bookmark.setImageResource(R.drawable.ticket_86171);
 //                    img_main_card2_bookmark.startAnimation(alphaAnimationShowIcon);
                     isBookmarkClicked = true;
+
                 } else {
 //                    img_main_card2_bookmark.setImageResource(R.drawable.ticket_86171);
 //                    img_main_card2_bookmark.startAnimation(alphaAnimationShowIcon);
@@ -285,29 +293,76 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
                 break;
 
             case R.id.img_main_card2_share:
+                Intent sendIntent1 = new Intent();
+                sendIntent1.setAction(Intent.ACTION_SEND);
+                sendIntent1.putExtra(Intent.EXTRA_TEXT,
+                        "Join the SESH: https://play.google.com/store/apps/details?id=com.area52.techno");
+                sendIntent1.setType("text/plain");
+                startActivity(sendIntent1);
                 break;
 
             case R.id.img_main_card41_share:
+
+                Intent sendIntent2 = new Intent();
+                sendIntent2.setAction(Intent.ACTION_SEND);
+                sendIntent2.putExtra(Intent.EXTRA_TEXT,
+                        "Join the SESH: https://play.google.com/store/apps/details?id=com.area52.techno");
+                sendIntent2.setType("text/plain");
+                startActivity(sendIntent2);
                 break;
 
             case R.id.img_main_card42_share:
-                if (!isBookmark42Clicked) {
-//                    img_main_card42_share.setImageResource(R.drawable.share_48);
-//                    img_main_card42_share.startAnimation(alphaAnimationShowIcon);
 
-                    Intent sendIntent = new Intent();
-                    sendIntent.setAction(Intent.ACTION_SEND);
-                    sendIntent.putExtra(Intent.EXTRA_TEXT,
-                            "Join the SESH: https://play.google.com/store/apps/details?id=com.area52.techno");
-                    sendIntent.setType("text/plain");
-                    startActivity(sendIntent);
+                Intent sendIntent5 = new Intent();
+                sendIntent5.setAction(Intent.ACTION_SEND);
+                sendIntent5.putExtra(Intent.EXTRA_TEXT,
+                        "Join the SESH: https://play.google.com/store/apps/details?id=com.area52.techno");
+                sendIntent5.setType("text/plain");
+                startActivity(sendIntent5);
+                break;
 
-                    isBookmark42Clicked = true;
-                } else {
-//                    img_main_card42_share.setImageResource(R.drawable.share_48);
-//                    img_main_card42_share.startAnimation(alphaAnimationShowIcon);
-                    isBookmark42Clicked = false;
-                }
+            case R.id.img_main_card42_share_1:
+
+                Intent sendIntent7 = new Intent();
+                sendIntent7.setAction(Intent.ACTION_SEND);
+                sendIntent7.putExtra(Intent.EXTRA_TEXT,
+                        "Join the SESH: https://play.google.com/store/apps/details?id=com.area52.techno");
+                sendIntent7.setType("text/plain");
+                startActivity(sendIntent7);
+                break;
+
+            case R.id.img_main_card44_share:
+
+                img_main_card44_share.bringToFront();
+                Intent sendIntent6 = new Intent();
+                sendIntent6.setAction(Intent.ACTION_SEND);
+                sendIntent6.putExtra(Intent.EXTRA_TEXT,
+                        "Join the SESH: https://play.google.com/store/apps/details?id=com.area52.techno");
+                sendIntent6.setType("text/plain");
+                startActivity(sendIntent6);
+                break;
+
+            case R.id.img_main_card43_share:
+
+                img_main_card44_share.bringToFront();
+                Intent sendIntent8 = new Intent();
+                sendIntent8.setAction(Intent.ACTION_SEND);
+                sendIntent8.putExtra(Intent.EXTRA_TEXT,
+                        "Join the SESH: https://play.google.com/store/apps/details?id=com.area52.techno");
+                sendIntent8.setType("text/plain");
+                startActivity(sendIntent8);
+                break;
+
+            case R.id.img_main_card_42:
+
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://soundcloud.com/technogermany/the-funky-sound-t78-remix"));
+                startActivity(browserIntent);
+                break;
+
+            case R.id.img_main_card_1:
+
+                Intent browserIntent2 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://soundcloud.com/technogermany/the-funky-sound-t78-remix"));
+                startActivity(browserIntent2);
                 break;
 
 //            case R.id.ll_card_main3_rate:

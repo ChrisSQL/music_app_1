@@ -47,7 +47,7 @@
                 android:layout_marginEnd="8dp"
                 android:clickable="true"
                 android:padding="8dp"
-                android:src="@drawable/ic_share"
+                android:src="@drawable/share_48"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="8dp" />
 
@@ -59,7 +59,7 @@
                 android:layout_toStartOf="@id/img_main_card2_share"
                 android:clickable="true"
                 android:padding="8dp"
-                android:src="@drawable/bookmark_music"
+                android:src="@drawable/ticket_86171"
                 android:layout_marginRight="8dp"
                 android:layout_toLeftOf="@id/img_main_card2_share" />
 
@@ -71,7 +71,7 @@
                 android:layout_toStartOf="@id/img_main_card2_bookmark"
                 android:clickable="true"
                 android:padding="8dp"
-                android:src="@drawable/ic_favorite"
+                android:src="@drawable/facebook48"
                 android:layout_marginRight="8dp"
                 android:layout_toLeftOf="@id/img_main_card2_bookmark" />
         </RelativeLayout>

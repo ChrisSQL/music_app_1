@@ -33,7 +33,7 @@ public class MainActivityUser extends AppCompatActivity {
         setContentView(R.layout.activity_user_list);
         recycle = (RecyclerView) findViewById(R.id.recycle);
         database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("usersID");
+        myRef = database.getReference("usersUsername");
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override

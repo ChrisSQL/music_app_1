@@ -95,7 +95,7 @@ public class DJRecyclerAdapter extends RecyclerView.Adapter<DJRecyclerAdapter.My
         public MyHoder(View itemView) {
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.vname);
-        //    email= (TextView) itemView.findViewById(R.uID.vemail);
+        //    email= (TextView) itemView.findViewById(R.id.vemail);
             thumbnail= (ImageView) itemView.findViewById(R.id.thumbnail);
 
 

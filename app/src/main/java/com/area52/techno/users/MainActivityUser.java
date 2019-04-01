@@ -49,12 +49,12 @@ public class MainActivityUser extends AppCompatActivity {
                     String email = value.getName();
                     String photo = value.getPhotoUrl();
                     String fbID = value.getFbID();
-                    String gid = value.getuID();
+                    String uID = value.getuID();
                     fire.setName(name);
                     fire.setEmail(email);
                     fire.setPhotoUrl(photo);
                     fire.setFbID(fbID);
-                    fire.setuID(gid);
+                    fire.setuID(uID);
                     list.add(fire);
 
                 //    Toast.makeText(MainActivityUser.this, list.toString(), Toast.LENGTH_SHORT).show();

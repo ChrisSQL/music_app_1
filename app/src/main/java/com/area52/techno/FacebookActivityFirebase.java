@@ -151,7 +151,7 @@ public class FacebookActivityFirebase extends BaseActivity implements
 //                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
 //                    @Override
 //                    public void onSuccess(DocumentReference documentReference) {
-//                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getuID());
+//                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getid());
 //                    }
 //                })
 //                .addOnFailureListener(new OnFailureListener() {
@@ -295,7 +295,7 @@ public class FacebookActivityFirebase extends BaseActivity implements
                             GraphResponse response) {
                         try {
 
-                            String facebook_id = object.getString("uID");
+                            String facebook_id = object.getString("id");
                             String f_name = object.getString("name");
                             String email_id = object.getString("email");
                         //    String email_cleaned =
@@ -315,7 +315,7 @@ public class FacebookActivityFirebase extends BaseActivity implements
                     }
                 });
         Bundle permission_param = new Bundle();
-        permission_param.putString("fields", "uID,name,email,picture.width(500).height(500)");
+        permission_param.putString("fields", "id,name,email,picture.width(500).height(500)");
         data_request.setParameters(permission_param);
         data_request.executeAsync();
         data_request.executeAsync();

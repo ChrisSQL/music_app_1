@@ -58,14 +58,14 @@ public class PlaylistCardAdapter extends RecyclerView.Adapter<PlaylistCardAdapte
             super(v);
             mContext = v.getContext();
             mTitleText = (TextView) v.findViewById(R.id.title);
-        //    mDescriptionText = (TextView) v.findViewById(R.uID.video_description);
+        //    mDescriptionText = (TextView) v.findViewById(R.id.video_description);
             mThumbnailImage = (ImageView) v.findViewById(R.id.youtubeImage);
-        //    mShareIcon = (ImageView) v.findViewById(R.uID.video_share);
-        //    mShareText = (TextView) v.findViewById(R.uID.video_share_text);
+        //    mShareIcon = (ImageView) v.findViewById(R.id.video_share);
+        //    mShareText = (TextView) v.findViewById(R.id.video_share_text);
             mDurationText = (TextView) v.findViewById(R.id.pubDate);
-        //    mViewCountText= (TextView) v.findViewById(R.uID.video_view_count);
-        //    mLikeCountText = (TextView) v.findViewById(R.uID.video_like_count);
-        //    mDislikeCountText = (TextView) v.findViewById(R.uID.video_dislike_count);
+        //    mViewCountText= (TextView) v.findViewById(R.id.video_view_count);
+        //    mLikeCountText = (TextView) v.findViewById(R.id.video_like_count);
+        //    mDislikeCountText = (TextView) v.findViewById(R.id.video_dislike_count);
         }
     }
 
@@ -111,10 +111,10 @@ public class PlaylistCardAdapter extends RecyclerView.Adapter<PlaylistCardAdapte
             public void onClick(View view) {
 
 
-                //holder.mContext.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=" + video.getuID())));
+                //holder.mContext.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=" + video.getid())));
 
                 Intent sendIntent = new Intent(holder.mContext, WebViewActivity.class);
-                sendIntent.putExtra("uID", video.getId());
+                sendIntent.putExtra("id", video.getId());
                 holder.mContext.startActivity(sendIntent);
             }
         });

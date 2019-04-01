@@ -1114,7 +1114,7 @@ public class MusicService extends Service {
         }
 
         final Intent intent = new Intent(what);
-        intent.putExtra("uID", getAudioId());
+        intent.putExtra("id", getAudioId());
         intent.putExtra("artist", getArtistName());
         intent.putExtra("album", getAlbumName());
         intent.putExtra("albumid", getAlbumId());

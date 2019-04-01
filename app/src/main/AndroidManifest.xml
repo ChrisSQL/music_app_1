@@ -24,7 +24,10 @@
             android:name=".activities.MainActivity"
             android:label="SESH"
             android:screenOrientation="portrait">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.view" />
             </intent-filter>
@@ -44,10 +47,7 @@
             android:name=".FacebookActivityFirebase"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
             <intent-filter>
                 <category android:name="android.intent.category.CATEGORY_APP_MUSIC" />
             </intent-filter>
@@ -175,7 +175,9 @@
             android:name=".MyAccountActivity"
             android:label="@string/title_activity_my_account"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.FullScreen.Light"></activity>
+            android:theme="@style/AppTheme.FullScreen.Light">
+
+        </activity>
         <activity
             android:name=".activities.OnlineActivity"
             android:label="@string/title_activity_online"
@@ -220,25 +222,42 @@
         <activity android:name=".festivals.FestivalsActivity2" />
         <activity android:name=".festivals.FestivalsActivity3" />
         <activity android:name=".djs.AddItemActivity" />
+
+
         <activity
             android:name=".djs.DJs"
             android:label="@string/title_activity_djs"
-            android:theme="@style/AppTheme.FullScreen.Light"></activity>
+            android:theme="@style/AppTheme.FullScreen.Light">
+
+
+        </activity>
         <activity
             android:name=".users.UserList"
             android:label="@string/title_activity_user_list"
-            android:theme="@style/AppTheme.FullScreen.Light"></activity>
+            android:theme="@style/AppTheme.FullScreen.Light">
+
+
+        </activity>
         <activity
             android:name=".users.MainActivityUser"
-            android:label="@string/title_activity_djs"
+            android:label="@string/users"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.FullScreen.Light"></activity>
+            android:theme="@style/AppTheme.FullScreen.Light">
+
+        </activity>
+
         <activity
             android:name=".dj.MainActivityDJ"
             android:label="@string/title_activity_djs"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.FullScreen.Light"></activity>
-        <activity android:name=".dj.DJList"></activity>
+            android:theme="@style/AppTheme.FullScreen.Light">
+
+
+        </activity>
+        <activity android:name=".dj.DJList">
+
+
+        </activity>
     </application>
 
 </manifest>

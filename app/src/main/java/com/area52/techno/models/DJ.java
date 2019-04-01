@@ -43,6 +43,7 @@ public class DJ {
 
     public DJ(String uID, String name, String PhotoUrl, String djLogoImage, String county, String country, String email, String phoneNumber, String facebookUserID, String bio, String soundcloudLink, String youtubeLink, String mixcloudLink, String facebookLink, String instagramLink, String spotifyLink, String bookingEmail, String genre) {
 
+        this.uID = uID;
         this.name = name;
         this.PhotoUrl = PhotoUrl;
         this.djLogoImage = djLogoImage;

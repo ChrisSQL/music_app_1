@@ -142,7 +142,7 @@ public class MyAccountActivity extends AppCompatActivity {
 //                String userEmail = user.getEmail();
 //                String userName = user.getName();
 //                String userFBID = user.getFbID();
-//                String userGUid = user.getuID();
+//                String userGUid = user.getid();
 //
 //                Toast.makeText(MyAccountActivity.this, userPhoto, Toast.LENGTH_SHORT).show();
 //                Toast.makeText(MyAccountActivity.this, userEmail, Toast.LENGTH_SHORT).show();
@@ -323,9 +323,9 @@ public class MyAccountActivity extends AppCompatActivity {
 //            }
 //        });
 
-//        // find the Facebook profile and get the user's uID
+//        // find the Facebook profile and get the user's id
 ////        for(UserInfo profile : user.getProviderData()) {
-////            // check if the provider uID matches "facebook.com"
+////            // check if the provider id matches "facebook.com"
 ////            if(FacebookAuthProvider.PROVIDER_ID.equals(profile.getProviderId())) {
 ////                facebookUserId = profile.getUid();
 ////            }

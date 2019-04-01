@@ -164,7 +164,7 @@ public class BaseActivity extends ATEActivity implements ServiceConnection, Musi
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
         String name = preferences.getString("name", "");
         String email = preferences.getString("email", "");
-        String id = preferences.getString("uID", "");
+        String id = preferences.getString("id", "");
 
 
 

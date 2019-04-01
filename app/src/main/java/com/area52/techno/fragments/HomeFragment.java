@@ -95,8 +95,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
         NestedScrollView nestedScrollView = (NestedScrollView) inflater.inflate(R.layout.fragment_home, container, false);
 
 
-//        btn_card_main1_action1 = nestedScrollView.findViewById(R.uID.btn_card_main1_action1);
-//        btn_card_main1_action2 = nestedScrollView.findViewById(R.uID.btn_card_main1_action2);
+//        btn_card_main1_action1 = nestedScrollView.findViewById(R.id.btn_card_main1_action1);
+//        btn_card_main1_action2 = nestedScrollView.findViewById(R.id.btn_card_main1_action2);
         img_main_card2_share = nestedScrollView.findViewById(R.id.img_main_card2_share);
         img_main_card2_bookmark = nestedScrollView.findViewById(R.id.img_main_card2_bookmark);
         img_main_card2_favorite = nestedScrollView.findViewById(R.id.img_main_card2_favorite);
@@ -104,7 +104,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
 
         img_main_card_1 = nestedScrollView.findViewById(R.id.img_main_card_1);
         img_main_card_2 = nestedScrollView.findViewById(R.id.img_main_card_2);
-    //    img_card_main_3 = nestedScrollView.findViewById(R.uID.img_card_main_3);
+    //    img_card_main_3 = nestedScrollView.findViewById(R.id.img_card_main_3);
         img_main_card_41 = nestedScrollView.findViewById(R.id.img_main_card_41);
         img_main_card_42 = nestedScrollView.findViewById(R.id.img_main_card_42);
         img_main_card_43 = nestedScrollView.findViewById(R.id.img_main_card_43);
@@ -202,11 +202,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
     public void onClick(View view) {
         switch (view.getId()) {
 
-//            case R.uID.btn_card_main1_action1:
+//            case R.id.btn_card_main1_action1:
 ////                Snackbar.make(view, getString(R.string.main_flat_button_1_clicked), Snackbar.LENGTH_SHORT).show();
 ////                break;
 ////
-////            case R.uID.btn_card_main1_action2:
+////            case R.id.btn_card_main1_action2:
 ////                Snackbar.make(view, getString(R.string.main_flat_button_2_clicked), Snackbar.LENGTH_SHORT).show();
 ////                break;
 
@@ -298,7 +298,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
                     Intent sendIntent = new Intent();
                     sendIntent.setAction(Intent.ACTION_SEND);
                     sendIntent.putExtra(Intent.EXTRA_TEXT,
-                            "Join the SESH: https://play.google.com/store/apps/details?uID=com.area52.techno");
+                            "Join the SESH: https://play.google.com/store/apps/details?id=com.area52.techno");
                     sendIntent.setType("text/plain");
                     startActivity(sendIntent);
 
@@ -310,7 +310,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
                 }
                 break;
 
-//            case R.uID.ll_card_main3_rate:
+//            case R.id.ll_card_main3_rate:
 //                break;
 
             case R.id.card_main_1_1:

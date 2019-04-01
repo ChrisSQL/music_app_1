@@ -52,8 +52,8 @@ public class User {
         return uID;
     }
 
-    public void setuID(String uID) {
-        this.uID = uID;
+    public void setuID(String id) {
+        this.uID = id;
     }
 
     public String getFbID() {

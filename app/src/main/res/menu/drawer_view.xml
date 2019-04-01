@@ -47,6 +47,10 @@
             android:title="@string/djs" />
 
         <item
+            android:id="@+id/sets"
+            android:title="@string/sets" />
+
+        <item
             android:id="@+id/nav_festivals"
             android:title="@string/festivals" />
 

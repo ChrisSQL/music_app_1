@@ -206,21 +206,21 @@ public class PlatformsActivity extends AppCompatActivity {
             }
         });
 
-//        final Button button2015 = (Button) findViewById(R.uID.PrintWorksButton);
+//        final Button button2015 = (Button) findViewById(R.id.PrintWorksButton);
 //        button2015.setOnClickListener(new View.OnClickListener() {
 //            public void onClick(View v) {
 //                // Perform action on click
 //                goToFestival("Printworks");
 //            }
 //        });
-//        final Button button2014 = (Button) findViewById(R.uID.adeButton);
+//        final Button button2014 = (Button) findViewById(R.id.adeButton);
 //        button2014.setOnClickListener(new View.OnClickListener() {
 //            public void onClick(View v) {
 //                // Perform action on click
 //                goToFestival("ADE");
 //            }
 //        });
-//        final Button button2013 = (Button) findViewById(R.uID.lumoButton);
+//        final Button button2013 = (Button) findViewById(R.id.lumoButton);
 //        button2013.setOnClickListener(new View.OnClickListener() {
 //            public void onClick(View v) {
 //                // Perform action on click

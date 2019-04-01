@@ -21,7 +21,7 @@ public class WebViewActivity extends AppCompatActivity {
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         Bundle extras = getIntent().getExtras();
-        String id = extras.getString("uID");
+        String id = extras.getString("id");
 
         mWebView = (WebView) findViewById(R.id.videoView);
         mWebView.getSettings().setJavaScriptEnabled(true);

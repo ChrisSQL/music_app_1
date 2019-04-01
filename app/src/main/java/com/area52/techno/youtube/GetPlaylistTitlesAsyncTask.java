@@ -14,7 +14,7 @@ import java.io.IOException;
 public class GetPlaylistTitlesAsyncTask  extends AsyncTask<String[], Void, PlaylistListResponse> {
     //see: https://developers.google.com/youtube/v3/docs/playlists/list
     private static final String YOUTUBE_PLAYLIST_PART = "snippet";
-    private static final String YOUTUBE_PLAYLIST_FIELDS = "items(uID,snippet(title))";
+    private static final String YOUTUBE_PLAYLIST_FIELDS = "items(id,snippet(title))";
 
     private YouTube mYouTubeDataApi;
 

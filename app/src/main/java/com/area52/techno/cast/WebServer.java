@@ -32,7 +32,7 @@ public class WebServer extends NanoHTTPD {
         if (uri.contains("albumart")) {
             //serve the picture
 
-            String albumId = parameters.get("uID");
+            String albumId = parameters.get("id");
             this.albumArtUri = TimberUtils.getAlbumArtUri(Long.parseLong(albumId));
 
             if (albumArtUri != null) {
@@ -51,7 +51,7 @@ public class WebServer extends NanoHTTPD {
 
         } else if (uri.contains("song")) {
 
-            String songId = parameters.get("uID");
+            String songId = parameters.get("id");
             this.songUri = TimberUtils.getSongUri(context, Long.parseLong(songId));
 
             if (songUri != null) {

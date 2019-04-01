@@ -23,7 +23,7 @@ import com.google.android.youtube.player.YouTubeThumbnailView;
  */
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.VideoInfoHolder> {
 
-    //these ids are the unique uID for each video
+    //these ids are the unique id for each video
     String[] VideoID = {"P3mAtvs5Elc", "nCgQDjiotG0", "P3mAtvs5Elc"};
     String[] Ttitles = {"Video # 1", "Video # 2", "Video # 3"};
     Context ctx;

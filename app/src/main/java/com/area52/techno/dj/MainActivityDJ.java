@@ -45,28 +45,36 @@ public class MainActivityDJ extends AppCompatActivity {
                 list = new ArrayList<DJ>();
                 for(DataSnapshot dataSnapshot1 :dataSnapshot.getChildren()){
 
-                    User value = dataSnapshot1.getValue(User.class);
-                    DJ fire = new DJ();
+                    DJ value = dataSnapshot1.getValue(DJ.class);
+                    DJ dj = new DJ();
 
-//                    String name = value.getName();
-//                    String email = value.getName();
-//                    String photo = value.getPhotoUrl();
-//                    String fbID = value.getFbID();
-//                    String guID = value.getuID();
-//
-//                    fire.setName(name);
-//                    fire.setEmail(email);
-//                    fire.setPhotoUrl(photo);
-//                    fire.setFbID(fbID);
-//                    fire.setuID(guID);
+                    dj.setuID(value.getuID());
+                    dj.setName(value.getName());
+                    dj.setEmail(value.getEmail());
+                    dj.setPhotoUrl(value.getPhotoUrl());
+                    dj.setFacebookUserID(value.getFacebookUserID());
+                    dj.setDjLogoImage(value.getDjLogoImage());
+                    dj.setCounty(value.getCounty());
+                    dj.setCountry(value.getCountry());
+                    dj.setPhoneNumber(value.getPhoneNumber());
 
-                    list.add(fire);
+                    dj.setBio(value.getBio());
+                    dj.setSoundcloudLink(value.getSoundcloudLink());
+                    dj.setYoutubeLink(value.getYoutubeLink());
+                    dj.setMixcloudLink(value.getMixcloudLink());
+                    dj.setFacebookLink(value.getFacebookLink());
+                    dj.setInstagramLink(value.getInstagramLink());
+                    dj.setSpotifyLink(value.getSpotifyLink());
+                    dj.setBookingEmail(value.getBookingEmail());
+                    dj.setGenre(value.getGenre());
+
+                    list.add(dj);
 
                 //    Toast.makeText(MainActivityUser.this, list.toString(), Toast.LENGTH_SHORT).show();
 
                 }
 
-                DJRecyclerAdapter userRecyclerAdapter = new DJRecyclerAdapter(list,MainActivityDJ.this);
+                DJRecyclerAdapter djRecyclerAdapter = new DJRecyclerAdapter(list,MainActivityDJ.this);
              //    RecyclerView.LayoutManager recyce = new GridLayoutManager(MainActivityUser.this,2);
                 GridLayoutManager manager = new GridLayoutManager(MainActivityDJ.this, 12, GridLayoutManager.VERTICAL, false);
                 manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
@@ -95,7 +103,7 @@ public class MainActivityDJ extends AppCompatActivity {
                 // recycle.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
                 // recycle.setLayoutManager(recyce);
                 recycle.setItemAnimator( new DefaultItemAnimator());
-                recycle.setAdapter(userRecyclerAdapter);
+                recycle.setAdapter(djRecyclerAdapter);
             }
 
             @Override

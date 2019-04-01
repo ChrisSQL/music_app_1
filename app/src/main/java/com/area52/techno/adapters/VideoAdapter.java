@@ -97,7 +97,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder>{
 
 
                 Intent myIntent = new Intent(mContext, WebViewActivity.class);
-                myIntent.putExtra("uID", videoId);
+                myIntent.putExtra("id", videoId);
                 mContext.startActivity(myIntent);
 
                 // Play YouTube video in Internal Player

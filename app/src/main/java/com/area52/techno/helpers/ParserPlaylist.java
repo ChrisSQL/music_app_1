@@ -41,7 +41,7 @@ public class ParserPlaylist extends AsyncTask<String, Void, String> {
      * This method generates the url that retrieves Youtube video data
      *
      * @param channelID The ID of the desired channel. Ex: https://www.youtube.com/channel/UCVHFbqXqoYvEWM1Ddxl0QDg
-     *                  channel uID = UCVHFbqXqoYvEWM1Ddxl0QDg
+     *                  channel id = UCVHFbqXqoYvEWM1Ddxl0QDg
      * @param maxResult The number of video to get
      * @param key       Your Browser API key. Obtain one by visiting https://console.developers.google.com
      * @return The url required to get data
@@ -60,7 +60,7 @@ public class ParserPlaylist extends AsyncTask<String, Void, String> {
      * This method generates the url to retrieve Youtube Video data
      *
      * @param channelID The ID of the desired channel. Ex: https://www.youtube.com/channel/UCVHFbqXqoYvEWM1Ddxl0QDg
-     *                  channel uID = UCVHFbqXqoYvEWM1Ddxl0QDg
+     *                  channel id = UCVHFbqXqoYvEWM1Ddxl0QDg
      * @param maxResult The number of video to get. The maximum value is 50
      * @param orderType The type of ordering. You can choose an order by date: {@link #ORDER_DATE} and by view count {@link #ORDER_VIEW_COUNT}.
      * @param key       Your Browser API key. Obtain one by visiting https://console.developers.google.com
@@ -93,7 +93,7 @@ public class ParserPlaylist extends AsyncTask<String, Void, String> {
      * {@link #generateRequest(String, int, int, String)} to get the next page token
      *
      * @param channelID The ID of the desired channel. Ex: https://www.youtube.com/channel/UCVHFbqXqoYvEWM1Ddxl0QDg
-     *                  channel uID = UCVHFbqXqoYvEWM1Ddxl0QDg
+     *                  channel id = UCVHFbqXqoYvEWM1Ddxl0QDg
      * @param maxResult The number of video to get. The maximum value is 50
      * @param orderType The type of ordering. You can choose an order by date: {@link #ORDER_DATE} and by view count {@link #ORDER_VIEW_COUNT}.
      * @param key       Your Browser API key. Obtain one by visiting https://console.developers.google.com

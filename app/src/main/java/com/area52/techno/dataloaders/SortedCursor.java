@@ -43,7 +43,7 @@ public class SortedCursor extends AbstractCursor {
     /**
      * @param cursor     to wrap
      * @param order      the list of unique ids in sorted order to display
-     * @param columnName the column name of the uID to look up in the internal cursor
+     * @param columnName the column name of the id to look up in the internal cursor
      */
     public SortedCursor(final Cursor cursor, final long[] order, final String columnName,
                         final List<? extends Object> extraData) {

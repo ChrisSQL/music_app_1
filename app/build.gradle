@@ -15,7 +15,7 @@ android {
         applicationId "com.area52.techno"
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
-        versionCode 117
+        versionCode 120
         versionName "1.0"
         //renderscript support mode is not supported for 21+ with gradle version 2.0
         renderscriptTargetApi 20
@@ -52,7 +52,6 @@ android {
         // but continue the build even when errors are found:
         abortOnError false
     }
-    buildToolsVersion '27.0.3'
     productFlavors {
     }
     compileOptions {

@@ -76,6 +76,8 @@ public class MainActivityDJ extends AppCompatActivity {
                     dj.setBookingEmail(value.getBookingEmail());
                     dj.setGenre(value.getGenre());
 
+
+
                     listDJs.add(dj);
 
 //                    Toast.makeText(MainActivityDJ.this, listDJs.toString(), Toast.LENGTH_SHORT).show();

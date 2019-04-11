@@ -196,9 +196,9 @@ public class MyAccountActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Perform action on click
 
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(profileURL));
-                startActivity(i);
+//                Intent i = new Intent(Intent.ACTION_VIEW);
+////                i.setData(Uri.parse(FacebookLink));
+////                startActivity(i);
 
             }
         });

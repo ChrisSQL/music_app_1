@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -47,32 +50,58 @@ public class DJRecyclerAdapter extends RecyclerView.Adapter<DJRecyclerAdapter.My
         DJ mylist = list.get(position);
         holder.name.setText(mylist.getName());
 
-        holder.thumbnail.setOnClickListener(new View.OnClickListener() {
+                holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
                 // Perform action on click
-                // Go to Website
-                String url = mylist.getSoundcloudLink();
-                final Intent intent = new Intent(Intent.ACTION_VIEW).setData(Uri.parse(url));
-                context.startActivity(intent);
-
+                Intent i=new Intent(context,MyDJActivity.class);
+                i.putExtra("djName", mylist.getName());
+                i.putExtra("getPhotoUrlDJ", mylist.getPhotoUrlDJ());
+                i.putExtra("FacebookLink", mylist.getFacebookLink());
+                i.putExtra("SoundcloudLink", mylist.getSoundcloudLink());
+                i.putExtra("country", mylist.getCountry());
+                i.putExtra("genre", mylist.getGenre());
+                context.startActivity(i);
             }
-        });
 
-//        Glide.with(context)
-//                .load(mylist.getPhotoUrlDJ())
-//                .apply(new RequestOptions()
-//                        .fitCenter()
-//                        .format(DecodeFormat.PREFER_ARGB_8888)
-//                        .override(Target.SIZE_ORIGINAL)
-//                .placeholder(R.drawable.sesh_logo))
-//                .into(holder.thumbnail);
+        });
 
         Picasso.with(context)
                 .load(mylist.getPhotoUrlDJ())
+                .resize(200,200)
+                .centerCrop()
                 .placeholder(R.drawable.sesh_logo)
-                .into(holder.thumbnail);
+                .networkPolicy(NetworkPolicy.OFFLINE)
+                .into(holder.thumbnail, new Callback() {
+                    @Override
+                    public void onSuccess() {
 
-        Toast.makeText(context, mylist.getPhotoUrlDJ(), Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError() {
+                        //Try again online if cache failed
+                        Picasso.with(context)
+                                .load(mylist.getPhotoUrlDJ())
+                                .resize(200,200)
+                                .centerCrop()
+                                .placeholder(R.drawable.sesh_logo)
+                                .error(R.drawable.sesh_logo)
+                                .into(holder.thumbnail, new Callback() {
+                                    @Override
+                                    public void onSuccess() {
+
+                                    }
+
+                                    @Override
+                                    public void onError() {
+                                        Log.v("Picasso","Could not fetch image");
+                                    }
+                                });
+                    }
+                });
+
+    //    Toast.makeText(context, mylist.getPhotoUrlDJ(), Toast.LENGTH_SHORT).show();
 
 
 
@@ -104,12 +133,14 @@ public class DJRecyclerAdapter extends RecyclerView.Adapter<DJRecyclerAdapter.My
 
         TextView name;
         ImageView thumbnail;
+        String soundCloud;
 
         public MyHoder(View itemView) {
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.vname);
         //    email= (TextView) itemView.findViewById(R.id.vemail);
             thumbnail= (ImageView) itemView.findViewById(R.id.thumbnail_dj);
+
 
 
         }

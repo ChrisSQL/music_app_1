@@ -42,16 +42,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.area52.techno.activities.MainActivity;
+import com.area52.techno.dj.MainActivityDJ;
 import com.area52.techno.models.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
@@ -62,8 +59,8 @@ import static junit.framework.Assert.fail;
 public class MyDJActivity extends AppCompatActivity {
 
     SharedPreferences preferences;
-    TextView FBName, ProfileName;
-    String photoUrl, profileURL, userID, facebookUserId;
+    TextView ProfileName;
+    String photoUrl, FacebookLink, djName, getPhotoUrlDJ, SoundcloudLink, country, genre;
     // [START declare_auth]
     private FirebaseAuth mAuth;
     // [END declare_auth]
@@ -77,161 +74,32 @@ public class MyDJActivity extends AppCompatActivity {
     Bundle extras;
     Query userQuery;
     User userProfile;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_dj);
 
-        // Get userID
-     //   declareVariables();
-        // Choose User
+        intent = getIntent();
+        declareVariables();
+        loadUserButtons();
+        updateGUI();
+
+     //   Get userID
+     //   declareVariables();// Choose User
      //   chooseUSer();
 
     }
 
-    private void chooseUSer() {
+    private void updateGUI() {
 
-//        if(userID == null){
-//            Toast.makeText(this, "UserID : Null", Toast.LENGTH_SHORT).show();
-//            Intent myIntent = new Intent(MyDJActivity.this, FacebookActivityFirebase.class);
-//        }else if (userID.equals("NA")){
-//            Toast.makeText(this, "UserID : NA", Toast.LENGTH_SHORT).show();
-//            Intent myIntent = new Intent(MyDJActivity.this, FacebookActivityFirebase.class);
-//        }else {
-//            // Toast.makeText(this, "UserID : " + userID, Toast.LENGTH_SHORT).show();
-//            populateUser(userID);
-//        }
-
-    }
-
-    private void populateUser(String userIDIn) {
-
-
-
-//        String uid = mAuth.getCurrentUser().getUid();
-//        myRef.child("students").child(uid).addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                try {
-//                    for(DataSnapshot snap :  dataSnapshot.getChildren())
-//                        User obj = snap.getValue(User.class);
-//                    String password =obj.getPassword();
-//                    //here compare your local password inserted in your editText with the one pulled from firebase
-//
-//
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-
-        Query myTopPostsQuery = myRef.child(userIDIn);
-
-        myTopPostsQuery.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                User user = dataSnapshot.getValue(User.class);
-
-                updateGUI(user);
-
-//                //get country key
-//                String userPhoto = user.getPhotoUrlDJ();
-//                String userEmail = user.getEmail();
-//                String userName = user.getName();
-//                String userFBID = user.getFbID();
-//                String userGUid = user.getid();
-//
-//                Toast.makeText(MyAccountActivity.this, userPhoto, Toast.LENGTH_SHORT).show();
-//                Toast.makeText(MyAccountActivity.this, userEmail, Toast.LENGTH_SHORT).show();
-//                Toast.makeText(MyAccountActivity.this, userName, Toast.LENGTH_SHORT).show();
-//                Toast.makeText(MyAccountActivity.this, userFBID, Toast.LENGTH_SHORT).show();
-//                Toast.makeText(MyAccountActivity.this, userGUid, Toast.LENGTH_SHORT).show();
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                fail("Failed to get country: " + databaseError.getMessage());
-
-            }
-        });
-
-//        Toast.makeText(this, userIDIn, Toast.LENGTH_SHORT).show();
-//
-//        userQuery = database.getReference("usersID").equalTo(userIDIn);
-//
-//        //userQuery = FirebaseDatabase.getInstance().getReference("usersID").child(userIDIn);
-//        userQuery.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
-//
-//                    userProfile = userSnapshot.getValue(User.class);
-//                    updateGUI(userProfile);
-//
-//
-//
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                fail("Failed to get country: " + databaseError.getMessage());
-//            }
-//        });
-    }
-
-    private void updateGUI(User userProfile) {
-
-        profileURL = "https://facebook.com/profile.php?id=" + userProfile.getFbID();
-
-        ProfileName.setText(userProfile.getName());
-        PicassoImageLoad(profilePicture, profileBackground, ProfileName, userProfile.getPhotoUrl());
-
-        final ImageView profileFacebookButton = (ImageView) findViewById(R.id.profileFacebookButton);
-        profileFacebookButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // Perform action on click
-
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(profileURL));
-                startActivity(i);
-
-            }
-        });
-
-        final ImageView profileTicketButton = (ImageView) findViewById(R.id.profileTicketButton);
-        profileTicketButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // Perform action on click
-
-                Intent shareIntent = new Intent(Intent.ACTION_SEND);
-                shareIntent.setType("text/plain");
-                shareIntent.putExtra(Intent.EXTRA_TEXT, profileURL);
-                startActivity(Intent.createChooser(shareIntent, "Share link using"));
-
-            }
-        });
-
-        final ImageView profileShareButton = (ImageView) findViewById(R.id.profileShareButton);
-        profileShareButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // Perform action on click
-
-                Intent shareIntent = new Intent(Intent.ACTION_SEND);
-                shareIntent.setType("text/plain");
-                shareIntent.putExtra(Intent.EXTRA_TEXT, profileURL);
-                startActivity(Intent.createChooser(shareIntent, "Share link using"));
-
-            }
-        });
+//        FacebookLink = "https://facebook.com/profile.php?id=" + userProfile.getFbID();
+        ProfileName.setText(djName);
+        PicassoImageLoad(profilePicture, profileBackground, ProfileName, getPhotoUrlDJ);
 
         Picasso.with(MyDJActivity.this)
-                .load(userProfile.getPhotoUrl())
+                .load(getPhotoUrlDJ)
                 .placeholder(R.drawable.sesh_logo)
                 .into(profilePicture);
 
@@ -243,7 +111,6 @@ public class MyDJActivity extends AppCompatActivity {
         profileBackground = (LinearLayout) findViewById(R.id.profileBackground);
         ProfileName = (TextView) findViewById(R.id.ProfileName);
 
-        facebookUserId = "";
         db = FirebaseFirestore.getInstance();
         database = FirebaseDatabase.getInstance();
 
@@ -251,91 +118,29 @@ public class MyDJActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
         extras = getIntent().getExtras();
+
         if (extras != null) {
-            userID = extras.getString("userID");
+
+            djName = extras.getString("djName");
+            getPhotoUrlDJ = extras.getString("getPhotoUrlDJ");
+            FacebookLink = extras.getString("FacebookLink");
+            SoundcloudLink = extras.getString("SoundcloudLink");
+            country = extras.getString("Country");
+            genre = extras.getString("genre");
+
+            Toast.makeText(this, SoundcloudLink, Toast.LENGTH_SHORT).show();
+
+
         }else {
-            userID = "NA";
+            // Redirect to DJ List
+            Intent i=new Intent(this, MainActivityDJ.class);
+            this.startActivity(i);
         }
 
-        myRef = database.getReference("usersID");
+        myRef = database.getReference("DJ");
     }
 
-    private void loadUser(FirebaseUser user) {
-
-        Toast.makeText(this, userID, Toast.LENGTH_SHORT).show();
-
-//        myRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                // This method is called once with the initial value and again
-//                // whenever data at this location is updated.
-//                list = new ArrayList<User>();
-//                for(DataSnapshot dataSnapshot1 :dataSnapshot.getChildren()){
-//
-//                    User value = dataSnapshot1.getValue(User.class);
-//                    User fire = new User();
-//                    String name = value.getName();
-//                    String email = value.getName();
-//                    String photo = value.getPhotoUrlDJ();
-//                    fire.setName(name);
-//                    fire.setEmail(email);
-//                    fire.setPhoto(photo);
-//                    list.add(fire);
-//
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError error) {
-//                // Failed to read value
-//                Log.w("Hello", "Failed to read value.", error.toException());
-//            }
-//
-//
-//        });
-
-//        myRef.child("ixU1tYuBERVaiApthSErIJptPVt2").addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot2) {
-//
-//                list = new ArrayList<User>();
-//                for(DataSnapshot dataSnapshot1 :dataSnapshot2.getChildren()){
-//
-//                    User value = dataSnapshot1.getValue(User.class);
-//                    User fire = new User();
-//                    String name = value.getName();
-//                    String email = value.getName();
-//                    String photo = value.getPhotoUrlDJ();
-//                    fire.setName(name);
-//                    fire.setEmail(email);
-//                    fire.setPhoto(photo);
-//                    list.add(fire);
-//
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                // ...
-//            }
-//        });
-
-//        // find the Facebook profile and get the user's id
-////        for(UserInfo profile : user.getProviderData()) {
-////            // check if the provider id matches "facebook.com"
-////            if(FacebookAuthProvider.PROVIDER_ID.equals(profile.getProviderId())) {
-////                facebookUserId = profile.getUid();
-////            }
-////        }
-
-        // construct the URL to the profile picture, with a custom height
-        // alternatively, use '?type=small|medium|large' instead of ?height=
-        photoUrl = "https://graph.facebook.com/" + list.get(0).getFbID() + "/picture?height=200";
-        profileURL = "https://graph.facebook.com/" + list.get(0).getFbID();
-
-        ProfileName.setText(list.get(0).getName());
-        PicassoImageLoad(profilePicture, profileBackground, ProfileName, list.get(0).getPhotoUrl());
+    private void loadUserButtons() {
 
         final ImageView profileFacebookButton = (ImageView) findViewById(R.id.profileFacebookButton);
         profileFacebookButton.setOnClickListener(new View.OnClickListener() {
@@ -343,7 +148,7 @@ public class MyDJActivity extends AppCompatActivity {
                 // Perform action on click
 
                 Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(profileURL));
+                i.setData(Uri.parse(FacebookLink));
                 startActivity(i);
 
             }
@@ -356,7 +161,7 @@ public class MyDJActivity extends AppCompatActivity {
 
                 Intent shareIntent = new Intent(Intent.ACTION_SEND);
                 shareIntent.setType("text/plain");
-                shareIntent.putExtra(Intent.EXTRA_TEXT, profileURL);
+                shareIntent.putExtra(Intent.EXTRA_TEXT, "http://www.eventbrite.com");
                 startActivity(Intent.createChooser(shareIntent, "Share link using"));
 
             }
@@ -369,7 +174,7 @@ public class MyDJActivity extends AppCompatActivity {
 
                 Intent shareIntent = new Intent(Intent.ACTION_SEND);
                 shareIntent.setType("text/plain");
-                shareIntent.putExtra(Intent.EXTRA_TEXT, profileURL);
+                shareIntent.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=com.area52.techno");
                 startActivity(Intent.createChooser(shareIntent, "Share link using"));
 
             }
@@ -384,7 +189,7 @@ public class MyDJActivity extends AppCompatActivity {
 
     private void PicassoImageLoad(ImageView profilePicture, LinearLayout profileBackground, TextView profileName, String photoUrlIn) {
         Picasso.with(MyDJActivity.this)
-                .load(photoUrlIn)
+                .load(getPhotoUrlDJ)
                 .resize(200, 200)
                 .centerCrop()
                 .into(profilePicture);
@@ -446,9 +251,9 @@ public class MyDJActivity extends AppCompatActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-    @Override
-    public void onBackPressed() {
-        startActivity(new Intent(MyDJActivity.this, MainActivity.class));
-    }
+//    @Override
+//    public void onBackPressed() {
+//        startActivity(new Intent(MyDJActivity.this, MainActivity.class));
+//    }
 
 }

@@ -3,6 +3,7 @@ package com.area52.techno.users;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 import com.area52.techno.MyAccountActivity;
 import com.area52.techno.R;
 import com.area52.techno.models.User;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -44,14 +47,14 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
         User mylist = list.get(position);
         holder.name.setText(mylist.getName());
 
-        holder.thumbnail.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // Perform action on click
-                Intent i=new Intent(context,MyAccountActivity.class);
-                i.putExtra("userID", mylist.getuID());
-                context.startActivity(i);
-            }
-        });
+//        holder.thumbnail.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                // Perform action on click
+//                Intent i=new Intent(context,MyAccountActivity.class);
+//                i.putExtra("userID", mylist.getuID());
+//                context.startActivity(i);
+//            }
+//        });
 
 //        Glide.with(context)
 //                .load(mylist.getPhotoUrlDJ())
@@ -62,10 +65,45 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
 //                .placeholder(R.drawable.sesh_logo))
 //                .into(holder.thumbnail);
 
+//        Picasso.with(context)
+//                .load(mylist.getPhotoUrl())
+//                .placeholder(R.drawable.sesh_logo)
+//                .into(holder.thumbnail);
+
         Picasso.with(context)
                 .load(mylist.getPhotoUrl())
+                .resize(200,200)
+                .centerCrop()
                 .placeholder(R.drawable.sesh_logo)
-                .into(holder.thumbnail);
+                .networkPolicy(NetworkPolicy.OFFLINE)
+                .into(holder.thumbnail, new Callback() {
+                    @Override
+                    public void onSuccess() {
+
+                    }
+
+                    @Override
+                    public void onError() {
+                        //Try again online if cache failed
+                        Picasso.with(context)
+                                .load(mylist.getPhotoUrl())
+                                .resize(200,200)
+                                .centerCrop()
+                                .placeholder(R.drawable.sesh_logo)
+                                .error(R.drawable.sesh_logo)
+                                .into(holder.thumbnail, new Callback() {
+                                    @Override
+                                    public void onSuccess() {
+
+                                    }
+
+                                    @Override
+                                    public void onError() {
+                                        Log.v("Picasso","Could not fetch image");
+                                    }
+                                });
+                    }
+                });
 
 
 

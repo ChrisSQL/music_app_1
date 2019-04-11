@@ -66,6 +66,9 @@ import com.area52.techno.widgets.DividerItemDecoration;
 import com.area52.techno.widgets.FastScroller;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,14 +78,23 @@ import static android.content.Context.MODE_PRIVATE;
 public class HomeFragment extends Fragment implements View.OnClickListener, View.OnTouchListener {
 
     private ImageView img_main_card2_share, img_main_card2_bookmark, img_main_card2_favorite;
-    private boolean isBookmarkClicked, isFavoriteClicked, isBookmark41Clicked, isBookmark42Clicked, isFavorite41Clicked, isFavorite42Clicked, isShare42Clicked;
+    private boolean isBookmarkClicked, isFavoriteClicked, isBookmark1Clicked, isBookmark41Clicked, isBookmark42Clicked, isFavorite41Clicked, isFavorite42Clicked, isShare42Clicked;
     private LinearLayout ll_card_main3_rate;
     private ImageView btn_card_main1_action1, btn_card_main1_action2;
-    private ImageView img_main_card_1, img_main_card_2, img_card_main_3, img_main_card_41, img_main_card_42, img_main_card_43, img_main_card_44,
-            img_main_card41_favorite, img_main_card42_favorite, img_main_card41_bookmark, img_main_card42_bookmark,
-            img_main_card41_share, img_main_card42_share, img_main_card42_share_1,
-            img_main_card43_favorite, img_main_card44_favorite, img_main_card43_bookmark, img_main_card44_bookmark,
-            img_main_card43_share, img_main_card44_share;
+    Intent browserIntent2;
+
+    // Main Card
+    private ImageView img_main_card_1, img_main_card1_favorite, img_main_card1_bookmark, img_main_card1_share;
+    // SubCard One
+    private ImageView img_main_card_41, img_main_card41_favorite, img_main_card41_bookmark, img_main_card41_share;
+    // SubCard Two
+    private ImageView img_main_card_42, img_main_card42_favorite, img_main_card42_bookmark, img_main_card42_share_1;
+    // SubCard Three
+    private ImageView img_main_card_43, img_main_card43_favorite, img_main_card43_bookmark, img_main_card43_share;
+    // SubCard Four
+    private ImageView img_main_card_44, img_main_card44_favorite, img_main_card44_bookmark, img_main_card44_share;
+
+
     private CardView card_main_1_1, card_main_1_2, card_main_1_3, card_main_1_4_1, card_main_1_4_2, card_main_1_4_3, card_main_1_4_4;
     private AlphaAnimation alphaAnimation, alphaAnimationShowIcon;
 
@@ -94,28 +106,34 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
 
         NestedScrollView nestedScrollView = (NestedScrollView) inflater.inflate(R.layout.fragment_home, container, false);
 
+        fIndViewObjects(nestedScrollView);
+        glideImages();
+        card_ad_card = nestedScrollView.findViewById(R.id.card_ad_card);
 
-//        btn_card_main1_action1 = nestedScrollView.findViewById(R.id.btn_card_main1_action1);
-//        btn_card_main1_action2 = nestedScrollView.findViewById(R.id.btn_card_main1_action2);
+        return nestedScrollView;
+    }
+
+    private void fIndViewObjects(NestedScrollView nestedScrollView) {
+
         img_main_card2_share = nestedScrollView.findViewById(R.id.img_main_card2_share);
         img_main_card2_bookmark = nestedScrollView.findViewById(R.id.img_main_card2_bookmark);
         img_main_card2_favorite = nestedScrollView.findViewById(R.id.img_main_card2_favorite);
         ll_card_main3_rate = nestedScrollView.findViewById(R.id.ll_card_main3_rate);
 
         img_main_card_1 = nestedScrollView.findViewById(R.id.img_main_card_1);
-        img_main_card_2 = nestedScrollView.findViewById(R.id.img_main_card_2);
-    //    img_card_main_3 = nestedScrollView.findViewById(R.id.img_card_main_3);
         img_main_card_41 = nestedScrollView.findViewById(R.id.img_main_card_41);
         img_main_card_42 = nestedScrollView.findViewById(R.id.img_main_card_42);
         img_main_card_43 = nestedScrollView.findViewById(R.id.img_main_card_43);
         img_main_card_44 = nestedScrollView.findViewById(R.id.img_main_card_44);
 
         img_main_card41_favorite = nestedScrollView.findViewById(R.id.img_main_card41_favorite);
+        img_main_card1_favorite = nestedScrollView.findViewById(R.id.img_main_card1_favorite);
         img_main_card42_favorite = nestedScrollView.findViewById(R.id.img_main_card42_favorite);
         img_main_card41_bookmark = nestedScrollView.findViewById(R.id.img_main_card41_bookmark);
-        img_main_card42_bookmark = nestedScrollView.findViewById(R.id.img_main_card42_bookmark);
+        img_main_card42_bookmark = nestedScrollView.findViewById(R.id.img_main_card1_bookmark);
+        img_main_card1_bookmark = nestedScrollView.findViewById(R.id.img_main_card42_bookmark);
         img_main_card41_share = nestedScrollView.findViewById(R.id.img_main_card41_share);
-        img_main_card42_share = nestedScrollView.findViewById(R.id.img_main_card42_share);
+        img_main_card1_share = nestedScrollView.findViewById(R.id.img_main_card1_share);
         img_main_card42_share_1 = nestedScrollView.findViewById(R.id.img_main_card42_share_1);
 
         img_main_card43_favorite = nestedScrollView.findViewById(R.id.img_main_card43_favorite);
@@ -133,38 +151,52 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
         card_main_1_4_3 = nestedScrollView.findViewById(R.id.card_main_1_4_3);
         card_main_1_4_4 = nestedScrollView.findViewById(R.id.card_main_1_4_4);
 
-        Glide.with(getContext()).load(R.drawable.sunil_card).apply(new RequestOptions().fitCenter()).into(img_main_card_1);
-        Glide.with(getContext()).load(R.drawable.material_design_4).apply(new RequestOptions().fitCenter()).into(img_main_card_2);
-    //    Glide.with(getContext()).load(R.drawable.gracey_friel_card).apply(new RequestOptions().fitCenter()).into(img_card_main_3);
+    }
+
+    private void glideImages() {
+
+        // Main Card
+         Glide.with(getContext()).load(R.drawable.sunil_card).apply(new RequestOptions().fitCenter()).into(img_main_card_1);
+        // SubCard One
         Glide.with(getContext()).load(R.drawable.gracey_friel_card2).apply(new RequestOptions().fitCenter()).into(img_main_card_41);
+        // Subcard Two
         Glide.with(getContext()).load(R.drawable.argy).apply(new RequestOptions().fitCenter()).into(img_main_card_42);
+        // Subcard Three
         Glide.with(getContext()).load(R.drawable.awakenings_white_square_1500).apply(new RequestOptions().fitCenter()).into(img_main_card_43);
+        // Subcard Four
         Glide.with(getContext()).load(R.drawable.lumo_square).apply(new RequestOptions().fitCenter()).into(img_main_card_44);
 
-
-
-        card_ad_card = nestedScrollView.findViewById(R.id.card_ad_card);
-
-        return nestedScrollView;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-//        btn_card_main1_action1.setOnClickListener(this);
-//        btn_card_main1_action2.setOnClickListener(this);
+        setOnCLickListeners();
+
+        alphaAnimation = new AlphaAnimation(0.0f, 1.0f);
+        alphaAnimation.setDuration(700);
+
+
+        alphaAnimationShowIcon = new AlphaAnimation(0.2f, 1.0f);
+        alphaAnimationShowIcon.setDuration(500);
+
+    }
+
+    private void setOnCLickListeners() {
+
         img_main_card2_bookmark.setOnClickListener(this);
         img_main_card2_favorite.setOnClickListener(this);
         img_main_card2_share.setOnClickListener(this);
-     //   ll_card_main3_rate.setOnClickListener(this);
 
         img_main_card41_favorite.setOnClickListener(this);
         img_main_card42_favorite.setOnClickListener(this);
+        img_main_card1_favorite.setOnClickListener(this);
         img_main_card41_bookmark.setOnClickListener(this);
         img_main_card42_bookmark.setOnClickListener(this);
+        img_main_card1_bookmark.setOnClickListener(this);
         img_main_card41_share.setOnClickListener(this);
-        img_main_card42_share.setOnClickListener(this);
+        img_main_card1_share.setOnClickListener(this);
         img_main_card42_share_1.setOnClickListener(this);
 
         img_main_card43_favorite.setOnClickListener(this);
@@ -176,32 +208,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
 
         card_main_1_1.setOnClickListener(this);
         card_main_1_2.setOnClickListener(this);
-    //    card_main_1_3.setOnClickListener(this);
         card_main_1_4_1.setOnClickListener(this);
         card_main_1_4_2.setOnClickListener(this);
         card_main_1_4_3.setOnClickListener(this);
         card_main_1_4_4.setOnClickListener(this);
 
-        card_main_1_1.setOnTouchListener(this);
-        card_main_1_2.setOnTouchListener(this);
-   //     card_main_1_3.setOnTouchListener(this);
-        card_main_1_4_1.setOnTouchListener(this);
-        card_main_1_4_2.setOnTouchListener(this);
-        card_main_1_4_3.setOnTouchListener(this);
-        card_main_1_4_4.setOnTouchListener(this);
-
         img_main_card_42.setOnClickListener(this);
         img_main_card_1.setOnClickListener(this);
-
-        alphaAnimation = new AlphaAnimation(0.0f, 1.0f);
-        alphaAnimation.setDuration(700);
-//        img_main_card_1.startAnimation(alphaAnimation);
-//        img_main_card_2.startAnimation(alphaAnimation);
-
-
-
-        alphaAnimationShowIcon = new AlphaAnimation(0.2f, 1.0f);
-        alphaAnimationShowIcon.setDuration(500);
 
     }
 
@@ -209,13 +222,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
     public void onClick(View view) {
         switch (view.getId()) {
 
-//            case R.id.btn_card_main1_action1:
-////                Snackbar.make(view, getString(R.string.main_flat_button_1_clicked), Snackbar.LENGTH_SHORT).show();
-////                break;
-////
-////            case R.id.btn_card_main1_action2:
-////                Snackbar.make(view, getString(R.string.main_flat_button_2_clicked), Snackbar.LENGTH_SHORT).show();
-////                break;
 
             case R.id.img_main_card2_bookmark:
                 if (!isBookmarkClicked) {
@@ -232,62 +238,40 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
 
             case R.id.img_main_card2_favorite:
                 if (!isFavoriteClicked) {
-//                    img_main_card2_favorite.setImageResource(R.drawable.facebook48);
-//                    img_main_card2_favorite.startAnimation(alphaAnimationShowIcon);
-//                    img_main_card2_favorite.startAnimation(alphaAnimationShowIcon);
                     isFavoriteClicked = true;
                 } else {
-//                    img_main_card2_favorite.setImageResource(R.drawable.facebook48);
-//                    img_main_card2_favorite.startAnimation(alphaAnimationShowIcon);
-//                    img_main_card2_favorite.startAnimation(alphaAnimationShowIcon);
                     isFavoriteClicked = false;
                 }
                 break;
 
             case R.id.img_main_card41_favorite:
                 if (!isFavorite41Clicked) {
-//                    img_main_card41_favorite.setImageResource(R.drawable.facebook48);
-//                    img_main_card41_favorite.startAnimation(alphaAnimationShowIcon);
                     isFavorite41Clicked = true;
                 } else {
-//                    img_main_card41_favorite.setImageResource(R.drawable.facebook48);
-//                    img_main_card41_favorite.startAnimation(alphaAnimationShowIcon);
                     isFavorite41Clicked = false;
                 }
                 break;
 
             case R.id.img_main_card42_favorite:
                 if (!isFavorite42Clicked) {
-//                    img_main_card42_favorite.setImageResource(R.drawable.facebook48);
-//                    img_main_card42_favorite.startAnimation(alphaAnimationShowIcon);
                     isFavorite42Clicked = true;
                 } else {
-//                    img_main_card42_favorite.setImageResource(R.drawable.facebook48);
-//                    img_main_card42_favorite.startAnimation(alphaAnimationShowIcon);
                     isFavorite42Clicked = false;
                 }
                 break;
 
             case R.id.img_main_card41_bookmark:
                 if (!isShare42Clicked) {
-//                    img_main_card41_bookmark.setImageResource(R.drawable.ticket_86171);
-//                    img_main_card41_bookmark.startAnimation(alphaAnimationShowIcon);
                     isShare42Clicked = true;
                 } else {
-//                    img_main_card41_bookmark.setImageResource(R.drawable.ticket_86171);
-//                    img_main_card41_bookmark.startAnimation(alphaAnimationShowIcon);
                     isShare42Clicked = false;
                 }
                 break;
 
             case R.id.img_main_card42_bookmark:
                 if (!isBookmark42Clicked) {
-//                    img_main_card42_bookmark.setImageResource(R.drawable.ticket_86171);
-//                    img_main_card42_bookmark.startAnimation(alphaAnimationShowIcon);
                     isBookmark42Clicked = true;
                 } else {
-//                    img_main_card42_bookmark.setImageResource(R.drawable.ticket_86171);
-//                    img_main_card42_bookmark.startAnimation(alphaAnimationShowIcon);
                     isBookmark42Clicked = false;
                 }
                 break;
@@ -311,15 +295,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
                 startActivity(sendIntent2);
                 break;
 
-            case R.id.img_main_card42_share:
 
-                Intent sendIntent5 = new Intent();
-                sendIntent5.setAction(Intent.ACTION_SEND);
-                sendIntent5.putExtra(Intent.EXTRA_TEXT,
-                        "Join the SESH: https://play.google.com/store/apps/details?id=com.area52.techno");
-                sendIntent5.setType("text/plain");
-                startActivity(sendIntent5);
-                break;
 
             case R.id.img_main_card42_share_1:
 
@@ -359,11 +335,38 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
                 startActivity(browserIntent);
                 break;
 
+
+            // Main Card
+
             case R.id.img_main_card_1:
 
-                Intent browserIntent2 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://soundcloud.com/technogermany/the-funky-sound-t78-remix"));
+                browserIntent2 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://soundcloud.com/"));
                 startActivity(browserIntent2);
                 break;
+
+
+            case R.id.img_main_card1_favorite:
+                browserIntent2 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/"));
+                startActivity(browserIntent2);
+                break;
+
+            case R.id.img_main_card1_bookmark:
+                browserIntent2 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.eventbrite.com/"));
+                startActivity(browserIntent2);
+                break;
+
+            case R.id.img_main_card1_share:
+
+                Intent sendIntent5 = new Intent();
+                sendIntent5.setAction(Intent.ACTION_SEND);
+                sendIntent5.putExtra(Intent.EXTRA_TEXT,
+                        "Join the SESH: https://play.google.com/store/apps/details?id=com.area52.techno");
+                sendIntent5.setType("text/plain");
+                startActivity(sendIntent5);
+                break;
+
+
+             ////////////////////////////////////////////////////////////////////////////////////
 
 //            case R.id.ll_card_main3_rate:
 //                break;

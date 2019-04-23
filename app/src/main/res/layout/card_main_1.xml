@@ -31,7 +31,7 @@
             android:layout_alignBottom="@id/img_main_card_1"
             android:layout_margin="@dimen/card_title_margin"
             android:gravity="center"
-            android:text="Sunil Sharpe"
+            android:text="999999999"
             android:textColor="@color/cardview_light_background"/>
 
         <!--<TextView-->
@@ -56,7 +56,7 @@
             android:background="@android:color/background_light">
 
             <ImageView
-                android:id="@+id/img_main_card1_favorite"
+                android:id="@+id/img_main_card1_facebook"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -65,7 +65,7 @@
                 android:src="@drawable/facebook48" />
 
             <ImageView
-                android:id="@+id/img_main_card1_bookmark"
+                android:id="@+id/img_main_card1_events"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

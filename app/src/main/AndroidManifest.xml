@@ -24,10 +24,7 @@
             android:name=".activities.MainActivity"
             android:label="SESH"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
             <intent-filter>
                 <action android:name="android.intent.action.view" />
             </intent-filter>
@@ -47,7 +44,10 @@
             android:name=".FacebookActivityFirebase"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
             <intent-filter>
                 <category android:name="android.intent.category.CATEGORY_APP_MUSIC" />
             </intent-filter>

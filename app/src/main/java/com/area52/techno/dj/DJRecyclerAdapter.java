@@ -59,6 +59,8 @@ public class DJRecyclerAdapter extends RecyclerView.Adapter<DJRecyclerAdapter.My
                 i.putExtra("getPhotoUrlDJ", mylist.getPhotoUrlDJ());
                 i.putExtra("FacebookLink", mylist.getFacebookLink());
                 i.putExtra("SoundcloudLink", mylist.getSoundcloudLink());
+                i.putExtra("BookingLink", mylist.getEmail());
+                i.putExtra("YoutubeLink", mylist.getYoutubeLink());
                 i.putExtra("country", mylist.getCountry());
                 i.putExtra("genre", mylist.getGenre());
                 context.startActivity(i);

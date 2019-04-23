@@ -46,7 +46,7 @@
             android:background="@android:color/background_light">
 
             <ImageView
-                android:id="@+id/img_main_card41_favorite"
+                android:id="@+id/img_main_card41_facebook"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

@@ -61,7 +61,7 @@ public class MyDJActivity extends AppCompatActivity {
 
     SharedPreferences preferences;
     TextView ProfileName;
-    String photoUrl, FacebookLink, djName, getPhotoUrlDJ, SoundcloudLink, YoutubeLink, BookingLink,  country, genre;
+    String photoUrl, FacebookLink, djName, getPhotoUrlDJ, SoundcloudLink, YoutubeLink, BookingLink,  country, genre, eventLink, videosLink;
     // [START declare_auth]
     private FirebaseAuth mAuth;
     // [END declare_auth]
@@ -158,6 +158,8 @@ public class MyDJActivity extends AppCompatActivity {
 
     private void loadUserButtons() {
 
+        eventLink = FacebookLink + "events";
+        videosLink = FacebookLink + "videos";
 
         // Biography
         dj_profile_card1_image = (ImageView)  findViewById(R.id.dj_profile_card1_image);
@@ -206,7 +208,7 @@ public class MyDJActivity extends AppCompatActivity {
                 // Perform action on click
 
                 Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(BookingLink));
+                i.setData(Uri.parse(eventLink));
                 startActivity(i);
 
             }
@@ -219,7 +221,7 @@ public class MyDJActivity extends AppCompatActivity {
                 // Perform action on click
 
                 Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(YoutubeLink));
+                i.setData(Uri.parse(videosLink));
                 startActivity(i);
 
             }

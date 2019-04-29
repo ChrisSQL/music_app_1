@@ -46,7 +46,7 @@
             android:background="@android:color/background_light">
 
             <ImageView
-                android:id="@+id/img_main_card43_favorite"
+                android:id="@+id/img_main_card43_facebook"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -55,7 +55,7 @@
                 android:src="@drawable/facebook48" />
 
             <ImageView
-                android:id="@+id/img_main_card43_bookmark"
+                android:id="@+id/img_main_card43_events"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

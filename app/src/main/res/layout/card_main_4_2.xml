@@ -48,7 +48,7 @@
             android:background="@android:color/background_light">
 
             <ImageView
-                android:id="@+id/img_main_card42_favorite"
+                android:id="@+id/img_main_card42_facebook"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -57,7 +57,7 @@
                 android:src="@drawable/facebook48" />
 
             <ImageView
-                android:id="@+id/img_main_card42_bookmark"
+                android:id="@+id/img_main_card42_events"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -66,7 +66,7 @@
                 android:src="@drawable/ticket_86171" />
 
             <ImageView
-                android:id="@+id/img_main_card42_share_1"
+                android:id="@+id/img_main_card42_share"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

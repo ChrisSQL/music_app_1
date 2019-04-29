@@ -47,15 +47,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
     Intent browserIntent2;
 
     // Main Card
-    private ImageView img_main_card_1, img_main_card1_favorite, img_main_card1_bookmark, img_main_card1_share;
+    private ImageView img_main_card_1, img_main_card1_facebook, img_main_card1_events, img_main_card1_share;
     // SubCard One
-    private ImageView img_main_card_41, img_main_card41_favorite, img_main_card41_bookmark, img_main_card41_share;
+    private ImageView img_main_card_41, img_main_card41_facebook, img_main_card41_events, img_main_card41_share;
     // SubCard Two
-    private ImageView img_main_card_42, img_main_card42_favorite, img_main_card42_bookmark, img_main_card42_share_1;
+    private ImageView img_main_card_42, img_main_card42_facebook, img_main_card42_events, img_main_card42_share;
     // SubCard Three
-    private ImageView img_main_card_43, img_main_card43_favorite, img_main_card43_bookmark, img_main_card43_share;
+    private ImageView img_main_card_43, img_main_card43_facebook, img_main_card43_events, img_main_card43_share;
     // SubCard Four
-    private ImageView img_main_card_44, img_main_card44_favorite, img_main_card44_bookmark, img_main_card44_share;
+    private ImageView img_main_card_44, img_main_card44_facebook, img_main_card44_events, img_main_card44_share;
 
 
     private CardView card_main_1_1, card_main_1_2, card_main_1_3, card_main_1_4_1, card_main_1_4_2, card_main_1_4_3, card_main_1_4_4;
@@ -80,32 +80,32 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
 
         // Main Card
         img_main_card_1 = nestedScrollView.findViewById(R.id.img_main_card_1);
-        img_main_card1_favorite = nestedScrollView.findViewById(R.id.img_main_card1_facebook);
-        img_main_card1_bookmark = nestedScrollView.findViewById(R.id.img_main_card42_bookmark);
+        img_main_card1_facebook = nestedScrollView.findViewById(R.id.img_main_card1_facebook);
+        img_main_card1_events = nestedScrollView.findViewById(R.id.img_main_card1_events);
         img_main_card1_share = nestedScrollView.findViewById(R.id.img_main_card1_share);
 
         // SubCard One
         img_main_card_41 = nestedScrollView.findViewById(R.id.img_main_card_41);
-        img_main_card41_favorite = nestedScrollView.findViewById(R.id.img_main_card41_facebook);
-        img_main_card41_bookmark = nestedScrollView.findViewById(R.id.img_main_card41_bookmark);
+        img_main_card41_facebook = nestedScrollView.findViewById(R.id.img_main_card41_facebook);
+        img_main_card41_events = nestedScrollView.findViewById(R.id.img_main_card41_events);
         img_main_card41_share = nestedScrollView.findViewById(R.id.img_main_card41_share);
 
         // SubCard Two
         img_main_card_42 = nestedScrollView.findViewById(R.id.img_main_card_42);
-        img_main_card42_favorite = nestedScrollView.findViewById(R.id.img_main_card42_favorite);
-        img_main_card42_bookmark = nestedScrollView.findViewById(R.id.img_main_card1_events);
-        img_main_card42_share_1 = nestedScrollView.findViewById(R.id.img_main_card42_share_1);
+        img_main_card42_facebook = nestedScrollView.findViewById(R.id.img_main_card42_facebook);
+        img_main_card42_events = nestedScrollView.findViewById(R.id.img_main_card42_events);
+        img_main_card42_share = nestedScrollView.findViewById(R.id.img_main_card42_share);
 
         // SubCard Three
         img_main_card_43 = nestedScrollView.findViewById(R.id.img_main_card_43);
-        img_main_card43_favorite = nestedScrollView.findViewById(R.id.img_main_card43_favorite);
-        img_main_card43_bookmark = nestedScrollView.findViewById(R.id.img_main_card43_bookmark);
+        img_main_card43_facebook = nestedScrollView.findViewById(R.id.img_main_card43_facebook);
+        img_main_card43_events = nestedScrollView.findViewById(R.id.img_main_card43_events);
         img_main_card43_share = nestedScrollView.findViewById(R.id.img_main_card43_share);
 
         // SubCard Four
         img_main_card_44 = nestedScrollView.findViewById(R.id.img_main_card_44);
-        img_main_card44_favorite = nestedScrollView.findViewById(R.id.img_main_card44_favorite);
-        img_main_card44_bookmark = nestedScrollView.findViewById(R.id.img_main_card44_bookmark);
+        img_main_card44_facebook = nestedScrollView.findViewById(R.id.img_main_card44_facebook);
+        img_main_card44_events = nestedScrollView.findViewById(R.id.img_main_card44_events);
         img_main_card44_share = nestedScrollView.findViewById(R.id.img_main_card44_share);
 
 
@@ -161,20 +161,21 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
     //    img_main_card2_favorite.setOnClickListener(this);
     //    img_main_card2_share.setOnClickListener(this);
 
-        img_main_card41_favorite.setOnClickListener(this);
-        img_main_card42_favorite.setOnClickListener(this);
-        img_main_card1_favorite.setOnClickListener(this);
-        img_main_card41_bookmark.setOnClickListener(this);
-        img_main_card42_bookmark.setOnClickListener(this);
-        img_main_card1_bookmark.setOnClickListener(this);
+        img_main_card41_facebook.setOnClickListener(this);
+        img_main_card42_facebook.setOnClickListener(this);
+        img_main_card1_facebook.setOnClickListener(this);
+        img_main_card43_facebook.setOnClickListener(this);
+        img_main_card44_facebook.setOnClickListener(this);
+
+        img_main_card41_events.setOnClickListener(this);
+        img_main_card42_events.setOnClickListener(this);
+        img_main_card1_events.setOnClickListener(this);
+        img_main_card43_events.setOnClickListener(this);
+        img_main_card44_events.setOnClickListener(this);
+
         img_main_card41_share.setOnClickListener(this);
         img_main_card1_share.setOnClickListener(this);
-        img_main_card42_share_1.setOnClickListener(this);
-
-        img_main_card43_favorite.setOnClickListener(this);
-        img_main_card44_favorite.setOnClickListener(this);
-        img_main_card43_bookmark.setOnClickListener(this);
-        img_main_card44_bookmark.setOnClickListener(this);
+        img_main_card42_share.setOnClickListener(this);
         img_main_card43_share.setOnClickListener(this);
         img_main_card44_share.setOnClickListener(this);
 
@@ -185,9 +186,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
 //        card_main_1_4_3.setOnClickListener(this);
 //        card_main_1_4_4.setOnClickListener(this);
 
-        img_main_card_42.setOnClickListener(this);
         img_main_card_1.setOnClickListener(this);
-
+        img_main_card_42.setOnClickListener(this);
         img_main_card_41.setOnClickListener(this);
 
     }
@@ -197,90 +197,90 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
         switch (view.getId()) {
 
 
-            case R.id.img_main_card2_bookmark:
-                if (!isBookmarkClicked) {
-//                    img_main_card2_bookmark.setImageResource(R.drawable.ticket_86171);
-//                    img_main_card2_bookmark.startAnimation(alphaAnimationShowIcon);
-                    isBookmarkClicked = true;
+//            case R.id.img_main_card2_bookmark:
+//                if (!isBookmarkClicked) {
+////                    img_main_card2_bookmark.setImageResource(R.drawable.ticket_86171);
+////                    img_main_card2_bookmark.startAnimation(alphaAnimationShowIcon);
+//                    isBookmarkClicked = true;
+//
+//                } else {
+////                    img_main_card2_bookmark.setImageResource(R.drawable.ticket_86171);
+////                    img_main_card2_bookmark.startAnimation(alphaAnimationShowIcon);
+//                    isBookmarkClicked = false;
+//                }
+//                break;
+//
+//            case R.id.img_main_card2_favorite:
+//                if (!isFavoriteClicked) {
+//                    isFavoriteClicked = true;
+//                } else {
+//                    isFavoriteClicked = false;
+//                }
+//                break;
+//
+//            case R.id.img_main_card42_favorite:
+//                if (!isFavorite42Clicked) {
+//                    isFavorite42Clicked = true;
+//                } else {
+//                    isFavorite42Clicked = false;
+//                }
+//                break;
+//
+//            case R.id.img_main_card42_bookmark:
+//                if (!isBookmark42Clicked) {
+//                    isBookmark42Clicked = true;
+//                } else {
+//                    isBookmark42Clicked = false;
+//                }
+//                break;
 
-                } else {
-//                    img_main_card2_bookmark.setImageResource(R.drawable.ticket_86171);
-//                    img_main_card2_bookmark.startAnimation(alphaAnimationShowIcon);
-                    isBookmarkClicked = false;
-                }
-                break;
-
-            case R.id.img_main_card2_favorite:
-                if (!isFavoriteClicked) {
-                    isFavoriteClicked = true;
-                } else {
-                    isFavoriteClicked = false;
-                }
-                break;
-
-            case R.id.img_main_card42_favorite:
-                if (!isFavorite42Clicked) {
-                    isFavorite42Clicked = true;
-                } else {
-                    isFavorite42Clicked = false;
-                }
-                break;
-
-            case R.id.img_main_card42_bookmark:
-                if (!isBookmark42Clicked) {
-                    isBookmark42Clicked = true;
-                } else {
-                    isBookmark42Clicked = false;
-                }
-                break;
-
-            case R.id.img_main_card2_share:
-                Intent sendIntent1 = new Intent();
-                sendIntent1.setAction(Intent.ACTION_SEND);
-                sendIntent1.putExtra(Intent.EXTRA_TEXT,
-                        "Join the SESH: https://play.google.com/store/apps/details?id=com.area52.techno");
-                sendIntent1.setType("text/plain");
-                startActivity(sendIntent1);
-                break;
-
-
-            case R.id.img_main_card42_share_1:
-
-                Intent sendIntent7 = new Intent();
-                sendIntent7.setAction(Intent.ACTION_SEND);
-                sendIntent7.putExtra(Intent.EXTRA_TEXT,
-                        "Join the SESH: https://play.google.com/store/apps/details?id=com.area52.techno");
-                sendIntent7.setType("text/plain");
-                startActivity(sendIntent7);
-                break;
-
-            case R.id.img_main_card44_share:
-
-                img_main_card44_share.bringToFront();
-                Intent sendIntent6 = new Intent();
-                sendIntent6.setAction(Intent.ACTION_SEND);
-                sendIntent6.putExtra(Intent.EXTRA_TEXT,
-                        "Join the SESH: https://play.google.com/store/apps/details?id=com.area52.techno");
-                sendIntent6.setType("text/plain");
-                startActivity(sendIntent6);
-                break;
-
-            case R.id.img_main_card43_share:
-
-                img_main_card44_share.bringToFront();
-                Intent sendIntent8 = new Intent();
-                sendIntent8.setAction(Intent.ACTION_SEND);
-                sendIntent8.putExtra(Intent.EXTRA_TEXT,
-                        "Join the SESH: https://play.google.com/store/apps/details?id=com.area52.techno");
-                sendIntent8.setType("text/plain");
-                startActivity(sendIntent8);
-                break;
-
-            case R.id.img_main_card_42:
-
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://soundcloud.com/dj-argy/argy-uk-live-high-fidelity-003"));
-                startActivity(browserIntent);
-                break;
+//            case R.id.img_main_card2_share:
+//                Intent sendIntent1 = new Intent();
+//                sendIntent1.setAction(Intent.ACTION_SEND);
+//                sendIntent1.putExtra(Intent.EXTRA_TEXT,
+//                        "Join the SESH: https://play.google.com/store/apps/details?id=com.area52.techno");
+//                sendIntent1.setType("text/plain");
+//                startActivity(sendIntent1);
+//                break;
+//
+//
+//            case R.id.img_main_card42_share:
+//
+//                Intent sendIntent7 = new Intent();
+//                sendIntent7.setAction(Intent.ACTION_SEND);
+//                sendIntent7.putExtra(Intent.EXTRA_TEXT,
+//                        "Join the SESH: https://play.google.com/store/apps/details?id=com.area52.techno");
+//                sendIntent7.setType("text/plain");
+//                startActivity(sendIntent7);
+//                break;
+//
+//            case R.id.img_main_card44_share:
+//
+//                img_main_card44_share.bringToFront();
+//                Intent sendIntent6 = new Intent();
+//                sendIntent6.setAction(Intent.ACTION_SEND);
+//                sendIntent6.putExtra(Intent.EXTRA_TEXT,
+//                        "Join the SESH: https://play.google.com/store/apps/details?id=com.area52.techno");
+//                sendIntent6.setType("text/plain");
+//                startActivity(sendIntent6);
+//                break;
+//
+//            case R.id.img_main_card43_share:
+//
+//                img_main_card44_share.bringToFront();
+//                Intent sendIntent8 = new Intent();
+//                sendIntent8.setAction(Intent.ACTION_SEND);
+//                sendIntent8.putExtra(Intent.EXTRA_TEXT,
+//                        "Join the SESH: https://play.google.com/store/apps/details?id=com.area52.techno");
+//                sendIntent8.setType("text/plain");
+//                startActivity(sendIntent8);
+//                break;
+//
+//            case R.id.img_main_card_42:
+//
+//                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://soundcloud.com/dj-argy/argy-uk-live-high-fidelity-003"));
+//                startActivity(browserIntent);
+//                break;
 
 
             // Main Card
@@ -297,8 +297,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
                 startActivity(browserIntent2);
                 break;
 
-            case R.id.img_main_card41_bookmark:
-                browserIntent2 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/pg/999999999music/events/?ref=page_internal"));
+            case R.id.img_main_card1_events:
+                browserIntent2 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/pg/999999999music/events/"));
                 startActivity(browserIntent2);
                 break;
 
@@ -329,20 +329,116 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
                 startActivity(browserIntent2);
                 break;
 
-//            case R.id.img_main_card41_bookmark:
-//                browserIntent2 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/pg/999999999music/events/?ref=page_internal"));
-//                startActivity(browserIntent2);
-//                break;
+            case R.id.img_main_card41_events:
+                browserIntent2 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/pg/999999999music/events/"));
+                startActivity(browserIntent2);
+                break;
 
-//            case R.id.img_main_card41_share:
-//
-//                Intent sendIntent5 = new Intent();
-//                sendIntent5.setAction(Intent.ACTION_SEND);
-//                sendIntent5.putExtra(Intent.EXTRA_TEXT,
-//                        "Join the SESH: https://play.google.com/store/apps/details?id=com.area52.techno");
-//                sendIntent5.setType("text/plain");
-//                startActivity(sendIntent5);
-//                break;
+            case R.id.img_main_card41_share:
+
+                browserIntent2 = new Intent();
+                browserIntent2.setAction(Intent.ACTION_SEND);
+                browserIntent2.putExtra(Intent.EXTRA_TEXT,
+                        "Join the SESH: https://play.google.com/store/apps/details?id=com.area52.techno");
+                browserIntent2.setType("text/plain");
+                startActivity(browserIntent2);
+                break;
+
+
+            ////////////////////////////////////////////////////////////////////////////////////
+
+            // Sub Card Two
+
+            case R.id.img_main_card_42:
+
+                browserIntent2 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://soundcloud.com/dj-argy/argy-uk-live-high-fidelity-003"));
+                startActivity(browserIntent2);
+                break;
+
+
+            case R.id.img_main_card42_facebook:
+                browserIntent2 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/Dj.Argy.Official/"));
+                startActivity(browserIntent2);
+                break;
+
+            case R.id.img_main_card42_events:
+                browserIntent2 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/pg/Dj.Argy.Official/events/"));
+                startActivity(browserIntent2);
+                break;
+
+            case R.id.img_main_card42_share:
+
+                browserIntent2 = new Intent();
+                browserIntent2.setAction(Intent.ACTION_SEND);
+                browserIntent2.putExtra(Intent.EXTRA_TEXT,
+                        "Join the SESH: https://play.google.com/store/apps/details?id=com.area52.techno");
+                browserIntent2.setType("text/plain");
+                startActivity(browserIntent2);
+                break;
+
+
+            ////////////////////////////////////////////////////////////////////////////////////
+
+            // Sub Card Three
+
+            case R.id.img_main_card_43:
+
+                browserIntent2 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://soundcloud.com/paragraph/slamradio-286-999999999?in=999999999music/sets/podcasts-mixes"));
+                startActivity(browserIntent2);
+                break;
+
+
+            case R.id.img_main_card43_facebook:
+                browserIntent2 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/999999999music/"));
+                startActivity(browserIntent2);
+                break;
+
+            case R.id.img_main_card43_events:
+                browserIntent2 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/pg/999999999music/events/"));
+                startActivity(browserIntent2);
+                break;
+
+            case R.id.img_main_card43_share:
+
+                browserIntent2 = new Intent();
+                browserIntent2.setAction(Intent.ACTION_SEND);
+                browserIntent2.putExtra(Intent.EXTRA_TEXT,
+                        "Join the SESH: https://play.google.com/store/apps/details?id=com.area52.techno");
+                browserIntent2.setType("text/plain");
+                startActivity(browserIntent2);
+                break;
+
+
+            ////////////////////////////////////////////////////////////////////////////////////
+
+            // Sub Card Four
+
+            case R.id.img_main_card_44:
+
+                browserIntent2 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://soundcloud.com/paragraph/slamradio-286-999999999?in=999999999music/sets/podcasts-mixes"));
+                startActivity(browserIntent2);
+                break;
+
+
+            case R.id.img_main_card44_facebook:
+                browserIntent2 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/999999999music/"));
+                startActivity(browserIntent2);
+                break;
+
+            case R.id.img_main_card44_events:
+                browserIntent2 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/pg/999999999music/events/"));
+                startActivity(browserIntent2);
+                break;
+
+            case R.id.img_main_card44_share:
+
+                browserIntent2 = new Intent();
+                browserIntent2.setAction(Intent.ACTION_SEND);
+                browserIntent2.putExtra(Intent.EXTRA_TEXT,
+                        "Join the SESH: https://play.google.com/store/apps/details?id=com.area52.techno");
+                browserIntent2.setType("text/plain");
+                startActivity(browserIntent2);
+                break;
 
 
             ////////////////////////////////////////////////////////////////////////////////////

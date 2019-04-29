@@ -15,7 +15,7 @@ android {
         applicationId "com.area52.techno"
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
-        versionCode 132
+        versionCode 134
         versionName "1.0"
         //renderscript support mode is not supported for 21+ with gradle version 2.0
         renderscriptTargetApi 20
@@ -118,6 +118,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:11.8.0'
     implementation "android.arch.persistence.room:runtime:1.0.0"
     annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
+    implementation 'io.branch.sdk.android:library:2.+'
 }
 
 apply plugin: 'com.google.gms.google-services'

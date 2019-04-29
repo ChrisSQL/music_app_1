@@ -47,6 +47,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import io.branch.referral.Branch;
+import io.branch.referral.BranchError;
+
 /**
  * Demonstrate Firebase Authentication using a Facebook access token.
  */
@@ -67,6 +70,8 @@ public class FacebookActivityFirebase extends BaseActivity implements
     // [END declare_auth]
 
     private CallbackManager mCallbackManager;
+
+    Branch branch;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -189,6 +194,26 @@ public class FacebookActivityFirebase extends BaseActivity implements
     @Override
     public void onStart() {
         super.onStart();
+
+        // BRANCH
+        branch = Branch.getInstance(getApplicationContext());
+        // Branch init
+        branch.initSession(new Branch.BranchReferralInitListener() {
+            @Override
+            public void onInitFinished(JSONObject referringParams, BranchError error) {
+                if (error == null) {
+                    // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
+                    // params will be empty if no data found
+                    // ... insert custom logic here ...
+                    Log.i("BRANCH SDK", referringParams.toString());
+                    Toast.makeText(FacebookActivityFirebase.this, referringParams.toString(), Toast.LENGTH_LONG).show();
+                } else {
+                    Log.i("BRANCH SDK", error.getMessage());
+                }
+            }
+        }, this.getIntent().getData(), this);
+
+
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         // Check auth on Activity start

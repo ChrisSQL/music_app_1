@@ -63,7 +63,7 @@ public class MyAccountActivity extends AppCompatActivity {
 
     SharedPreferences preferences;
     TextView FBName, ProfileName;
-    String photoUrl, profileURL, userID, facebookUserId;
+    String photoUrl, profileURL, userID, facebookUserId, eventURL;
     // [START declare_auth]
     private FirebaseAuth mAuth;
     // [END declare_auth]
@@ -187,6 +187,7 @@ public class MyAccountActivity extends AppCompatActivity {
     private void updateGUI(User userProfile) {
 
         profileURL = "https://facebook.com/profile.php?id=" + userProfile.getFbID();
+
 
         ProfileName.setText(userProfile.getName());
         PicassoImageLoad(profilePicture, profileBackground, ProfileName, userProfile.getPhotoUrl());

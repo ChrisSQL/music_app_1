@@ -240,8 +240,6 @@ public class MyAccountActivity extends AppCompatActivity {
     private void declareVariables() {
 
 
-
-
         profilePicture = (ImageView) findViewById(R.id.friendProfilePicture);
         profileBackground = (LinearLayout) findViewById(R.id.profileBackground);
         ProfileName = (TextView) findViewById(R.id.ProfileName);

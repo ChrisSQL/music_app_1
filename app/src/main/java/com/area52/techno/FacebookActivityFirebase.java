@@ -1,9 +1,7 @@
 package com.area52.techno;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
@@ -12,7 +10,8 @@ import android.widget.Toast;
 
 import com.area52.techno.activities.BaseActivity;
 import com.area52.techno.activities.MainActivity;
-import com.area52.techno.firebaserecyclerviewtutorial.MainActivityList;
+import com.area52.techno.dj.MyDJActivity;
+import com.area52.techno.dj.MyDJActivityBranch;
 import com.area52.techno.models.User;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -24,8 +23,6 @@ import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
@@ -34,18 +31,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 import io.branch.referral.Branch;
 import io.branch.referral.BranchError;
@@ -72,6 +63,7 @@ public class FacebookActivityFirebase extends BaseActivity implements
     private CallbackManager mCallbackManager;
 
     Branch branch;
+    String dj = "";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -205,8 +197,9 @@ public class FacebookActivityFirebase extends BaseActivity implements
                     // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
                     // params will be empty if no data found
                     // ... insert custom logic here ...
+                    dj = referringParams.optString("dj", "");
                     Log.i("BRANCH SDK", referringParams.toString());
-                    Toast.makeText(FacebookActivityFirebase.this, referringParams.toString(), Toast.LENGTH_LONG).show();
+                    // Toast.makeText(FacebookActivityFirebase.this, referringParams.toString(), Toast.LENGTH_LONG).show();
                 } else {
                     Log.i("BRANCH SDK", error.getMessage());
                 }
@@ -296,9 +289,19 @@ public class FacebookActivityFirebase extends BaseActivity implements
             findViewById(R.id.button_facebook_login).setVisibility(View.GONE);
             findViewById(R.id.button_facebook_signout).setVisibility(View.GONE);
 
-            // Already Logged in
-            Intent myIntent = new Intent(FacebookActivityFirebase.this, MainActivity.class);
-            FacebookActivityFirebase.this.startActivity(myIntent);
+            if (dj.equals("")) {
+                // Already Logged in
+                Intent myIntent = new Intent(FacebookActivityFirebase.this, MainActivity.class);
+                FacebookActivityFirebase.this.startActivity(myIntent);
+            }
+            else {
+
+                // Need to query Firebase DB and get User Object
+
+                Intent i = new Intent(this, MyDJActivityBranch.class);
+                i.putExtra("djName", dj);
+                startActivity(i);
+            }
 
         } else {
             //    mStatusTextView.setText(R.string.signed_out);

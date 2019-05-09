@@ -37,6 +37,7 @@ import com.area52.techno.FacebookActivityFirebase;
 import com.area52.techno.MyAccountActivity;
 import com.area52.techno.dj.DJList;
 import com.area52.techno.dj.MainActivityDJ;
+import com.area52.techno.dj.MyDJActivityBranch;
 import com.area52.techno.djs.DJs;
 import com.area52.techno.festivals.FestivalsActivity;
 import com.area52.techno.fragments.EventsFragmentNew;
@@ -77,6 +78,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -85,13 +88,16 @@ import java.util.Map;
 import java.sql.Timestamp;
 import java.time.Instant;
 
+import io.branch.referral.Branch;
+import io.branch.referral.BranchError;
+
 public class MainActivity extends BaseActivity implements ATEActivityThemeCustomizer, EventsFragmentNew.OnFragmentInteractionListener {
 
     private SlidingUpPanelLayout panelLayout;
     private NavigationView navigationView;
     private TextView songtitle, songartist;
     private ImageView albumart;
-    private String action;
+    private String action, dj;
     private Map<String, Runnable> navigationMap = new HashMap<String, Runnable>();
     private Handler navDrawerRunnable = new Handler();
     private Runnable runnable;
@@ -100,6 +106,7 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
     private static final String TAG = "Firebase123";
     private FirebaseAuth mAuth;
     FirebaseUser user;
+    Branch branch;
     // [START declare_auth]
 
     private Runnable navigateLibrary = new Runnable() {
@@ -300,6 +307,40 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
         }
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // BRANCH
+        branch = Branch.getInstance(getApplicationContext());
+        // Branch init
+        branch.initSession(new Branch.BranchReferralInitListener() {
+            @Override
+            public void onInitFinished(JSONObject referringParams, BranchError error) {
+                if (error == null) {
+                    // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
+                    // params will be empty if no data found
+                    // ... insert custom logic here ...
+                    dj = referringParams.optString("dj", "");
+                    // Toast.makeText(MainActivity.this, dj, Toast.LENGTH_SHORT).show();
+
+                    if (dj.equals("")) {
+                    }
+                    else {
+
+                        Intent i = new Intent(MainActivity.this, MyDJActivityBranch.class);
+                        i.putExtra("djName", dj);
+                        startActivity(i);
+                    }
+                    // Toast.makeText(MainActivity.this, referringParams.toString(), Toast.LENGTH_LONG).show();
+                } else {
+                    Log.i("BRANCH SDK", error.getMessage());
+                }
+            }
+        }, this.getIntent().getData(), this);
+
+    }
+
     private void loadEverything() {
         Runnable navigation = navigationMap.get(action);
         if (navigation != null) {
@@ -383,9 +424,9 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
             navigationView.getMenu().findItem(R.id.users).setIcon(R.drawable.ic_dashboard_black_24dp);
             navigationView.getMenu().findItem(R.id.djs).setIcon(R.drawable.library_music);
         //    navigationView.getMenu().findItem(R.id.sets).setIcon(R.drawable.library_music);
-            navigationView.getMenu().findItem(R.id.nav_members_sets).setIcon(R.drawable.library_music);
+        //    navigationView.getMenu().findItem(R.id.nav_members_sets).setIcon(R.drawable.library_music);
         //    navigationView.getMenu().findItem(R.id.nav_sets_techno).setIcon(R.drawable.video_icon_48);
-            navigationView.getMenu().findItem(R.id.nav_festivals).setIcon(R.drawable.library_music);
+        //    navigationView.getMenu().findItem(R.id.nav_festivals).setIcon(R.drawable.library_music);
         //    navigationView.getMenu().findItem(R.id.nav_soundcloud).setIcon(R.drawable.souncloud_48_black);
 
         //    navigationView.getMenu().findItem(R.id.nav_sets_trance).setIcon(R.drawable.video_icon_48);
@@ -407,9 +448,9 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
             navigationView.getMenu().findItem(R.id.djs).setIcon(R.drawable.library_music_white);
         //    navigationView.getMenu().findItem(R.id.sets).setIcon(R.drawable.library_music_white);
 
-            navigationView.getMenu().findItem(R.id.nav_members_sets).setIcon(R.drawable.library_music_white);
+        //    navigationView.getMenu().findItem(R.id.nav_members_sets).setIcon(R.drawable.library_music_white);
         //    navigationView.getMenu().findItem(R.id.nav_sets_techno).setIcon(R.drawable.video_icon_48_white);
-            navigationView.getMenu().findItem(R.id.nav_festivals).setIcon(R.drawable.library_music_white);
+        //    navigationView.getMenu().findItem(R.id.nav_festivals).setIcon(R.drawable.library_music_white);
         //    navigationView.getMenu().findItem(R.id.nav_soundcloud).setIcon(R.drawable.souncloud_48_white);
 
         //    navigationView.getMenu().findItem(R.id.nav_sets_trance).setIcon(R.drawable.video_icon_48_white);
@@ -454,16 +495,16 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
 //                startActivity(new Intent(MainActivity.this, MainActivitySet.class));
 //                break;
 //                break;
-            case R.id.nav_members_sets:
-                startActivity(new Intent(MainActivity.this, YouTubeActivityTechnoSets.class));
-                break;
+//            case R.id.nav_members_sets:
+//                startActivity(new Intent(MainActivity.this, YouTubeActivityTechnoSets.class));
+//                break;
 //            case R.id.nav_sets_techno:
 //                startActivity(new Intent(MainActivity.this, YouTubeActivityTechnoSets.class));
 //                break;
-            case R.id.nav_festivals:
-                //startActivity(new Intent(MediaPlayerMain.this, Awakenings2018.class));
-                startActivity(new Intent(MainActivity.this, FestivalsActivity.class));
-                break;
+//            case R.id.nav_festivals:
+//                //startActivity(new Intent(MediaPlayerMain.this, Awakenings2018.class));
+//                startActivity(new Intent(MainActivity.this, FestivalsActivity.class));
+//                break;
 //            case R.id.nav_sets_trance:
 //                startActivity(new Intent(MainActivity.this, YouTubeActivityTranceSets.class));
 //                break;

@@ -40,9 +40,9 @@
         android:id="@+id/groupOnlineTechno"
         android:checkableBehavior="none">
 
-        <item
-            android:id="@+id/nav_festivals"
-            android:title="@string/festivals" />
+        <!--<item-->
+            <!--android:id="@+id/nav_festivals"-->
+            <!--android:title="@string/festivals" />-->
 
         <item
             android:id="@+id/djs"
@@ -52,9 +52,9 @@
             <!--android:id="@+id/sets"-->
             <!--android:title="@string/sets" />-->
 
-        <item
-            android:id="@+id/nav_members_sets"
-            android:title="@string/member_sets" />
+        <!--<item-->
+            <!--android:id="@+id/nav_members_sets"-->
+            <!--android:title="@string/member_sets" />-->
 
         <!--<item-->
             <!--android:id="@+id/nav_sets_techno"-->

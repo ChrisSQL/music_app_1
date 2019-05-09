@@ -17,7 +17,7 @@
             android:id="@+id/friendProfilePictureLinear"
             android:layout_width="match_parent"
             android:layout_height="243dp"
-            android:background="@color/colorPrimaryLightDefault"
+            android:background="@drawable/main_header_selector"
             android:orientation="vertical">
 
             <ImageView
@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="3dp"
             android:layout_below="@+id/friendProfilePictureLinear"
-            android:background="@color/cardview_dark_background"
+            android:background="@color/colorPrimaryLightDefault"
             android:minHeight="2dp"
             android:orientation="vertical">
 

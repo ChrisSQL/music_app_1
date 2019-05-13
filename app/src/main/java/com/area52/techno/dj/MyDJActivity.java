@@ -58,7 +58,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import static junit.framework.Assert.fail;
 
 public class MyDJActivity extends AppCompatActivity {
 

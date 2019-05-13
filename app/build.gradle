@@ -10,12 +10,12 @@ android {
             storePassword 'Dublin12'
         }
     }
-    compileSdkVersion 27
+    compileSdkVersion 28
     defaultConfig {
         applicationId "com.area52.techno"
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
-        versionCode 140
+        versionCode 141
         versionName "1.0"
         //renderscript support mode is not supported for 21+ with gradle version 2.0
         renderscriptTargetApi 20
@@ -37,9 +37,9 @@ android {
             applicationIdSuffix '.dev'
             manifestPlaceholders = [appNameSuffix: " Dev"]
 
-            resValue "string", "fabric_api_key", "12345"
-            resValue "string", "play_billing_license_key", "12345"
-            resValue "string", "cast_app_id", "12345"
+//            resValue "string", "fabric_api_key", "12345"
+//            resValue "string", "play_billing_license_key", "12345"
+//            resValue "string", "cast_app_id", "12345"
 
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -55,9 +55,10 @@ android {
     productFlavors {
     }
     compileOptions {
-        targetCompatibility JavaVersion.VERSION_1_8
-        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility '1.8'
+        sourceCompatibility '1.8'
     }
+    buildToolsVersion = '28.0.3'
 }
 
 repositories {

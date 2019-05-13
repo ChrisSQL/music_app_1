@@ -36,6 +36,8 @@ import com.area52.techno.utils.PreferencesUtility;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.branch.referral.Branch;
+
 public class MainFragment extends Fragment {
 
     private PreferencesUtility mPreferences;
@@ -89,7 +91,7 @@ public class MainFragment extends Fragment {
 //        adapter.addFragment(new OnlineSetsFragment(), "Online");
 //        adapter.addFragment(new Offline(), "Offline");
 //        adapter.addFragment(new EventsFragment(), "Events");
-        adapter.addFragment(new HomeFragment(), this.getString(R.string.home));
+        adapter.addFragment(new HomeFragmentNew(), "DJs");
         adapter.addFragment(new SongsFragment(), this.getString(R.string.songs));
         adapter.addFragment(new AlbumFragment(), this.getString(R.string.albums));
         adapter.addFragment(new ArtistFragment(), this.getString(R.string.artists));

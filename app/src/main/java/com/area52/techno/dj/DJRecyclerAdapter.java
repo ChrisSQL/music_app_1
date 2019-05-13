@@ -98,7 +98,6 @@ public class DJRecyclerAdapter extends RecyclerView.Adapter<DJRecyclerAdapter.My
     //    Toast.makeText(context, mylist.getPhotoUrlDJ(), Toast.LENGTH_SHORT).show();
 
 
-
     }
 
     @Override
@@ -121,7 +120,9 @@ public class DJRecyclerAdapter extends RecyclerView.Adapter<DJRecyclerAdapter.My
         return arr;
     }
 
-
+    public void updateDataSet(List<DJ> arrayList) {
+        this.list = arrayList;
+    }
 
     class MyHoder extends RecyclerView.ViewHolder{
 

@@ -1,6 +1,8 @@
 package com.area52.techno;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -297,6 +299,11 @@ public class FacebookActivityFirebase extends BaseActivity implements
             else {
 
                 // Need to query Firebase DB and get User Object
+
+                SharedPreferences pref = this.getPreferences(Context.MODE_PRIVATE);
+                SharedPreferences.Editor edt = pref.edit();
+                edt.putString("dj", dj);
+                edt.commit();
 
                 Intent i = new Intent(this, MyDJActivityBranch.class);
                 i.putExtra("djName", dj);

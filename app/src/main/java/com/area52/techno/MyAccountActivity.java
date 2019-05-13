@@ -57,7 +57,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import static junit.framework.Assert.fail;
 
 public class MyAccountActivity extends AppCompatActivity {
 
@@ -154,7 +153,7 @@ public class MyAccountActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                fail("Failed to get country: " + databaseError.getMessage());
+              //  fail("Failed to get country: " + databaseError.getMessage());
 
             }
         });

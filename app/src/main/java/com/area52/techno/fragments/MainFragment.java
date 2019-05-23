@@ -14,6 +14,8 @@
 
 package com.area52.techno.fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.TabLayout;
@@ -42,11 +44,16 @@ public class MainFragment extends Fragment {
 
     private PreferencesUtility mPreferences;
     private ViewPager viewPager;
+    String djBranch;
+    static TabLayout tabLayout;
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPreferences = PreferencesUtility.getInstance(getActivity());
+
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("prefs", Context.MODE_PRIVATE);
+        djBranch = sharedPreferences.getString("djReferral", "Hannah Wants");
     }
 
     @Override
@@ -68,11 +75,18 @@ public class MainFragment extends Fragment {
             viewPager.setOffscreenPageLimit(2);
         }
 
-        TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.tabs);
+        tabLayout = (TabLayout) rootView.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+
+
 
         return rootView;
 
+    }
+
+    public static void changeTab(int tab){
+
+        tabLayout.getTabAt(1).select();
     }
 
     @Override
@@ -87,14 +101,18 @@ public class MainFragment extends Fragment {
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        Adapter adapter = new Adapter(getChildFragmentManager());
-//        adapter.addFragment(new OnlineSetsFragment(), "Online");
-//        adapter.addFragment(new Offline(), "Offline");
-//        adapter.addFragment(new EventsFragment(), "Events");
-        adapter.addFragment(new HomeFragmentNew(), "DJs");
+
+          Adapter adapter = new Adapter(getChildFragmentManager());
+          adapter.addFragment(new HomeFragmentNew(), "DJs");
+
+        if(!djBranch.equalsIgnoreCase("none")){
+            // If shared preferences is not null
+            adapter.addFragment(new HomeFragmentDJ(), "DJ");
+        }
+
         adapter.addFragment(new SongsFragment(), this.getString(R.string.songs));
         adapter.addFragment(new AlbumFragment(), this.getString(R.string.albums));
-        adapter.addFragment(new ArtistFragment(), this.getString(R.string.artists));
+        adapter.addFragment(new ArtistFragment(), "Artist");
 
 
         viewPager.setAdapter(adapter);

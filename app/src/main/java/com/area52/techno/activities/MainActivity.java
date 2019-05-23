@@ -5,8 +5,11 @@
 package com.area52.techno.activities;
 
 import android.Manifest;
+import android.app.NotificationManager;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -41,6 +44,7 @@ import com.area52.techno.dj.MyDJActivityBranch;
 import com.area52.techno.djs.DJs;
 import com.area52.techno.festivals.FestivalsActivity;
 import com.area52.techno.fragments.EventsFragmentNew;
+import com.area52.techno.fragments.HomeFragmentDJ;
 import com.area52.techno.models.User;
 import com.area52.techno.users.MainActivityUser;
 import com.area52.techno.youtube.YouTubeActivityTechnoSets;
@@ -91,6 +95,11 @@ import java.time.Instant;
 import io.branch.referral.Branch;
 import io.branch.referral.BranchError;
 
+import android.app.NotificationChannel;
+import android.app.NotificationChannelGroup;
+import android.app.NotificationManager;
+import android.content.Context;
+
 public class MainActivity extends BaseActivity implements ATEActivityThemeCustomizer, EventsFragmentNew.OnFragmentInteractionListener {
 
     private SlidingUpPanelLayout panelLayout;
@@ -108,6 +117,16 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
     FirebaseUser user;
     Branch branch;
     // [START declare_auth]
+
+    private Runnable navigateDJ = new Runnable() {
+        public void run() {
+            //    navigationView.getMenu().findItem(R.id.nav_library).setChecked(true);
+            Fragment fragment = new HomeFragmentDJ();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, fragment).commitAllowingStateLoss();
+
+        }
+    };
 
     private Runnable navigateLibrary = new Runnable() {
         public void run() {
@@ -214,6 +233,8 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
+        notifications();
+
         // Toast.makeText(this, "MediaPlayerMain", Toast.LENGTH_SHORT).show();
 
         action = getIntent().getAction();
@@ -307,37 +328,67 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
         }
     }
 
+    private void notifications() {
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        String channelId = "1";
+        String channel2 = "2";
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            NotificationChannel notificationChannel = new NotificationChannel(channelId,
+                    "Channel 1", NotificationManager.IMPORTANCE_HIGH);
+
+            notificationChannel.setDescription("This is BNT");
+            notificationChannel.setLightColor(Color.RED);
+            notificationChannel.enableVibration(true);
+            notificationChannel.setShowBadge(true);
+            notificationManager.createNotificationChannel(notificationChannel);
+
+            NotificationChannel notificationChannel2 = new NotificationChannel(channel2,
+                    "Channel 2", NotificationManager.IMPORTANCE_MIN);
+
+            notificationChannel.setDescription("This is bTV");
+            notificationChannel.setLightColor(Color.RED);
+            notificationChannel.enableVibration(true);
+            notificationChannel.setShowBadge(true);
+            notificationManager.createNotificationChannel(notificationChannel2);
+
+        }
+
+    }
+
     @Override
     public void onStart() {
         super.onStart();
 
-        // BRANCH
-        branch = Branch.getInstance(getApplicationContext());
-        // Branch init
-        branch.initSession(new Branch.BranchReferralInitListener() {
-            @Override
-            public void onInitFinished(JSONObject referringParams, BranchError error) {
-                if (error == null) {
-                    // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
-                    // params will be empty if no data found
-                    // ... insert custom logic here ...
-                    dj = referringParams.optString("dj", "");
-                    // Toast.makeText(MainActivity.this, dj, Toast.LENGTH_SHORT).show();
-
-                    if (dj.equals("")) {
-                    }
-                    else {
-
-                        Intent i = new Intent(MainActivity.this, MyDJActivityBranch.class);
-                        i.putExtra("djName", dj);
-                        startActivity(i);
-                    }
-                    // Toast.makeText(MainActivity.this, referringParams.toString(), Toast.LENGTH_LONG).show();
-                } else {
-                    Log.i("BRANCH SDK", error.getMessage());
-                }
-            }
-        }, this.getIntent().getData(), this);
+//        // BRANCH
+//        branch = Branch.getInstance(getApplicationContext());
+//        // Branch init
+//        branch.initSession(new Branch.BranchReferralInitListener() {
+//            @Override
+//            public void onInitFinished(JSONObject referringParams, BranchError error) {
+//                if (error == null) {
+//                    // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
+//                    // params will be empty if no data found
+//                    // ... insert custom logic here ...
+//                    dj = referringParams.optString("dj", "");
+//                    // Toast.makeText(MainActivity.this, dj, Toast.LENGTH_SHORT).show();
+//
+//                    if (dj.equals("")) {
+//                    }
+//                    else {
+//
+//                        Intent i = new Intent(MainActivity.this, MyDJActivityBranch.class);
+//                        i.putExtra("djName", dj);
+//                        startActivity(i);
+//                    }
+//                    // Toast.makeText(MainActivity.this, referringParams.toString(), Toast.LENGTH_LONG).show();
+//                } else {
+//                    Log.i("BRANCH SDK", error.getMessage());
+//                }
+//            }
+//        }, this.getIntent().getData(), this);
 
     }
 
@@ -475,7 +526,25 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
         }
     }
 
-    private void updatePosition(final MenuItem menuItem) {
+    public void updatePositionDJ() {
+        runnable = null;
+
+
+        runnable = navigateDJ;
+
+        if (runnable != null) {
+            mDrawerLayout.closeDrawers();
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    runnable.run();
+                }
+            }, 350);
+        }
+    }
+
+    public void updatePosition(final MenuItem menuItem) {
         runnable = null;
 
         switch (menuItem.getItemId()) {

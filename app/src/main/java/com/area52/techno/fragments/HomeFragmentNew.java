@@ -17,13 +17,11 @@ package com.area52.techno.fragments;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.NestedScrollView;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -34,37 +32,24 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.TabHost;
+import android.widget.Toast;
 
 import com.area52.techno.R;
-import com.area52.techno.dj.DJRecyclerAdapter;
 import com.area52.techno.dj.DJRecyclerAdapterHome;
-import com.area52.techno.dj.MainActivityDJ;
 import com.area52.techno.models.DJ;
 import com.area52.techno.models.User;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import io.branch.referral.Branch;
-import io.branch.referral.BranchError;
-
-import static android.content.Context.MODE_PRIVATE;
-import static com.facebook.accountkit.internal.AccountKitController.getApplicationContext;
 
 public class HomeFragmentNew extends Fragment implements View.OnClickListener, View.OnTouchListener {
 
@@ -78,9 +63,8 @@ public class HomeFragmentNew extends Fragment implements View.OnClickListener, V
     private StaggeredGridLayoutManager mLayoutManager;
     private Boolean bool;
     Branch branch;
-    String dj;
+    String dj, djBranch, djIntent;
     private LinearLayoutManager mManager;
-    Bundle extras;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference databaseReference = database.getReference();
@@ -93,10 +77,13 @@ public class HomeFragmentNew extends Fragment implements View.OnClickListener, V
         NestedScrollView nestedScrollView = (NestedScrollView) inflater.inflate(R.layout.activity_dj3, container, false);
         recyclerView = (RecyclerView) nestedScrollView.findViewById(R.id.recycleDJ3);
 
-        SharedPreferences pref = getActivity().getPreferences(Context.MODE_PRIVATE);
-        String dj = pref.getString("dj", "empty");
+        // this = your fragment
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("prefs", Context.MODE_PRIVATE);
+        djBranch = sharedPreferences.getString("djReferral", "none");
 
-      //    recyclerView.setLayoutManager(mManager);
+       Toast.makeText(getContext(), djBranch, Toast.LENGTH_SHORT).show();
+
+      // recyclerView.setLayoutManager(mManager);
 
         if (recyclerView!=null){
             recyclerView.setHasFixedSize(true);
@@ -111,37 +98,13 @@ public class HomeFragmentNew extends Fragment implements View.OnClickListener, V
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 listDJs = new ArrayList<DJ>();
-                for(DataSnapshot dataSnapshot1 :dataSnapshot.getChildren()){
 
-                    DJ value = dataSnapshot1.getValue(DJ.class);
-                    DJ dj = new DJ();
 
-//                    Toast.makeText(MainActivityDJ.this, value.toString(), Toast.LENGTH_SHORT).show();
+                // DJ One
 
-                    dj.setuID(value.getuID());
-                    dj.setName(value.getName());
-                    dj.setEmail(value.getEmail());
-                    dj.setPhoto(value.getPhotoUrlDJ());
-                    dj.setFacebookUserID(value.getFacebookUserID());
-                    dj.setDjLogoImage(value.getDjLogoImage());
-                    dj.setCounty(value.getCounty());
-                    dj.setCountry(value.getCountry());
-                    dj.setPhoneNumber(value.getPhoneNumber());
-                    dj.setBio(value.getBio());
-                    dj.setSoundcloudLink(value.getSoundcloudLink());
-                    dj.setYoutubeLink(value.getYoutubeLink());
-                    dj.setMixcloudLink(value.getMixcloudLink());
-                    dj.setFacebookLink(value.getFacebookLink());
-                    dj.setInstagramLink(value.getInstagramLink());
-                    dj.setSpotifyLink(value.getSpotifyLink());
-                    dj.setBookingEmail(value.getBookingEmail());
-                    dj.setGenre(value.getGenre());
+                djSingle(dataSnapshot, djBranch); // Hannah Wants if not Brancdj
 
-                    listDJs.add(dj);
-
-//                    Toast.makeText(MainActivityDJ.this, listDJs.toString(), Toast.LENGTH_SHORT).show();
-
-                }
+                djAll(dataSnapshot, djBranch);
 
                 DJRecyclerAdapterHome djRecyclerAdapter = new DJRecyclerAdapterHome(listDJs,getContext());
                 //    RecyclerView.LayoutManager recyce = new GridLayoutManager(MainActivityUser.this,2);
@@ -185,6 +148,72 @@ public class HomeFragmentNew extends Fragment implements View.OnClickListener, V
             return nestedScrollView;
     }
 
+
+
+    private void djAll(DataSnapshot dataSnapshot, String djIn) {
+        for(DataSnapshot dataSnapshot1 :dataSnapshot.getChildren()){
+
+            DJ value = dataSnapshot1.getValue(DJ.class);
+            DJ dj = new DJ();
+
+            dj.setuID(value.getuID());
+            dj.setName(value.getName());
+            dj.setEmail(value.getEmail());
+            dj.setPhoto(value.getPhotoUrlDJ());
+            dj.setFacebookUserID(value.getFacebookUserID());
+            dj.setDjLogoImage(value.getDjLogoImage());
+            dj.setCounty(value.getCounty());
+            dj.setCountry(value.getCountry());
+            dj.setPhoneNumber(value.getPhoneNumber());
+            dj.setBio(value.getBio());
+            dj.setSoundcloudLink(value.getSoundcloudLink());
+            dj.setYoutubeLink(value.getYoutubeLink());
+            dj.setMixcloudLink(value.getMixcloudLink());
+            dj.setFacebookLink(value.getFacebookLink());
+            dj.setInstagramLink(value.getInstagramLink());
+            dj.setSpotifyLink(value.getSpotifyLink());
+            dj.setBookingEmail(value.getBookingEmail());
+            dj.setGenre(value.getGenre());
+
+            if(!djIn.equalsIgnoreCase(value.getName())){
+                listDJs.add(dj);
+            }
+
+        }
+    }
+
+    private void djSingle(DataSnapshot dataSnapshot, String djIn) {
+        for(DataSnapshot dataSnapshot1 :dataSnapshot.getChildren()){
+
+            DJ value = dataSnapshot1.getValue(DJ.class);
+            DJ dj = new DJ();
+
+            dj.setuID(value.getuID());
+            dj.setName(value.getName());
+            dj.setEmail(value.getEmail());
+            dj.setPhoto(value.getPhotoUrlDJ());
+            dj.setFacebookUserID(value.getFacebookUserID());
+            dj.setDjLogoImage(value.getDjLogoImage());
+            dj.setCounty(value.getCounty());
+            dj.setCountry(value.getCountry());
+            dj.setPhoneNumber(value.getPhoneNumber());
+            dj.setBio(value.getBio());
+            dj.setSoundcloudLink(value.getSoundcloudLink());
+            dj.setYoutubeLink(value.getYoutubeLink());
+            dj.setMixcloudLink(value.getMixcloudLink());
+            dj.setFacebookLink(value.getFacebookLink());
+            dj.setInstagramLink(value.getInstagramLink());
+            dj.setSpotifyLink(value.getSpotifyLink());
+            dj.setBookingEmail(value.getBookingEmail());
+            dj.setGenre(value.getGenre());
+
+           if(djIn.equalsIgnoreCase(value.getName())){
+               listDJs.add(dj);
+           //    Toast.makeText(getContext(), djIn, Toast.LENGTH_SHORT).show();
+           }
+
+        }
+    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {

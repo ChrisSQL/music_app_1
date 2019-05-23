@@ -179,9 +179,6 @@ public class FacebookActivityFirebase extends BaseActivity implements
                         }
                     }
                 });
-
-
-
     }
 
     // [START on_start_check_user]
@@ -199,7 +196,13 @@ public class FacebookActivityFirebase extends BaseActivity implements
                     // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
                     // params will be empty if no data found
                     // ... insert custom logic here ...
-                    dj = referringParams.optString("dj", "");
+                    dj = referringParams.optString("dj", "none");
+
+                    SharedPreferences sharedPreferences = getSharedPreferences("prefs", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor edt = sharedPreferences.edit();
+                    edt.putString("djReferral", dj);
+                    edt.apply();
+
                     Log.i("BRANCH SDK", referringParams.toString());
                     // Toast.makeText(FacebookActivityFirebase.this, referringParams.toString(), Toast.LENGTH_LONG).show();
                 } else {
@@ -291,24 +294,13 @@ public class FacebookActivityFirebase extends BaseActivity implements
             findViewById(R.id.button_facebook_login).setVisibility(View.GONE);
             findViewById(R.id.button_facebook_signout).setVisibility(View.GONE);
 
-            if (dj.equals("")) {
-                // Already Logged in
-                Intent myIntent = new Intent(FacebookActivityFirebase.this, MainActivity.class);
-                FacebookActivityFirebase.this.startActivity(myIntent);
-            }
-            else {
+            SharedPreferences sharedPreferences = getSharedPreferences("prefs", Context.MODE_PRIVATE);
+            SharedPreferences.Editor edt = sharedPreferences.edit();
+            edt.putString("djReferral", dj);
+            edt.apply();
 
-                // Need to query Firebase DB and get User Object
-
-                SharedPreferences pref = this.getPreferences(Context.MODE_PRIVATE);
-                SharedPreferences.Editor edt = pref.edit();
-                edt.putString("dj", dj);
-                edt.commit();
-
-                Intent i = new Intent(this, MyDJActivityBranch.class);
-                i.putExtra("djName", dj);
-                startActivity(i);
-            }
+            Intent i = new Intent(this, MainActivity.class);
+            startActivity(i);
 
         } else {
             //    mStatusTextView.setText(R.string.signed_out);
@@ -316,6 +308,7 @@ public class FacebookActivityFirebase extends BaseActivity implements
 
             findViewById(R.id.button_facebook_login).setVisibility(View.VISIBLE);
             findViewById(R.id.button_facebook_signout).setVisibility(View.GONE);
+
         }
     }
 

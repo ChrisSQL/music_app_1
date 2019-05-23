@@ -2,15 +2,21 @@ package com.area52.techno.dj;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.ImageView;
+import android.widget.TabHost;
 import android.widget.TextView;
 
+import com.area52.techno.DataProccessor;
 import com.area52.techno.R;
+import com.area52.techno.activities.MainActivity;
+import com.area52.techno.fragments.MainFragment;
 import com.area52.techno.models.DJ;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
@@ -22,6 +28,12 @@ public class DJRecyclerAdapterHome extends RecyclerView.Adapter<DJRecyclerAdapte
 
     List<DJ> list;
     Context context;
+    DataProccessor dataProccessor;
+    MainActivity main;
+    MainFragment mf;
+
+
+
 
     public DJRecyclerAdapterHome(List<DJ> list, Context context) {
         this.list = list;
@@ -33,6 +45,9 @@ public class DJRecyclerAdapterHome extends RecyclerView.Adapter<DJRecyclerAdapte
 
         View view = LayoutInflater.from(context).inflate(R.layout.card_dj_home,parent,false);
         MyHoder myHoder = new MyHoder(view);
+        dataProccessor = new DataProccessor(context);
+        main = new MainActivity();
+        mf = new MainFragment();
 
         return myHoder;
     }
@@ -41,21 +56,32 @@ public class DJRecyclerAdapterHome extends RecyclerView.Adapter<DJRecyclerAdapte
     public void onBindViewHolder(MyHoder holder, int position) {
         DJ mylist = list.get(position);
         holder.name.setText(mylist.getName());
-
-                holder.thumbnail.setOnClickListener(new View.OnClickListener() {
+        holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                // Perform action on click
-                Intent i=new Intent(context,MyDJActivity.class);
-                i.putExtra("djName", mylist.getName());
-                i.putExtra("getPhotoUrlDJ", mylist.getPhotoUrlDJ());
-                i.putExtra("FacebookLink", mylist.getFacebookLink());
-                i.putExtra("SoundcloudLink", mylist.getSoundcloudLink());
-                i.putExtra("BookingLink", mylist.getEmail());
-                i.putExtra("YoutubeLink", mylist.getYoutubeLink());
-                i.putExtra("country", mylist.getCountry());
-                i.putExtra("genre", mylist.getGenre());
-                context.startActivity(i);
+                dataProccessor.setStr("djReferral" , mylist.getName());
+
+                SharedPreferences sharedPreferences = context.getSharedPreferences("prefs", Context.MODE_PRIVATE);
+                SharedPreferences.Editor edt = sharedPreferences.edit();
+                edt.putString("djReferral", mylist.getName());
+                edt.apply();
+
+                MainFragment.changeTab(0);
+
+//                // Perform action on click
+//                Intent i=new Intent(context,MainActivity.class);
+//                i.putExtra("djName", mylist.getName());
+//                i.putExtra("getPhotoUrlDJ", mylist.getPhotoUrlDJ());
+//                i.putExtra("FacebookLink", mylist.getFacebookLink());
+//                i.putExtra("SoundcloudLink", mylist.getSoundcloudLink());
+//                i.putExtra("BookingLink", mylist.getEmail());
+//                i.putExtra("YoutubeLink", mylist.getYoutubeLink());
+//                i.putExtra("country", mylist.getCountry());
+//                i.putExtra("genre", mylist.getGenre());
+//
+//
+//
+//                context.startActivity(i);
             }
 
         });
@@ -130,6 +156,8 @@ public class DJRecyclerAdapterHome extends RecyclerView.Adapter<DJRecyclerAdapte
         ImageView thumbnail;
         String soundCloud;
 
+
+
         public MyHoder(View itemView) {
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.vname);
@@ -140,4 +168,6 @@ public class DJRecyclerAdapterHome extends RecyclerView.Adapter<DJRecyclerAdapte
 
         }
     }
+
+
 }

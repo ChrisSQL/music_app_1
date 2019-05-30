@@ -328,6 +328,8 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
         }
     }
 
+
+
     private void notifications() {
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -372,10 +374,14 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
 //                    // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
 //                    // params will be empty if no data found
 //                    // ... insert custom logic here ...
-//                    dj = referringParams.optString("dj", "");
+//                    dj = referringParams.optString("djReferral", "Hannah Wants");
 //                    // Toast.makeText(MainActivity.this, dj, Toast.LENGTH_SHORT).show();
 //
-//                    if (dj.equals("")) {
+//                    if (dj.equals("none")) {
+//
+////                        Intent i = new Intent(MainActivity.this, MainActivity.class);
+////                        i.putExtra("djName", "none");
+////                        startActivity(i);
 //                    }
 //                    else {
 //
@@ -450,7 +456,8 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
         } else if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
             mDrawerLayout.closeDrawer(GravityCompat.START);
         } else {
-            startActivity(new Intent(MainActivity.this, MainActivity.class));
+            FragmentTransaction fragmentTransaction =  getSupportFragmentManager().beginTransaction();
+        //    fragmentTransaction.replace(R.id.containerView,new Recommendation()).commit();
             //super.onBackPressed();
         }
     }
@@ -754,6 +761,8 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
         Toast.makeText(this, "Share", Toast.LENGTH_LONG).show();
 
     }
+
+
 }
 
 

@@ -32,9 +32,6 @@ public class DJRecyclerAdapterHome extends RecyclerView.Adapter<DJRecyclerAdapte
     MainActivity main;
     MainFragment mf;
 
-
-
-
     public DJRecyclerAdapterHome(List<DJ> list, Context context) {
         this.list = list;
         this.context = context;
@@ -66,22 +63,20 @@ public class DJRecyclerAdapterHome extends RecyclerView.Adapter<DJRecyclerAdapte
                 edt.putString("djReferral", mylist.getName());
                 edt.apply();
 
-                MainFragment.changeTab(0);
+            //    MainFragment.changeTab(0);
 
-//                // Perform action on click
-//                Intent i=new Intent(context,MainActivity.class);
-//                i.putExtra("djName", mylist.getName());
-//                i.putExtra("getPhotoUrlDJ", mylist.getPhotoUrlDJ());
-//                i.putExtra("FacebookLink", mylist.getFacebookLink());
-//                i.putExtra("SoundcloudLink", mylist.getSoundcloudLink());
-//                i.putExtra("BookingLink", mylist.getEmail());
-//                i.putExtra("YoutubeLink", mylist.getYoutubeLink());
-//                i.putExtra("country", mylist.getCountry());
-//                i.putExtra("genre", mylist.getGenre());
-//
-//
-//
-//                context.startActivity(i);
+                // Perform action on click
+                Intent i=new Intent(context,MyDJActivityBranch.class);
+                i.putExtra("djName", mylist.getName());
+                i.putExtra("getPhotoUrlDJ", mylist.getPhotoUrlDJ());
+                i.putExtra("FacebookLink", mylist.getFacebookLink());
+                i.putExtra("SoundcloudLink", mylist.getSoundcloudLink());
+                i.putExtra("BookingLink", mylist.getEmail());
+                i.putExtra("YoutubeLink", mylist.getYoutubeLink());
+                i.putExtra("country", mylist.getCountry());
+                i.putExtra("genre", mylist.getGenre());
+
+                context.startActivity(i);
             }
 
         });

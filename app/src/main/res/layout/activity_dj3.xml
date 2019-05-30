@@ -5,6 +5,7 @@
     android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/background_light"
     tools:context="com.area52.techno.dj.DJList">
 
     <LinearLayout
@@ -16,7 +17,10 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycleDJ3"
             android:layout_width="match_parent"
+            android:background="@android:color/background_light"
             android:layout_height="match_parent" />
+
+
 
     </LinearLayout>
 

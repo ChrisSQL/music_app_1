@@ -41,6 +41,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.area52.techno.R;
+import com.area52.techno.activities.MainActivity;
 import com.area52.techno.dj.DJRecyclerAdapterHome;
 import com.area52.techno.dj.MainActivityDJ;
 import com.area52.techno.dj.MyDJActivity;
@@ -81,7 +82,7 @@ public class HomeFragmentDJ extends Fragment implements View.OnClickListener, Vi
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference databaseReference = database.getReference();
 
-    TextView ProfileName;
+    TextView ProfileName, dj_profile_card1_name;
     String photoUrl, FacebookLink, djName, getPhotoUrlDJ, SoundcloudLink, YoutubeLink, BookingLink,  country, genre, eventLink, videosLink;
     // [START declare_auth]
     private FirebaseAuth mAuth;
@@ -107,7 +108,7 @@ public class HomeFragmentDJ extends Fragment implements View.OnClickListener, Vi
         c = getActivity().getApplicationContext();
         // this = your fragment
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("prefs", Context.MODE_PRIVATE);
-        djBranch = sharedPreferences.getString("djReferral", "none");
+        djBranch = sharedPreferences.getString("djReferral", "Perc");
         firebaseFetch(djBranch);
 
     //    Toast.makeText(getContext(), djBranch, Toast.LENGTH_SHORT).show();
@@ -128,6 +129,8 @@ public class HomeFragmentDJ extends Fragment implements View.OnClickListener, Vi
         dj_profile_card6_image = (ImageView) nestedScrollView.findViewById(R.id.dj_profile_card6_image);
         profileBackground = (LinearLayout) nestedScrollView.findViewById(R.id.profileBackground);
         ProfileName = (TextView) nestedScrollView.findViewById(R.id.ProfileName);
+        dj_profile_card1_name = (TextView) nestedScrollView.findViewById(R.id.dj_profile_card1_name);
+        dj_profile_card1_name.setText("Bio");
 
         // Biography
         dj_profile_card1_image = (ImageView)  nestedScrollView.findViewById(R.id.dj_profile_card1_image);
@@ -630,6 +633,8 @@ public class HomeFragmentDJ extends Fragment implements View.OnClickListener, Vi
             getFragmentManager().beginTransaction().detach(this).attach(this).commit();
         }
     }
+
+
 
 }
 

@@ -26,6 +26,7 @@
                 android:layout_height="160dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="40dp"
+                android:padding="1dp"
                 android:background="@drawable/rounded_corner"
 
                 android:elevation="3dp"
@@ -66,7 +67,6 @@
                     android:layout_gravity="center"
                     android:autoText="false"
                     android:gravity="center_horizontal|center_vertical"
-                    android:text="Username"
                     android:textColor="#000"
                     android:textSize="20sp" />
 

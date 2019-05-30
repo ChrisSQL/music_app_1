@@ -14,7 +14,7 @@ public class DJList extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dj2);
+        setContentView(R.layout.activity_dj3);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -29,4 +29,7 @@ public class DJList extends AppCompatActivity {
 //        });
     }
 
+
+    public void searchDJs(View view) {
+    }
 }

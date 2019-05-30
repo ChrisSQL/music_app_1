@@ -28,6 +28,7 @@ import com.area52.techno.models.DJ;
 import com.area52.techno.models.User;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -112,7 +113,6 @@ public class MyDJActivityBranch extends AppCompatActivity {
 
                 loadUserButtons();
 
-
             }
 
             @Override
@@ -173,16 +173,19 @@ public class MyDJActivityBranch extends AppCompatActivity {
 
     //    Toast.makeText(this, photoUrlIn, Toast.LENGTH_SHORT).show();
 
-        Picasso.with(MyDJActivityBranch.this)
-                .load(photoUrlIn)
-                .resize(200, 200)
-                .centerCrop()
-                .into(profilePicture);
+//        Picasso.with(MyDJActivityBranch.this)
+//                .load(photoUrlIn)
+//                .resize(200, 200)
+//                .centerCrop()
+//                .into(profilePicture);
 
         Glide.with(MyDJActivityBranch.this)
                 .load(photoUrlIn)
                 .thumbnail(0.1f)
+                .apply(new RequestOptions().override(400, 400)
+                .centerCrop())
                 .into(profilePicture);
+
     }
 
 
@@ -223,9 +226,12 @@ public class MyDJActivityBranch extends AppCompatActivity {
             public void onClick(View v) {
                 // Perform action on click
 
+                String shareLink = "http://www.seshmusic.ie/" + djName.replaceAll(" ", "_").toLowerCase();
+
                 Intent shareIntent = new Intent(Intent.ACTION_SEND);
                 shareIntent.setType("text/plain");
-                shareIntent.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=com.area52.techno&hl=en");
+                //shareIntent.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=com.area52.techno&hl=en");
+                shareIntent.putExtra(Intent.EXTRA_TEXT, shareLink);
                 startActivity(Intent.createChooser(shareIntent, "Share link using"));
 
             }
@@ -320,9 +326,9 @@ public class MyDJActivityBranch extends AppCompatActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-//    @Override
-//    public void onBackPressed() {
-//        startActivity(new Intent(MyDJActivity.this, MainActivity.class));
-//    }
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(MyDJActivityBranch.this, MainActivity.class));
+    }
 
 }

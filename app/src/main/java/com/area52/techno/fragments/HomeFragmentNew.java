@@ -81,7 +81,7 @@ public class HomeFragmentNew extends Fragment implements View.OnClickListener, V
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("prefs", Context.MODE_PRIVATE);
         djBranch = sharedPreferences.getString("djReferral", "none");
 
-       Toast.makeText(getContext(), djBranch, Toast.LENGTH_SHORT).show();
+    //   Toast.makeText(getContext(), djBranch, Toast.LENGTH_SHORT).show();
 
       // recyclerView.setLayoutManager(mManager);
 
@@ -273,6 +273,8 @@ public class HomeFragmentNew extends Fragment implements View.OnClickListener, V
 
         return sortedList;
     }
+
+
 
 }
 

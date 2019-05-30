@@ -10,17 +10,20 @@
         android:layout_gravity="center"
         android:layout_margin="8dp"
         android:elevation="3dp"
+        android:background="@android:color/background_light"
         card_view:cardCornerRadius="3dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@android:color/background_light">
 
             <ImageView
                 android:id="@+id/thumbnail_dj"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
+                android:background="@android:color/background_light"
                 android:adjustViewBounds="true" />
 
             <LinearLayout
@@ -32,49 +35,52 @@
                 android:padding="3dp">
 
                 <!--<ImageView-->
-                    <!--android:id="@+id/img_main_card43_favorite"-->
-                    <!--android:layout_width="0dp"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:clickable="true"-->
-                    <!--android:padding="3dp"-->
-                    <!--android:src="@drawable/bookmark_music" />-->
+                <!--android:id="@+id/img_main_card43_favorite"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:clickable="true"-->
+                <!--android:padding="3dp"-->
+                <!--android:src="@drawable/bookmark_music" />-->
 
                 <!--<ImageView-->
-                    <!--android:id="@+id/img_main_card43_bookmark"-->
-                    <!--android:layout_width="0dp"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:clickable="true"-->
-                    <!--android:padding="3dp"-->
-                    <!--android:src="@drawable/bookmark_music" />-->
+                <!--android:id="@+id/img_main_card43_bookmark"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:clickable="true"-->
+                <!--android:padding="3dp"-->
+                <!--android:src="@drawable/bookmark_music" />-->
 
                 <!--<ImageView-->
-                    <!--android:id="@+id/img_main_card43_share"-->
-                    <!--android:layout_width="0dp"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:clickable="true"-->
-                    <!--android:padding="3dp"-->
-                    <!--android:src="@drawable/bookmark_music" />-->
+                <!--android:id="@+id/img_main_card43_share"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:clickable="true"-->
+                <!--android:padding="3dp"-->
+                <!--android:src="@drawable/bookmark_music" />-->
 
                 <!--<TextView-->
-                    <!--android:id="@+id/vname"-->
-                    <!--style="@style/TextAppearance.AppCompat.Large"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:gravity="center"-->
-                    <!--android:textColor="@android:color/white"-->
-                    <!--android:textStyle="bold" />-->
+                <!--android:id="@+id/vname"-->
+                <!--style="@style/TextAppearance.AppCompat.Large"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:gravity="center"-->
+                <!--android:textColor="@android:color/white"-->
+                <!--android:textStyle="bold" />-->
                 <TextView
                     android:id="@+id/vname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
                     android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
                     android:layout_weight="1"
+                    android:background="@android:color/background_light"
                     android:gravity="center"
-                    android:textColor="@color/colorPrimaryDarkBlack"/>
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="@color/colorPrimaryDarkBlack" />
             </LinearLayout>
 
         </RelativeLayout>

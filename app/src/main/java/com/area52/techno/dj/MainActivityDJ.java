@@ -1,15 +1,20 @@
 package com.area52.techno.dj;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.GravityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.area52.techno.R;
+import com.area52.techno.activities.MainActivity;
 import com.area52.techno.models.DJ;
 import com.area52.techno.models.User;
 import com.google.firebase.database.DataSnapshot;
@@ -122,6 +127,20 @@ public class MainActivityDJ extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    public void searchDJs(View view) {
+
+        Toast.makeText(this, "YES", Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void onBackPressed() {
+
+            startActivity(new Intent(MainActivityDJ.this, MainActivity.class));
+            //super.onBackPressed();
 
     }
 

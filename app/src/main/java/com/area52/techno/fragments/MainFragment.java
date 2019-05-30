@@ -64,7 +64,10 @@ public class MainFragment extends Fragment {
         Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbarEvents);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 
+
         final ActionBar ab = ((AppCompatActivity) getActivity()).getSupportActionBar();
+
+
         ab.setHomeAsUpIndicator(R.drawable.ic_menu);
         ab.setDisplayHomeAsUpEnabled(true);
 
@@ -102,17 +105,12 @@ public class MainFragment extends Fragment {
 
     private void setupViewPager(ViewPager viewPager) {
 
-          Adapter adapter = new Adapter(getChildFragmentManager());
-          adapter.addFragment(new HomeFragmentNew(), "DJs");
-
-        if(!djBranch.equalsIgnoreCase("none")){
-            // If shared preferences is not null
-            adapter.addFragment(new HomeFragmentDJ(), "DJ");
-        }
-
-        adapter.addFragment(new SongsFragment(), this.getString(R.string.songs));
-        adapter.addFragment(new AlbumFragment(), this.getString(R.string.albums));
-        adapter.addFragment(new ArtistFragment(), "Artist");
+        Adapter adapter = new Adapter(getChildFragmentManager());
+        adapter.addFragment(new HomeFragmentNew(), "DJs");
+    //    adapter.addFragment(new HomeFragmentDJ(), "DJ");
+        adapter.addFragment(new SongsFragment(), "SONG");
+        adapter.addFragment(new AlbumFragment(), "ALBUM");
+        adapter.addFragment(new ArtistFragment(), "ARTIST");
 
 
         viewPager.setAdapter(adapter);

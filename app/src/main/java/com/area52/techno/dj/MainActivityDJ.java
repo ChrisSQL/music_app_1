@@ -1,7 +1,11 @@
 package com.area52.techno.dj;
 
 import android.content.Intent;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.OvalShape;
 import android.os.Bundle;
+import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +25,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONException;
@@ -38,6 +43,7 @@ public class MainActivityDJ extends AppCompatActivity {
     List<User> list;
     RecyclerView recycle;
     Button view;
+    Query query;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +56,15 @@ public class MainActivityDJ extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("DJ");
 
+        query("All");
+
+
+        fab();
+
+
+    }
+
+    private void query(String filter) {
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -82,13 +97,27 @@ public class MainActivityDJ extends AppCompatActivity {
                     dj.setBookingEmail(value.getBookingEmail());
                     dj.setGenre(value.getGenre());
 
-                    listDJs.add(dj);
+                    if (filter.equalsIgnoreCase("All")){
+                        listDJs.add(dj);
+                        }
+                    else if (filter.equalsIgnoreCase("Techno")){
+                        if(value.getGenre().equalsIgnoreCase("Techno")){
+                            listDJs.add(dj);
+                        }
+                    }else if (filter.equalsIgnoreCase("Trance")){
+                        if(value.getGenre().equalsIgnoreCase("Trance")){
+                            listDJs.add(dj);
+                        }
+                    }else if (filter.equalsIgnoreCase("House")){
+                        if(value.getGenre().equalsIgnoreCase("House")){
+                            listDJs.add(dj);
+                        }
+                    }
 
-//                    Toast.makeText(MainActivityDJ.this, listDJs.toString(), Toast.LENGTH_SHORT).show();
 
                 }
 
-                DJRecyclerAdapter djRecyclerAdapter = new DJRecyclerAdapter(listDJs,MainActivityDJ.this);
+                DJRecyclerAdapter djRecyclerAdapter = new DJRecyclerAdapter(listDJs, MainActivityDJ.this);
              //    RecyclerView.LayoutManager recyce = new GridLayoutManager(MainActivityUser.this,2);
                 GridLayoutManager manager = new GridLayoutManager(MainActivityDJ.this, 12, GridLayoutManager.VERTICAL, false);
                 manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
@@ -126,7 +155,60 @@ public class MainActivityDJ extends AppCompatActivity {
                 Log.w("Hello", "Failed to read value.", error.toException());
             }
         });
+    }
 
+    private void fab() {
+
+        final FloatingActionButton actionA = (FloatingActionButton) findViewById(R.id.action_a);
+        actionA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                filter("Trance");
+            }
+        });
+
+        final FloatingActionButton actionB = (FloatingActionButton) findViewById(R.id.action_b);
+        actionB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                filter("Techno");
+            }
+        });
+
+        final FloatingActionButton actionC = (FloatingActionButton) findViewById(R.id.action_c);
+        actionC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                filter("House");
+            }
+        });
+
+        final FloatingActionButton actionD = (FloatingActionButton) findViewById(R.id.action_d);
+        actionD.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                filter("All");
+            }
+        });
+
+//        FloatingActionButton actionC = new FloatingActionButton(getBaseContext());
+////        actionC.setTitle("Hide/Show Action above");
+////        actionC.setOnClickListener(new View.OnClickListener() {
+////            @Override
+////            public void onClick(View v) {
+//////                actionB.setVisibility(actionB.getVisibility() == View.GONE ? View.VISIBLE : View.GONE);
+////                actionB.setTitle("Action A clicked");
+////            }
+////        });
+//
+////        final FloatingActionsMenu menuMultipleActions = (FloatingActionsMenu) findViewById(R.id.multiple_actions);
+////        menuMultipleActions.addButton(actionC);
+
+    }
+
+    private void filter(String genreIn) {
+
+        query(genreIn);
 
     }
 

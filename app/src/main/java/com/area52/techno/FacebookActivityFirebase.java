@@ -72,7 +72,7 @@ public class FacebookActivityFirebase extends BaseActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_facebook_firebase);
 
-        userRegistering = new User("12345","67890","NA","NA","NA");
+        userRegistering = new User("12345","67890","NA","NA","NA","none");
 
         // Views
         mStatusTextView = findViewById(R.id.status);
@@ -196,7 +196,7 @@ public class FacebookActivityFirebase extends BaseActivity implements
                     // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
                     // params will be empty if no data found
                     // ... insert custom logic here ...
-                    dj = referringParams.optString("dj", "Hannah Wants");
+                    dj = referringParams.optString("dj", "none");
 
                     SharedPreferences sharedPreferences = getSharedPreferences("prefs", Context.MODE_PRIVATE);
                     SharedPreferences.Editor edt = sharedPreferences.edit();
@@ -294,11 +294,6 @@ public class FacebookActivityFirebase extends BaseActivity implements
             findViewById(R.id.button_facebook_login).setVisibility(View.GONE);
             findViewById(R.id.button_facebook_signout).setVisibility(View.GONE);
 
-            SharedPreferences sharedPreferences = getSharedPreferences("prefs", Context.MODE_PRIVATE);
-            SharedPreferences.Editor edt = sharedPreferences.edit();
-            edt.putString("djReferral", dj);
-            edt.apply();
-
             Intent i = new Intent(this, MainActivity.class);
             startActivity(i);
 
@@ -334,6 +329,7 @@ public class FacebookActivityFirebase extends BaseActivity implements
                             userRegistering.setName(f_name);
                             userRegistering.setEmail(email_id);
                             userRegistering.setPhotoUrl(picUrl);
+                            userRegistering.setRefDJ(dj);
 
                             saveFacebookCredentialsInFirebase(login_result.getAccessToken());
 

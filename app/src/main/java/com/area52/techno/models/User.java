@@ -11,13 +11,15 @@ public class User {
     String name;
     String email;
     String photoUrl;
+    String refDJ;
 
-    public User(String uID, String fbID, String name, String email, String photoUrl) {
+    public User(String uID, String fbID, String name, String email, String photoUrl, String refDJ) {
         this.fbID = fbID;
         this.uID = uID;
         this.name = name;
         this.email = email;
         this.photoUrl = photoUrl;
+        this.refDJ = refDJ;
     }
 
     public User() {
@@ -38,6 +40,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getRefDJ() {
+        return refDJ;
+    }
+
+    public void setRefDJ(String refDJ) {
+        this.refDJ = refDJ;
     }
 
     public String getPhotoUrl() {

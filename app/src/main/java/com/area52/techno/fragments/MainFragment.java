@@ -51,9 +51,6 @@ public class MainFragment extends Fragment {
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPreferences = PreferencesUtility.getInstance(getActivity());
-
-        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("prefs", Context.MODE_PRIVATE);
-        djBranch = sharedPreferences.getString("djReferral", "Hannah Wants");
     }
 
     @Override

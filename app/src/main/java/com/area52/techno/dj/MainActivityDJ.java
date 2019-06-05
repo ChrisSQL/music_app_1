@@ -1,6 +1,10 @@
 package com.area52.techno.dj;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.os.Bundle;
@@ -44,6 +48,7 @@ public class MainActivityDJ extends AppCompatActivity {
     RecyclerView recycle;
     Button view;
     Query query;
+    FloatingActionButton actiona, actionb, actionc, actiond;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,12 +61,43 @@ public class MainActivityDJ extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("DJ");
 
+        actiona = (FloatingActionButton) findViewById(R.id.action_a);
+        actionb = (FloatingActionButton) findViewById(R.id.action_b);
+        actionc = (FloatingActionButton) findViewById(R.id.action_c);
+        actiond = (FloatingActionButton) findViewById(R.id.action_d);
+
+        actiona.setImageBitmap(textAsBitmap("Trance", 40, Color.WHITE));
+        actionb.setImageBitmap(textAsBitmap("Techno", 40, Color.WHITE));
+        actionc.setImageBitmap(textAsBitmap("House", 40, Color.WHITE));
+        actiond.setImageBitmap(textAsBitmap("All", 40, Color.WHITE));
+
+//method to convert your text to image
+
+
+
+
+
         query("All");
 
 
         fab();
 
 
+    }
+
+    public static Bitmap textAsBitmap(String text, float textSize, int textColor) {
+        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paint.setTextSize(textSize);
+        paint.setColor(textColor);
+        paint.setTextAlign(Paint.Align.LEFT);
+        float baseline = -paint.ascent(); // ascent() is negative
+        int width = (int) (paint.measureText(text) + 0.0f); // round
+        int height = (int) (baseline + paint.descent() + 0.0f);
+        Bitmap image = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+
+        Canvas canvas = new Canvas(image);
+        canvas.drawText(text, 0, baseline, paint);
+        return image;
     }
 
     private void query(String filter) {

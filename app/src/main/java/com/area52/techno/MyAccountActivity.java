@@ -106,48 +106,14 @@ public class MyAccountActivity extends AppCompatActivity {
     private void populateUser(String userIDIn) {
 
 
-
-//        String uid = mAuth.getCurrentUser().getUid();
-//        myRef.child("students").child(uid).addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                try {
-//                    for(DataSnapshot snap :  dataSnapshot.getChildren())
-//                        User obj = snap.getValue(User.class);
-//                    String password =obj.getPassword();
-//                    //here compare your local password inserted in your editText with the one pulled from firebase
-//
-//
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-
-        Query myTopPostsQuery = myRef.child(userIDIn);
+      Query myTopPostsQuery = myRef.child(userIDIn);
 
         myTopPostsQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 User user = dataSnapshot.getValue(User.class);
-
                 updateGUI(user);
-
-//                //get country key
-//                String userPhoto = user.getPhotoUrlDJ();
-//                String userEmail = user.getEmail();
-//                String userName = user.getName();
-//                String userFBID = user.getFbID();
-//                String userGUid = user.getid();
-//
-//                Toast.makeText(MyAccountActivity.this, userPhoto, Toast.LENGTH_SHORT).show();
-//                Toast.makeText(MyAccountActivity.this, userEmail, Toast.LENGTH_SHORT).show();
-//                Toast.makeText(MyAccountActivity.this, userName, Toast.LENGTH_SHORT).show();
-//                Toast.makeText(MyAccountActivity.this, userFBID, Toast.LENGTH_SHORT).show();
-//                Toast.makeText(MyAccountActivity.this, userGUid, Toast.LENGTH_SHORT).show();
 
             }
 
@@ -158,29 +124,7 @@ public class MyAccountActivity extends AppCompatActivity {
             }
         });
 
-//        Toast.makeText(this, userIDIn, Toast.LENGTH_SHORT).show();
-//
-//        userQuery = database.getReference("usersID").equalTo(userIDIn);
-//
-//        //userQuery = FirebaseDatabase.getInstance().getReference("usersID").child(userIDIn);
-//        userQuery.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
-//
-//                    userProfile = userSnapshot.getValue(User.class);
-//                    updateGUI(userProfile);
-//
-//
-//
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                fail("Failed to get country: " + databaseError.getMessage());
-//            }
-//        });
+
     }
 
     private void updateGUI(User userProfile) {

@@ -226,7 +226,7 @@ public class MyDJActivityBranch extends AppCompatActivity {
             public void onClick(View v) {
                 // Perform action on click
 
-                String shareLink = "http://www.seshmusic.ie/" + djName.replaceAll(" ", "_").toLowerCase();
+                String shareLink = "http://seshmusic.ie/" + djName.replaceAll(" ", "_").toLowerCase();
 
                 Intent shareIntent = new Intent(Intent.ACTION_SEND);
                 shareIntent.setType("text/plain");

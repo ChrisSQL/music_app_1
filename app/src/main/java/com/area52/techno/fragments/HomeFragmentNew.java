@@ -15,9 +15,9 @@
 package com.area52.techno.fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -33,7 +33,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TabHost;
 import android.widget.Toast;
 
 import com.area52.techno.R;
@@ -44,6 +43,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -53,7 +53,7 @@ import io.branch.referral.Branch;
 
 public class HomeFragmentNew extends Fragment implements View.OnClickListener, View.OnTouchListener {
 
-    DatabaseReference myRef ;
+    DatabaseReference myRef, myRefUser;
     List<DJ> listDJs;
     List<User> list;
     RecyclerView recycle;
@@ -63,7 +63,7 @@ public class HomeFragmentNew extends Fragment implements View.OnClickListener, V
     private StaggeredGridLayoutManager mLayoutManager;
     private Boolean bool;
     Branch branch;
-    String dj, djBranch, djIntent;
+    String dj, djBranch, djSelected, djSelected2, djPref;
     private LinearLayoutManager mManager;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -74,14 +74,20 @@ public class HomeFragmentNew extends Fragment implements View.OnClickListener, V
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
+        listDJs = new ArrayList<DJ>();
+
         NestedScrollView nestedScrollView = (NestedScrollView) inflater.inflate(R.layout.activity_dj3, container, false);
         recyclerView = (RecyclerView) nestedScrollView.findViewById(R.id.recycleDJ3);
 
         // this = your fragment
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("prefs", Context.MODE_PRIVATE);
         djBranch = sharedPreferences.getString("djReferral", "none");
+        djSelected = sharedPreferences.getString("djSelected", "none");
+        djSelected2 = sharedPreferences.getString("djSelected2", "none");
 
-    //   Toast.makeText(getContext(), djBranch, Toast.LENGTH_SHORT).show();
+
+
+        // Toast.makeText(getContext(), djBranch, Toast.LENGTH_SHORT).show();
 
       // recyclerView.setLayoutManager(mManager);
 
@@ -97,45 +103,16 @@ public class HomeFragmentNew extends Fragment implements View.OnClickListener, V
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                listDJs = new ArrayList<DJ>();
 
 
-                // DJ One
-
-                djSingle(dataSnapshot, djBranch); // Hannah Wants if not Brancdj
-
+                djSingle(dataSnapshot, djBranch); // Hannah Wants if not Branchdj
+                djSingle(dataSnapshot, djSelected); // Hannah Wants if not Branchdj
+                djSingle(dataSnapshot, djSelected2); // Hannah Wants if not Branchdj
                 djAll(dataSnapshot, djBranch);
 
-                DJRecyclerAdapterHome djRecyclerAdapter = new DJRecyclerAdapterHome(listDJs,getContext());
-                //    RecyclerView.LayoutManager recyce = new GridLayoutManager(MainActivityUser.this,2);
-                GridLayoutManager manager = new GridLayoutManager(getContext(), 12, GridLayoutManager.VERTICAL, false);
-                manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-                    @Override
-                    public int getSpanSize(int position) {
-                        // 7 is the sum of items in one repeated section
-                        switch (position % 7) {
-                            // first three items span 3 columns each
-                            case 0:
-                            case 1:
-                            case 2:
-                                return 4;
-                            // next four items span 2 columns each
 
-                            case 3:
-                            case 4:
-                            case 5:
-                            case 6:
-                                return 4;
-                        }
-                        throw new IllegalStateException("internal error");
-                    }
-                });
-                recyclerView.setLayoutManager(manager);
-                /// RecyclerView.LayoutManager recyce = new LinearLayoutManager(MainActivity.this);
-                // recycle.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
-                // recycle.setLayoutManager(recyce);
-                recyclerView.setItemAnimator( new DefaultItemAnimator());
-                recyclerView.setAdapter(djRecyclerAdapter);
+                createGrid();
+
             }
 
             @Override
@@ -148,7 +125,38 @@ public class HomeFragmentNew extends Fragment implements View.OnClickListener, V
             return nestedScrollView;
     }
 
+    private void createGrid() {
+        DJRecyclerAdapterHome djRecyclerAdapter = new DJRecyclerAdapterHome(listDJs,getContext());
+        //    RecyclerView.LayoutManager recyce = new GridLayoutManager(MainActivityUser.this,2);
+        GridLayoutManager manager = new GridLayoutManager(getContext(), 12, GridLayoutManager.VERTICAL, false);
+        manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                // 7 is the sum of items in one repeated section
+                switch (position % 7) {
+                    // first three items span 3 columns each
+                    case 0:
+                    case 1:
+                    case 2:
+                        return 4;
+                    // next four items span 2 columns each
 
+                    case 3:
+                    case 4:
+                    case 5:
+                    case 6:
+                        return 4;
+                }
+                throw new IllegalStateException("internal error");
+            }
+        });
+        recyclerView.setLayoutManager(manager);
+        /// RecyclerView.LayoutManager recyce = new LinearLayoutManager(MainActivity.this);
+        // recycle.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
+        // recycle.setLayoutManager(recyce);
+        recyclerView.setItemAnimator( new DefaultItemAnimator());
+        recyclerView.setAdapter(djRecyclerAdapter);
+    }
 
     private void djAll(DataSnapshot dataSnapshot, String djIn) {
         for(DataSnapshot dataSnapshot1 :dataSnapshot.getChildren()){
@@ -175,8 +183,9 @@ public class HomeFragmentNew extends Fragment implements View.OnClickListener, V
             dj.setBookingEmail(value.getBookingEmail());
             dj.setGenre(value.getGenre());
 
-            if(!djIn.equalsIgnoreCase(value.getName())){
+            if(!djIn.equalsIgnoreCase(value.getName() ) && !djSelected.equalsIgnoreCase(value.getName())&& !djSelected2.equalsIgnoreCase(value.getName())){
                 listDJs.add(dj);
+
             }
 
         }

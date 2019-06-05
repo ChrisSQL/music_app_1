@@ -66,7 +66,7 @@ import io.branch.referral.Branch;
 
 public class HomeFragmentDJ extends Fragment implements View.OnClickListener, View.OnTouchListener {
 
-    DatabaseReference myRef ;
+    DatabaseReference myRef, myRefUser ;
     List<DJ> listDJs;
     List<User> list;
     RecyclerView recycle;
@@ -83,7 +83,7 @@ public class HomeFragmentDJ extends Fragment implements View.OnClickListener, Vi
     DatabaseReference databaseReference = database.getReference();
 
     TextView ProfileName, dj_profile_card1_name;
-    String photoUrl, FacebookLink, djName, getPhotoUrlDJ, SoundcloudLink, YoutubeLink, BookingLink,  country, genre, eventLink, videosLink;
+    String photoUrl, FacebookLink, djName, getPhotoUrlDJ, SoundcloudLink, YoutubeLink, BookingLink,  country, genre, eventLink, videosLink, djRef;
     // [START declare_auth]
     private FirebaseAuth mAuth;
     // [END declare_auth]
@@ -110,6 +110,8 @@ public class HomeFragmentDJ extends Fragment implements View.OnClickListener, Vi
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("prefs", Context.MODE_PRIVATE);
         djBranch = sharedPreferences.getString("djReferral", "Perc");
         firebaseFetch(djBranch);
+
+        listDJs = new ArrayList<DJ>();
 
     //    Toast.makeText(getContext(), djBranch, Toast.LENGTH_SHORT).show();
 
@@ -254,6 +256,7 @@ public class HomeFragmentDJ extends Fragment implements View.OnClickListener, Vi
         user = mAuth.getCurrentUser();
 
         myRef = database.getReference("DJ");
+        myRefUser = database.getReference("usersUsername");
 
         //////////////////////////////////////////////
 
@@ -269,14 +272,31 @@ public class HomeFragmentDJ extends Fragment implements View.OnClickListener, Vi
 
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("DJ");
+        myRefUser = database.getReference("usersUsername");
+
+        myRefUser.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+
+                // DJ One
+                djSingle(dataSnapshot, "Sarah Mooney"); // Hannah Wants if not Brancdj
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("Hello", "Failed to read value.", error.toException());
+            }
+        });
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                listDJs = new ArrayList<DJ>();
-
 
                 // DJ One
 
@@ -308,12 +328,6 @@ public class HomeFragmentDJ extends Fragment implements View.OnClickListener, Vi
                         throw new IllegalStateException("internal error");
                     }
                 });
-//                recyclerView.setLayoutManager(manager);
-//                /// RecyclerView.LayoutManager recyce = new LinearLayoutManager(MainActivity.this);
-//                // recycle.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
-//                // recycle.setLayoutManager(recyce);
-//                recyclerView.setItemAnimator( new DefaultItemAnimator());
-//                recyclerView.setAdapter(djRecyclerAdapter);
             }
 
             @Override
@@ -323,12 +337,12 @@ public class HomeFragmentDJ extends Fragment implements View.OnClickListener, Vi
             }
         });
 
+
+
             return nestedScrollView;
     }
 
     private void firebaseFetch(String dj) {
-
-
 
         // Firebase
         database = FirebaseDatabase.getInstance();
@@ -484,6 +498,30 @@ public class HomeFragmentDJ extends Fragment implements View.OnClickListener, Vi
 
             // ...
         });
+
+    }
+
+    private void populateUser(String userIDIn) {
+
+        Query myTopPostsQuery = myRef.child(userIDIn);
+
+        myTopPostsQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                User user = dataSnapshot.getValue(User.class);
+
+                djRef = user.getRefDJ();
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                //  fail("Failed to get country: " + databaseError.getMessage());
+
+            }
+        });
+
     }
 
     private void djAll(DataSnapshot dataSnapshot, String djIn) {

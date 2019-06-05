@@ -34,7 +34,6 @@
             android:layout_height="wrap_content"
             fab:fab_colorNormal="@color/colorPrimaryDarkBlack"
             fab:fab_addButtonPlusIconColor="@color/colorPrimaryLightDefault"
-            fab:fab_title="Trance"
             fab:fab_colorPressed="@color/com_facebook_blue"/>
 
         <com.getbase.floatingactionbutton.FloatingActionButton
@@ -43,7 +42,6 @@
             android:layout_height="wrap_content"
             fab:fab_colorNormal="@color/colorPrimaryDarkBlack"
             fab:fab_addButtonPlusIconColor="@color/colorPrimaryLightDefault"
-            fab:fab_title="Techno"
             fab:fab_colorPressed="@color/com_facebook_blue"/>
 
         <com.getbase.floatingactionbutton.FloatingActionButton
@@ -52,7 +50,6 @@
             android:layout_height="wrap_content"
             fab:fab_colorNormal="@color/colorPrimaryDarkBlack"
             fab:fab_addButtonPlusIconColor="@color/colorPrimaryLightDefault"
-            fab:fab_title="House"
             fab:fab_colorPressed="@color/com_facebook_blue"/>
 
         <com.getbase.floatingactionbutton.FloatingActionButton
@@ -61,7 +58,6 @@
             android:layout_height="wrap_content"
             fab:fab_colorNormal="@color/colorPrimaryDarkBlack"
             fab:fab_addButtonPlusIconColor="@color/colorPrimaryLightDefault"
-            fab:fab_title="All"
             fab:fab_colorPressed="@color/com_facebook_blue"/>
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>

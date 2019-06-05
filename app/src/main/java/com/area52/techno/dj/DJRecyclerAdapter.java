@@ -50,12 +50,12 @@ public class DJRecyclerAdapter extends RecyclerView.Adapter<DJRecyclerAdapter.My
                 holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                dataProccessor.setStr("djReferral" , mylist.getName());
-
-                SharedPreferences sharedPreferences = context.getSharedPreferences("prefs", Context.MODE_PRIVATE);
-                SharedPreferences.Editor edt = sharedPreferences.edit();
-                edt.putString("djReferral", mylist.getName());
-                edt.apply();
+//                dataProccessor.setStr("djReferral" , mylist.getName());
+//
+//                SharedPreferences sharedPreferences = context.getSharedPreferences("prefs", Context.MODE_PRIVATE);
+//                SharedPreferences.Editor edt = sharedPreferences.edit();
+//                edt.putString("djReferral", mylist.getName());
+//                edt.apply();
 
                 // Perform action on click
                 Intent i=new Intent(context,MyDJActivityBranch.class);

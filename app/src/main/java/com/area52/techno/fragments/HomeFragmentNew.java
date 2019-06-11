@@ -111,6 +111,8 @@ public class HomeFragmentNew extends Fragment implements View.OnClickListener, V
                 djAll(dataSnapshot, djBranch);
 
 
+
+
                 createGrid();
 
             }

@@ -196,7 +196,7 @@ public class FacebookActivityFirebase extends BaseActivity implements
                     // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
                     // params will be empty if no data found
                     // ... insert custom logic here ...
-                    dj = referringParams.optString("dj", "none");
+                    dj = referringParams.optString("dj", "Fjaak");
 
                     SharedPreferences sharedPreferences = getSharedPreferences("prefs", Context.MODE_PRIVATE);
                     SharedPreferences.Editor edt = sharedPreferences.edit();

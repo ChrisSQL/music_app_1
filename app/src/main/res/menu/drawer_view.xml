@@ -23,7 +23,9 @@
             android:id="@+id/users"
             android:title="@string/users" />
 
-
+        <item
+            android:id="@+id/facebookgroup"
+            android:title="Facebook" />
 
     </group>
 
@@ -101,9 +103,9 @@
         android:id="@+id/groupSettings"
         android:checkableBehavior="none">
 
-        <item
-            android:id="@+id/nav_account"
-            android:title="@string/account" />
+        <!--<item-->
+            <!--android:id="@+id/nav_account"-->
+            <!--android:title="@string/account" />-->
         <item
             android:id="@+id/nav_settings"
             android:title="@string/settings" />

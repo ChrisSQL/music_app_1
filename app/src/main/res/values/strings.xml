@@ -243,5 +243,6 @@
     <string name="djs_menu">DJs</string>
     <string name="users">Users</string>
     <string name="logout">Logout</string>
+    <string name="facebook_group">Facebook Group</string>
 
 </resources>

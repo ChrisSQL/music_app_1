@@ -56,14 +56,24 @@ public class DJRecyclerAdapterHome extends RecyclerView.Adapter<DJRecyclerAdapte
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                dataProccessor.setStr("djSelected" , mylist.getName());
+            //    dataProccessor.setStr("djSelected" , mylist.getName());
 
                 SharedPreferences sharedPreferences = context.getSharedPreferences("prefs", Context.MODE_PRIVATE);
                 SharedPreferences.Editor edt = sharedPreferences.edit();
-                edt.putString("djSelected", mylist.getName());
-                String djSelected2 = sharedPreferences.getString("djSelected", "none");
-                edt.putString("djSelected2", djSelected2);
-                edt.apply();
+                String djBranch = sharedPreferences.getString("djReferral", "none");
+
+                // Add if to check if branch = djselected
+
+                if(mylist.getName().equalsIgnoreCase(djBranch)){
+                    // Do nothing
+                }else{
+                    edt.putString("djSelected", mylist.getName());
+                    String djSelected2 = sharedPreferences.getString("djSelected", "none");
+                    edt.putString("djSelected2", djSelected2);
+                    edt.apply();
+                }
+
+
 
             //    MainFragment.changeTab(0);
 
@@ -152,8 +162,6 @@ public class DJRecyclerAdapterHome extends RecyclerView.Adapter<DJRecyclerAdapte
         TextView name;
         ImageView thumbnail;
         String soundCloud;
-
-
 
 
 

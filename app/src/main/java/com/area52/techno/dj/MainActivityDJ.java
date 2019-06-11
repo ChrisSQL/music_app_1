@@ -66,22 +66,16 @@ public class MainActivityDJ extends AppCompatActivity {
         actionc = (FloatingActionButton) findViewById(R.id.action_c);
         actiond = (FloatingActionButton) findViewById(R.id.action_d);
 
-        actiona.setImageBitmap(textAsBitmap("Trance", 40, Color.WHITE));
-        actionb.setImageBitmap(textAsBitmap("Techno", 40, Color.WHITE));
-        actionc.setImageBitmap(textAsBitmap("House", 40, Color.WHITE));
-        actiond.setImageBitmap(textAsBitmap("All", 40, Color.WHITE));
+        actiona.setImageBitmap(textAsBitmap("Trance", 20, Color.WHITE));
+        actionb.setImageBitmap(textAsBitmap("Techno", 20, Color.WHITE));
+        actionc.setImageBitmap(textAsBitmap("House", 20, Color.WHITE));
+        actiond.setImageBitmap(textAsBitmap("All", 20, Color.WHITE));
 
 //method to convert your text to image
 
-
-
-
-
         query("All");
 
-
         fab();
-
 
     }
 

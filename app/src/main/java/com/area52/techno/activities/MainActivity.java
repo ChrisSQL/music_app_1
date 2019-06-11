@@ -480,6 +480,7 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
 
         //    navigationView.getMenu().findItem(R.id.nav_events).setIcon(R.drawable.ic_dashboard_black_24dp);
             navigationView.getMenu().findItem(R.id.users).setIcon(R.drawable.ic_dashboard_black_24dp);
+            navigationView.getMenu().findItem(R.id.facebookgroup).setIcon(R.drawable.facebook48);
             navigationView.getMenu().findItem(R.id.djs).setIcon(R.drawable.library_music);
         //    navigationView.getMenu().findItem(R.id.sets).setIcon(R.drawable.library_music);
         //    navigationView.getMenu().findItem(R.id.nav_members_sets).setIcon(R.drawable.library_music);
@@ -497,12 +498,13 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
             navigationView.getMenu().findItem(R.id.nav_settings).setIcon(R.drawable.settings);
       //      navigationView.getMenu().findItem(R.id.nav_about).setIcon(R.drawable.information);
       //      navigationView.getMenu().findItem(R.id.nav_donate).setIcon(R.drawable.payment_black);
-            navigationView.getMenu().findItem(R.id.nav_account).setIcon(R.drawable.information);
+      //      navigationView.getMenu().findItem(R.id.nav_account).setIcon(R.drawable.information);
 
         } else {
 
         //    navigationView.getMenu().findItem(R.id.nav_events).setIcon(R.drawable.ic_dashboard_white_24dp);
             navigationView.getMenu().findItem(R.id.users).setIcon(R.drawable.ic_dashboard_white_24dp);
+            navigationView.getMenu().findItem(R.id.facebookgroup).setIcon(R.drawable.facebook48);
             navigationView.getMenu().findItem(R.id.djs).setIcon(R.drawable.library_music_white);
         //    navigationView.getMenu().findItem(R.id.sets).setIcon(R.drawable.library_music_white);
 
@@ -521,7 +523,7 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
             navigationView.getMenu().findItem(R.id.nav_settings).setIcon(R.drawable.settings_white);
          //   navigationView.getMenu().findItem(R.id.nav_about).setIcon(R.drawable.information_white);
          //   navigationView.getMenu().findItem(R.id.nav_donate).setIcon(R.drawable.payment_white);
-            navigationView.getMenu().findItem(R.id.nav_account).setIcon(R.drawable.information_white);
+         //   navigationView.getMenu().findItem(R.id.nav_account).setIcon(R.drawable.information_white);
         }
 
         try {
@@ -566,6 +568,15 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
                 break;
             case R.id.users:
                 startActivity(new Intent(MainActivity.this, MainActivityUser.class));
+                break;
+            case R.id.facebookgroup:
+
+                // Go to Facebook Group
+                // Perform action on click
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse("https://www.facebook.com/groups/333692624137820/"));
+                startActivity(i);
+
                 break;
 //            case R.id.sets:
 //                startActivity(new Intent(MainActivity.this, MainActivitySet.class));
@@ -613,22 +624,22 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
             case R.id.nav_settings:
                 NavigationUtils.navigateToSettings(MainActivity.this);
                 break;
-            case R.id.nav_account:
+//            case R.id.nav_account:
+//
+////                if (user.getUid() == null){
+////                    Intent i = new Intent(MainActivity.this, FacebookActivityFirebase.class);
+////                    startActivity(new Intent(MainActivity.this, FacebookActivityFirebase.class));
+////                   break;
+////                }else{
+//
+//                    Intent intent = new Intent(getBaseContext(), MyAccountActivity.class);
+//                    intent.putExtra("userID", user.getUid());
+//                //    intent.putExtra("userID", "YkpEQnxoIfhuutZD6uWE9dX3klv1");
+//                    startActivity(intent);
+//
+////                }
 
-//                if (user.getUid() == null){
-//                    Intent i = new Intent(MainActivity.this, FacebookActivityFirebase.class);
-//                    startActivity(new Intent(MainActivity.this, FacebookActivityFirebase.class));
-//                   break;
-//                }else{
-
-                    Intent intent = new Intent(getBaseContext(), MyAccountActivity.class);
-                    intent.putExtra("userID", user.getUid());
-                //    intent.putExtra("userID", "YkpEQnxoIfhuutZD6uWE9dX3klv1");
-                    startActivity(intent);
-
-//                }
-
-                break;
+//                break;
             case R.id.log_out:
                 signOut();
                 break;

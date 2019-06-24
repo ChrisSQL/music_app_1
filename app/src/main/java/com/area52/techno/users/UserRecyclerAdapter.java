@@ -46,6 +46,7 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
     public void onBindViewHolder(MyHoder holder, int position) {
         User mylist = list.get(position);
         holder.name.setText(mylist.getName());
+        holder.name.setSelected(true);
 
 //        holder.thumbnail.setOnClickListener(new View.OnClickListener() {
 //            public void onClick(View v) {

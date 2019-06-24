@@ -78,9 +78,11 @@
                     android:layout_weight="1"
                     android:background="@android:color/background_light"
                     android:gravity="center"
-                    android:maxLines="1"
+                    android:textColor="@color/colorPrimaryDarkBlack"
                     android:singleLine="true"
-                    android:textColor="@color/colorPrimaryDarkBlack" />
+                    android:ellipsize="marquee"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"/>
             </LinearLayout>
 
         </RelativeLayout>

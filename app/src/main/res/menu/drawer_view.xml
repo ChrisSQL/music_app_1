@@ -20,23 +20,32 @@
         <!--android:title="@string/events" />-->
 
         <item
+            android:id="@+id/djs"
+            android:title="@string/djs" />
+
+        <item
+            android:id="@+id/clubs"
+            android:title="@string/clubs" />
+
+        <item
             android:id="@+id/users"
             android:title="@string/users" />
 
         <item
             android:id="@+id/facebookgroup"
-            android:title="Facebook" />
+            android:title="Sesh" />
+
 
     </group>
 
-    <group
-        android:id="@+id/groupOnlineTechnoTitle">
+    <!--<group-->
+        <!--android:id="@+id/groupOnlineTechnoTitle">-->
 
-        <item
-            android:id="@+id/nav_online_Title"
-            android:title="Online Music" />
+        <!--<item-->
+            <!--android:id="@+id/nav_online_Title"-->
+            <!--android:title="Online Music" />-->
 
-    </group>
+    <!--</group>-->
 
     <group
         android:id="@+id/groupOnlineTechno"
@@ -46,9 +55,6 @@
             <!--android:id="@+id/nav_festivals"-->
             <!--android:title="@string/festivals" />-->
 
-        <item
-            android:id="@+id/djs"
-            android:title="@string/djs" />
 
         <!--<item-->
             <!--android:id="@+id/sets"-->

@@ -70,10 +70,16 @@
                     android:id="@+id/vname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
                     android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
                     android:layout_weight="1"
-                    android:gravity="center" />
+                    android:background="@android:color/background_light"
+                    android:gravity="center"
+                    android:textColor="@color/colorPrimaryDarkBlack"
+                    android:singleLine="true"
+                    android:ellipsize="marquee"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"/>
             </LinearLayout>
 
         </RelativeLayout>

@@ -33,6 +33,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.area52.techno.R;
@@ -46,10 +47,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import io.branch.referral.Branch;
+import io.branch.referral.BranchError;
 
 public class HomeFragmentNew extends Fragment implements View.OnClickListener, View.OnTouchListener {
 
@@ -74,10 +78,14 @@ public class HomeFragmentNew extends Fragment implements View.OnClickListener, V
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
+
+
         listDJs = new ArrayList<DJ>();
 
         NestedScrollView nestedScrollView = (NestedScrollView) inflater.inflate(R.layout.activity_dj3, container, false);
         recyclerView = (RecyclerView) nestedScrollView.findViewById(R.id.recycleDJ3);
+
+
 
         // this = your fragment
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("prefs", Context.MODE_PRIVATE);
@@ -89,7 +97,7 @@ public class HomeFragmentNew extends Fragment implements View.OnClickListener, V
 
         // Toast.makeText(getContext(), djBranch, Toast.LENGTH_SHORT).show();
 
-      // recyclerView.setLayoutManager(mManager);
+        // recyclerView.setLayoutManager(mManager);
 
         if (recyclerView!=null){
             recyclerView.setHasFixedSize(true);
@@ -104,14 +112,10 @@ public class HomeFragmentNew extends Fragment implements View.OnClickListener, V
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
 
-
                 djSingle(dataSnapshot, djBranch); // Hannah Wants if not Branchdj
                 djSingle(dataSnapshot, djSelected); // Hannah Wants if not Branchdj
                 djSingle(dataSnapshot, djSelected2); // Hannah Wants if not Branchdj
                 djAll(dataSnapshot, djBranch);
-
-
-
 
                 createGrid();
 
@@ -124,12 +128,12 @@ public class HomeFragmentNew extends Fragment implements View.OnClickListener, V
             }
         });
 
-            return nestedScrollView;
+        return nestedScrollView;
     }
 
     private void createGrid() {
         DJRecyclerAdapterHome djRecyclerAdapter = new DJRecyclerAdapterHome(listDJs,getContext());
-        //    RecyclerView.LayoutManager recyce = new GridLayoutManager(MainActivityUser.this,2);
+        //    RecyclerView.LayoutManager recyce = new GridLayoutManager(MainActivityGroup.this,2);
         GridLayoutManager manager = new GridLayoutManager(getContext(), 12, GridLayoutManager.VERTICAL, false);
         manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
@@ -218,10 +222,10 @@ public class HomeFragmentNew extends Fragment implements View.OnClickListener, V
             dj.setBookingEmail(value.getBookingEmail());
             dj.setGenre(value.getGenre());
 
-           if(djIn.equalsIgnoreCase(value.getName())){
-               listDJs.add(dj);
-           //    Toast.makeText(getContext(), djIn, Toast.LENGTH_SHORT).show();
-           }
+            if(djIn.equalsIgnoreCase(value.getName())){
+                listDJs.add(dj);
+                //    Toast.makeText(getContext(), djIn, Toast.LENGTH_SHORT).show();
+            }
 
         }
     }

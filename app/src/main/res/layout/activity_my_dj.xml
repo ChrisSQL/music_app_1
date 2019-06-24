@@ -150,7 +150,7 @@
                                 android:layout_marginBottom="2dp"
                                 android:layout_weight="1"
                                 android:gravity="center"
-                                android:text="Bio" />
+                                android:text="Instagram" />
                         </LinearLayout>
 
                     </RelativeLayout>
@@ -420,6 +420,8 @@
                 </android.support.v7.widget.CardView>
 
             </LinearLayout>
+
+
 
         </TableRow>
 

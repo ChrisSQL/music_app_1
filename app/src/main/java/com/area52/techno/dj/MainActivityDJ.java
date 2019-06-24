@@ -148,7 +148,7 @@ public class MainActivityDJ extends AppCompatActivity {
                 }
 
                 DJRecyclerAdapter djRecyclerAdapter = new DJRecyclerAdapter(listDJs, MainActivityDJ.this);
-             //    RecyclerView.LayoutManager recyce = new GridLayoutManager(MainActivityUser.this,2);
+             //    RecyclerView.LayoutManager recyce = new GridLayoutManager(MainActivityClub.this,2);
                 GridLayoutManager manager = new GridLayoutManager(MainActivityDJ.this, 12, GridLayoutManager.VERTICAL, false);
                 manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
                     @Override
@@ -197,6 +197,7 @@ public class MainActivityDJ extends AppCompatActivity {
             }
         });
 
+
         final FloatingActionButton actionB = (FloatingActionButton) findViewById(R.id.action_b);
         actionB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -212,6 +213,7 @@ public class MainActivityDJ extends AppCompatActivity {
                 filter("House");
             }
         });
+
 
         final FloatingActionButton actionD = (FloatingActionButton) findViewById(R.id.action_d);
         actionD.setOnClickListener(new View.OnClickListener() {

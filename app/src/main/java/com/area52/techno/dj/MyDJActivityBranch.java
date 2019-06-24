@@ -46,7 +46,7 @@ public class MyDJActivityBranch extends AppCompatActivity {
 
 
     TextView ProfileName;
-    String photoUrl, FacebookLink, djName, getPhotoUrlDJ, SoundcloudLink, YoutubeLink, BookingLink,  country, genre, eventLink, videosLink;
+    String photoUrl, FacebookLink, djName, getPhotoUrlDJ, SoundcloudLink, YoutubeLink, InstaLink, BookingLink,  country, genre, eventLink, videosLink;
     // [START declare_auth]
     private FirebaseAuth mAuth;
     // [END declare_auth]
@@ -55,7 +55,7 @@ public class MyDJActivityBranch extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference myRef ;
 
-    ImageView profilePicture, dj_profile_card1_image, dj_profile_card2_image, dj_profile_card3_image, dj_profile_card4_image, dj_profile_card5_image, dj_profile_card6_image;
+    ImageView profilePicture, dj_profile_card1_image, dj_profile_card2_image, dj_profile_card3_image, dj_profile_card4_image, dj_profile_card5_image, dj_profile_card6_image, dj_profile_card7_image;
     LinearLayout profileBackground;
     Bundle extras;
     Intent intent;
@@ -72,16 +72,16 @@ public class MyDJActivityBranch extends AppCompatActivity {
 
         if (extras != null) {
 
-        // Local
-        djName = extras.getString("djName");
-        firebaseFetch(djName);
+            // Local
+            djName = extras.getString("djName");
+            firebaseFetch(djName);
 
         }else {
 
-        // Go back to Main
+            // Go back to Main
             //
-         Intent myIntent = new Intent(MyDJActivityBranch.this, MainActivity.class);
-         MyDJActivityBranch.this.startActivity(myIntent);
+            Intent myIntent = new Intent(MyDJActivityBranch.this, MainActivity.class);
+            MyDJActivityBranch.this.startActivity(myIntent);
 
         }
 
@@ -108,6 +108,7 @@ public class MyDJActivityBranch extends AppCompatActivity {
                 SoundcloudLink = dj.soundcloudLink;
                 BookingLink = dj.facebookLink;
                 YoutubeLink = dj.youtubeLink;
+                InstaLink = dj.instagramLink;
                 country = dj.country;
                 genre = dj.genre;
 
@@ -140,7 +141,7 @@ public class MyDJActivityBranch extends AppCompatActivity {
     }
 
 
-        private void declareVariables() {
+    private void declareVariables() {
 
         profilePicture = (ImageView) findViewById(R.id.friendProfilePicture);
 
@@ -150,6 +151,8 @@ public class MyDJActivityBranch extends AppCompatActivity {
         dj_profile_card4_image = (ImageView) findViewById(R.id.dj_profile_card4_image);
         dj_profile_card5_image = (ImageView) findViewById(R.id.dj_profile_card5_image);
         dj_profile_card6_image = (ImageView) findViewById(R.id.dj_profile_card6_image);
+
+        // dj_profile_card7_image = (ImageView) findViewById(R.id.dj_profile_card7_image);
 
         profileBackground = (LinearLayout) findViewById(R.id.profileBackground);
         ProfileName = (TextView) findViewById(R.id.ProfileName);
@@ -171,9 +174,9 @@ public class MyDJActivityBranch extends AppCompatActivity {
 
         profilePicture = (ImageView) findViewById(R.id.friendProfilePicture);
 
-    //    Toast.makeText(this, photoUrlIn, Toast.LENGTH_SHORT).show();
+        //    Toast.makeText(this, photoUrlIn, Toast.LENGTH_SHORT).show();
 
-//        Picasso.with(MyDJActivityBranch.this)
+//        Picasso.with(MyGroupActivityBranch.this)
 //                .load(photoUrlIn)
 //                .resize(200, 200)
 //                .centerCrop()
@@ -183,7 +186,7 @@ public class MyDJActivityBranch extends AppCompatActivity {
                 .load(photoUrlIn)
                 .thumbnail(0.1f)
                 .apply(new RequestOptions().override(400, 400)
-                .centerCrop())
+                        .centerCrop())
                 .into(profilePicture);
 
     }
@@ -194,14 +197,14 @@ public class MyDJActivityBranch extends AppCompatActivity {
         eventLink = FacebookLink + "events";
         videosLink = FacebookLink + "videos";
 
-        // Biography
+        // Instagram
         dj_profile_card1_image = (ImageView)  findViewById(R.id.dj_profile_card1_image);
         dj_profile_card1_image.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
 
                 Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(FacebookLink));
+                i.setData(Uri.parse(InstaLink));
                 startActivity(i);
 
             }
@@ -283,7 +286,7 @@ public class MyDJActivityBranch extends AppCompatActivity {
 
         Picasso.with(MyDJActivityBranch.this)
                 .load(photoUrl)
-                .placeholder(R.drawable.informationpng)
+                .placeholder(R.drawable.instagrampng)
                 .into(dj_profile_card1_image);
 
         Picasso.with(MyDJActivityBranch.this)
@@ -310,6 +313,8 @@ public class MyDJActivityBranch extends AppCompatActivity {
                 .load(photoUrl)
                 .placeholder(R.drawable.soundcloudpng)
                 .into(dj_profile_card6_image);
+
+
 
     }
 

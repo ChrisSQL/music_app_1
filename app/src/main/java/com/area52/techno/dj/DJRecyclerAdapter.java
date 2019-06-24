@@ -46,6 +46,7 @@ public class DJRecyclerAdapter extends RecyclerView.Adapter<DJRecyclerAdapter.My
     public void onBindViewHolder(MyHoder holder, int position) {
         DJ mylist = list.get(position);
         holder.name.setText(mylist.getName());
+        holder.name.setSelected(true);
 
                 holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

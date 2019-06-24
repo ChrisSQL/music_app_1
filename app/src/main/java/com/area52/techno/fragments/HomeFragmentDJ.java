@@ -305,7 +305,7 @@ public class HomeFragmentDJ extends Fragment implements View.OnClickListener, Vi
                 djAll(dataSnapshot, djBranch);
 
                 DJRecyclerAdapterHome djRecyclerAdapter = new DJRecyclerAdapterHome(listDJs,getContext());
-                //    RecyclerView.LayoutManager recyce = new GridLayoutManager(MainActivityUser.this,2);
+                //    RecyclerView.LayoutManager recyce = new GridLayoutManager(MainActivityClub.this,2);
                 GridLayoutManager manager = new GridLayoutManager(getContext(), 12, GridLayoutManager.VERTICAL, false);
                 manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
                     @Override

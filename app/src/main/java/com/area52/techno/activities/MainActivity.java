@@ -38,6 +38,7 @@ import com.afollestad.appthemeengine.customizers.ATEActivityThemeCustomizer;
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.area52.techno.FacebookActivityFirebase;
 import com.area52.techno.MyAccountActivity;
+import com.area52.techno.clubs.users.MainActivityClub;
 import com.area52.techno.dj.DJList;
 import com.area52.techno.dj.MainActivityDJ;
 import com.area52.techno.dj.MyDJActivityBranch;
@@ -487,8 +488,9 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
         //    navigationView.getMenu().findItem(R.id.nav_sets_techno).setIcon(R.drawable.video_icon_48);
         //    navigationView.getMenu().findItem(R.id.nav_festivals).setIcon(R.drawable.library_music);
         //    navigationView.getMenu().findItem(R.id.nav_soundcloud).setIcon(R.drawable.souncloud_48_black);
-
         //    navigationView.getMenu().findItem(R.id.nav_sets_trance).setIcon(R.drawable.video_icon_48);
+
+            navigationView.getMenu().findItem(R.id.clubs).setIcon(R.drawable.library_music);
 
             navigationView.getMenu().findItem(R.id.nav_library).setIcon(R.drawable.library_music);
             navigationView.getMenu().findItem(R.id.nav_playlists).setIcon(R.drawable.playlist_play);
@@ -521,6 +523,8 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
             navigationView.getMenu().findItem(R.id.nav_folders).setIcon(R.drawable.ic_folder_open_white_24dp);
         //    navigationView.getMenu().findItem(R.id.nav_nowplaying).setIcon(R.drawable.bookmark_music_white);
             navigationView.getMenu().findItem(R.id.nav_settings).setIcon(R.drawable.settings_white);
+            navigationView.getMenu().findItem(R.id.clubs).setIcon(R.drawable.library_music);
+
          //   navigationView.getMenu().findItem(R.id.nav_about).setIcon(R.drawable.information_white);
          //   navigationView.getMenu().findItem(R.id.nav_donate).setIcon(R.drawable.payment_white);
          //   navigationView.getMenu().findItem(R.id.nav_account).setIcon(R.drawable.information_white);
@@ -568,6 +572,9 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
                 break;
             case R.id.users:
                 startActivity(new Intent(MainActivity.this, MainActivityUser.class));
+                break;
+            case R.id.clubs:
+                startActivity(new Intent(MainActivity.this, MainActivityClub.class));
                 break;
             case R.id.facebookgroup:
 

@@ -1,8 +1,8 @@
-package com.area52.techno.users;
+package com.area52.techno.clubs.users;
 
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +10,7 @@ import android.util.Log;
 import android.widget.Button;
 
 import com.area52.techno.R;
+import com.area52.techno.models.Club;
 import com.area52.techno.models.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,11 +24,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class MainActivityUser extends AppCompatActivity {
+public class MainActivityClub extends AppCompatActivity {
 
     FirebaseDatabase database;
     DatabaseReference myRef ;
-    List<User> list;
+    List<Club> list;
     RecyclerView recycle;
     Button view;
     private FirebaseAuth mAuth;
@@ -39,72 +40,12 @@ public class MainActivityUser extends AppCompatActivity {
         setContentView(R.layout.activity_user_list);
         recycle = (RecyclerView) findViewById(R.id.recycle);
         database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("usersUsername");
-        list = new ArrayList<User>();
+        myRef = database.getReference("Clubs");
+        list = new ArrayList<Club>();
         // If logged in log Analytics
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
 
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-
-                for(DataSnapshot dataSnapshot1 :dataSnapshot.getChildren()){
-
-                    User value = dataSnapshot1.getValue(User.class);
-                    User fire = new User();
-                    String name = value.getName();
-                    String email = value.getName();
-                    String photo = value.getPhotoUrl();
-                    String fbID = value.getFbID();
-                    String uID = value.getuID();
-                    fire.setName(name);
-                    fire.setEmail(email);
-                    fire.setPhotoUrl(photo);
-                    fire.setFbID(fbID);
-                    fire.setuID(uID);
-                    fire.setRefDJ(value.getRefDJ());
-
-                    if (user != null) {
-
-                        if("JJCIDd9GBQerPB9nSQ7r85mFEgy1".equalsIgnoreCase(value.getuID())){
-                            list.add(fire);
-
-                        }
-
-                        if(user.getUid().equalsIgnoreCase(value.getuID()) && !"JJCIDd9GBQerPB9nSQ7r85mFEgy1".equalsIgnoreCase(value.getuID())){
-                            list.add(fire);
-                            Collections.shuffle(list);
-
-                        }
-                    }else {
-
-
-                        list.add(fire);
-
-
-                    }
-
-
-
-
-
-
-                //    Toast.makeText(MainActivityClub.this, list.toString(), Toast.LENGTH_SHORT).show();
-
-                }
-
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w("Hello", "Failed to read value.", error.toException());
-            }
-        });
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -114,38 +55,23 @@ public class MainActivityUser extends AppCompatActivity {
 
                 for(DataSnapshot dataSnapshot1 :dataSnapshot.getChildren()){
 
-                    User value = dataSnapshot1.getValue(User.class);
-                    User fire = new User();
+                    Club value = dataSnapshot1.getValue(Club.class);
+                    Club fire = new Club();
+
                     String name = value.getName();
-                    String email = value.getName();
                     String photo = value.getPhotoUrl();
-                    String fbID = value.getFbID();
+                    String fbID = value.getFacebookLink();
                     String uID = value.getuID();
+
                     fire.setName(name);
-                    fire.setEmail(email);
                     fire.setPhotoUrl(photo);
-                    fire.setFbID(fbID);
+                    fire.setFacebookLink(fbID);
                     fire.setuID(uID);
-                    fire.setRefDJ(value.getRefDJ());
 
-                    if (user != null) {
-
-                        if (user.getUid().equalsIgnoreCase(value.getuID()) && !"JJCIDd9GBQerPB9nSQ7r85mFEgy1".equalsIgnoreCase(value.getuID())) {
                             list.add(fire);
-                        }
 
-                        if (!user.getUid().equalsIgnoreCase(value.getuID())) {
-                            list.add(fire);
-                        }
-
-                    } else {
-
-                        list.add(fire);
-
-                    }
 
                 }
-
 
             }
 
@@ -175,9 +101,9 @@ public class MainActivityUser extends AppCompatActivity {
     }
 
     private void createGrid() {
-        UserRecyclerAdapter userRecyclerAdapter = new UserRecyclerAdapter(list, MainActivityUser.this);
+        ClubRecyclerAdapter userRecyclerAdapter = new ClubRecyclerAdapter(list, MainActivityClub.this);
         //    RecyclerView.LayoutManager recyce = new GridLayoutManager(MainActivityClub.this,2);
-        GridLayoutManager manager = new GridLayoutManager(MainActivityUser.this, 12, GridLayoutManager.VERTICAL, false);
+        GridLayoutManager manager = new GridLayoutManager(MainActivityClub.this, 12, GridLayoutManager.VERTICAL, false);
         manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {

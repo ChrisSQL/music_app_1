@@ -3,8 +3,12 @@ package com.area52.techno;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -21,6 +25,7 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
+import com.facebook.Profile;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
@@ -36,12 +41,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.messaging.RemoteMessage;
+// import com.pusher.pushnotifications.PushNotifications;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import io.branch.referral.Branch;
 import io.branch.referral.BranchError;
+
+// import com.pusher.pushnotifications.PushNotifications;
 
 /**
  * Demonstrate Firebase Authentication using a Facebook access token.
@@ -72,12 +81,16 @@ public class FacebookActivityFirebase extends BaseActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_facebook_firebase);
 
+//        PushNotifications.start(getApplicationContext(), "fad5df42-b531-4b0e-b52f-7c3ead4d48df");
+//        PushNotifications.addDeviceInterest("hello");
+
         userRegistering = new User("12345","67890","NA","NA","NA","none");
 
         // Views
         mStatusTextView = findViewById(R.id.status);
         mDetailTextView = findViewById(R.id.detail);
-        findViewById(R.id.button_facebook_signout).setOnClickListener(this);
+        //    findViewById(R.id.button_facebook_signout).setOnClickListener(this);
+        findViewById(R.id.button_facebook_Continue).setOnClickListener(this);
 
         // [START initialize_auth]
         // Initialize Firebase Auth
@@ -96,6 +109,7 @@ public class FacebookActivityFirebase extends BaseActivity implements
             @Override
             public void onSuccess(LoginResult loginResult) {
                 Log.d(TAG, "facebook:onSuccess:" + loginResult);
+
                 getUserInfo(loginResult);
             }
 
@@ -181,6 +195,45 @@ public class FacebookActivityFirebase extends BaseActivity implements
                 });
     }
 
+    @Override
+    public void onResume(){
+
+        super.onResume();
+
+
+        if(Profile.getCurrentProfile() != null && AccessToken.getCurrentAccessToken() != null){
+
+            AccessToken accessToken = AccessToken.getCurrentAccessToken();
+
+            String name = Profile.getCurrentProfile().getName();
+            String facebook_id = Profile.getCurrentProfile().getId();
+            String picUrl = "https://graph.facebook.com/" + Profile.getCurrentProfile().getId() + "/picture?type=large";
+
+            userRegistering.setFbID(facebook_id);
+            userRegistering.setName(name);
+            userRegistering.setPhotoUrl(picUrl);
+            userRegistering.setRefDJ(dj);
+
+            mDatabase.child("usersUsername").child(userRegistering.getName()).setValue(userRegistering);
+
+
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+
+
+                    Intent i = new Intent(getBaseContext(), MainActivity.class);
+                    startActivity(i);
+
+                }
+            }, 2000);
+
+            Log.v("IMAGE",picUrl);
+        }
+
+    }
+
     // [START on_start_check_user]
     @Override
     public void onStart() {
@@ -196,7 +249,7 @@ public class FacebookActivityFirebase extends BaseActivity implements
                     // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
                     // params will be empty if no data found
                     // ... insert custom logic here ...
-                    dj = referringParams.optString("dj", "Fjaak");
+                    dj = referringParams.optString("dj", "none");
 
                     SharedPreferences sharedPreferences = getSharedPreferences("prefs", Context.MODE_PRIVATE);
                     SharedPreferences.Editor edt = sharedPreferences.edit();
@@ -237,6 +290,8 @@ public class FacebookActivityFirebase extends BaseActivity implements
     private void handleFacebookAccessToken(AccessToken token) {
         Log.d(TAG, "handleFacebookAccessToken:" + token);
 
+
+
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -246,14 +301,17 @@ public class FacebookActivityFirebase extends BaseActivity implements
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+
                             userRegistering.setuID(user.getUid());
                             mDatabase.child("usersID").child(userRegistering.getuID()).setValue(userRegistering);
                             mDatabase.child("usersEmail").child(encodeUserEmail(userRegistering.getEmail())).setValue(userRegistering);
                             mDatabase.child("usersUsername").child(userRegistering.getName()).setValue(userRegistering);
                             // mDatabase.child("users").child(userId).child("username").setValue(name);
                             // mStatusTextView.setText("Connected");
-                            // showProgressDialog();
+                            //    showProgressDialog();
+
                             updateUI(user);
+
 //                            new Handler().postDelayed(new Runnable() {
 //                                @Override
 //                                public void run() {
@@ -262,6 +320,9 @@ public class FacebookActivityFirebase extends BaseActivity implements
 //                            }, 20);
 
                         } else {
+
+
+
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
                             Toast.makeText(FacebookActivityFirebase.this, "Authentication failed.",
@@ -292,17 +353,32 @@ public class FacebookActivityFirebase extends BaseActivity implements
             //    mDetailTextView.setText(getString(R.string.firebase_status_fmt, user.getUid()));
 
             findViewById(R.id.button_facebook_login).setVisibility(View.GONE);
-            findViewById(R.id.button_facebook_signout).setVisibility(View.GONE);
+            //    findViewById(R.id.button_facebook_signout).setVisibility(View.GONE);
+
+
+//            final Handler handler = new Handler();
+//            handler.postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//                    findViewById(R.id.button_facebook_Continue).setVisibility(View.VISIBLE);
+//                }
+//            }, 2000);
 
             Intent i = new Intent(this, MainActivity.class);
             startActivity(i);
 
         } else {
+
+
+
+
+
             //    mStatusTextView.setText(R.string.signed_out);
             mDetailTextView.setText(null);
 
             findViewById(R.id.button_facebook_login).setVisibility(View.VISIBLE);
-            findViewById(R.id.button_facebook_signout).setVisibility(View.GONE);
+            //    findViewById(R.id.button_facebook_signout).setVisibility(View.GONE);
+            findViewById(R.id.button_facebook_Continue).setVisibility(View.GONE);
 
         }
     }
@@ -321,7 +397,7 @@ public class FacebookActivityFirebase extends BaseActivity implements
                             String facebook_id = object.getString("id");
                             String f_name = object.getString("name");
                             String email_id = object.getString("email");
-                        //    String email_cleaned =
+                            //    String email_cleaned =
                             String token = login_result.getAccessToken().getToken();
                             String picUrl = "https://graph.facebook.com/me/picture?type=large&method=GET&access_token="+ token;
 
@@ -330,6 +406,21 @@ public class FacebookActivityFirebase extends BaseActivity implements
                             userRegistering.setEmail(email_id);
                             userRegistering.setPhotoUrl(picUrl);
                             userRegistering.setRefDJ(dj);
+
+                            mDatabase.child("usersUsername").child(userRegistering.getName()).setValue(userRegistering);
+
+                            final Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+
+
+                                    Intent i = new Intent(getBaseContext(), MainActivity.class);
+                                    startActivity(i);
+
+                                }
+                            }, 2000);
+
 
                             saveFacebookCredentialsInFirebase(login_result.getAccessToken());
 
@@ -347,13 +438,16 @@ public class FacebookActivityFirebase extends BaseActivity implements
 
     private void saveFacebookCredentialsInFirebase(AccessToken accessToken){
         AuthCredential credential = FacebookAuthProvider.getCredential(accessToken.getToken());
+
+
+
         mAuth.signInWithCredential(credential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(!task.isSuccessful()){
                     Toast.makeText(getApplicationContext(),"Error logging in", Toast.LENGTH_LONG).show();
                 }else{
-                //    Toast.makeText(getApplicationContext(),"Logging in...", Toast.LENGTH_LONG).show();
+                    //    Toast.makeText(getApplicationContext(),"Logging in...", Toast.LENGTH_LONG).show();
 
                     handleFacebookAccessToken(accessToken);
                 }
@@ -364,8 +458,12 @@ public class FacebookActivityFirebase extends BaseActivity implements
     @Override
     public void onClick(View v) {
         int i = v.getId();
-        if (i == R.id.button_facebook_signout) {
-            signOut();
+//        if (i == R.id.button_facebook_signout) {
+//            signOut();
+//        }
+        if (i == R.id.button_facebook_Continue) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
         }
     }
 

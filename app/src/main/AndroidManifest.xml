@@ -284,6 +284,14 @@
         </activity>
 
         <activity
+            android:name=".clubs.users.MainActivityClub"
+            android:label="@string/clubs"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.FullScreen.Light">
+
+        </activity>
+
+        <activity
             android:name=".dj.MainActivityDJ"
             android:label="@string/title_activity_djs"
             android:screenOrientation="portrait"

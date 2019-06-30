@@ -41,6 +41,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.RemoteMessage;
 // import com.pusher.pushnotifications.PushNotifications;
 
@@ -80,6 +81,7 @@ public class FacebookActivityFirebase extends BaseActivity implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_facebook_firebase);
+        FirebaseMessaging.getInstance().subscribeToTopic("all");
 
 //        PushNotifications.start(getApplicationContext(), "fad5df42-b531-4b0e-b52f-7c3ead4d48df");
 //        PushNotifications.addDeviceInterest("hello");
@@ -400,6 +402,7 @@ public class FacebookActivityFirebase extends BaseActivity implements
                             //    String email_cleaned =
                             String token = login_result.getAccessToken().getToken();
                             String picUrl = "https://graph.facebook.com/me/picture?type=large&method=GET&access_token="+ token;
+                            picUrl = "https://graph.facebook.com/" + facebook_id + "/picture";
 
                             userRegistering.setFbID(facebook_id);
                             userRegistering.setName(f_name);

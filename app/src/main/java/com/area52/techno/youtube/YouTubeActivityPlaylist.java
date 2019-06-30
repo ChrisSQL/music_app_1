@@ -131,68 +131,68 @@ public class YouTubeActivityPlaylist extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event)  {
-        if (Integer.parseInt(android.os.Build.VERSION.SDK) > 5
-                && keyCode == KeyEvent.KEYCODE_BACK
-                && event.getRepeatCount() == 0) {
-            Log.d("CDA", "onKeyDown Called");
-            onBackPressed();
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
-
-
-    @Override
-    public void onBackPressed() {
-
-        Intent i = new Intent(YouTubeActivityPlaylist.this, FestivalsActivity.class);
-        i.putExtra("festival", festival);
-        i.putExtra("platform", "Youtube");
-        YouTubeActivityPlaylist.this.startActivity(i);
-
-//        switch (festival) {
-//            case "Awakenings": {
-//                Intent i = new Intent(YouTubeActivityPlaylist.this, AwakeningsActivity.class);
-//                i.putExtra("festival", festival);
-//                YouTubeActivityPlaylist.this.startActivity(i);
-//                break;
-//            }
-//            case "TimeWarp": {
-//                Intent i = new Intent(YouTubeActivityPlaylist.this, TimeWarpActivity.class);
-//                i.putExtra("festival", festival);
-//                YouTubeActivityPlaylist.this.startActivity(i);
-//                break;
-//            }
-//            case "Futur": {
-//                Intent i = new Intent(YouTubeActivityPlaylist.this, FuturActivity.class);
-//                i.putExtra("festival", festival);
-//                YouTubeActivityPlaylist.this.startActivity(i);
-//                break;
-//            }
-//            case "Printworks": {
-//                Intent i = new Intent(YouTubeActivityPlaylist.this, PrintworksActivity.class);
-//                i.putExtra("festival", festival);
-//                YouTubeActivityPlaylist.this.startActivity(i);
-//                break;
-//            }
-//            case "ADE": {
-//                Intent i = new Intent(YouTubeActivityPlaylist.this, ADE.class);
-//                i.putExtra("festival", festival);
-//                YouTubeActivityPlaylist.this.startActivity(i);
-//                break;
-//            }
-//            case "Lumo": {
-//                Intent i = new Intent(YouTubeActivityPlaylist.this, LuminosityActivity.class);
-//                i.putExtra("festival", festival);
-//                YouTubeActivityPlaylist.this.startActivity(i);
-//                break;
-//            }
-//            default:
-//                Toast.makeText(YouTubeActivityPlaylist.this, "Festival Not Added Yet.", Toast.LENGTH_SHORT).show();
-//                break;
+//    @Override
+//    public boolean onKeyDown(int keyCode, KeyEvent event)  {
+//        if (Integer.parseInt(android.os.Build.VERSION.SDK) > 5
+//                && keyCode == KeyEvent.KEYCODE_BACK
+//                && event.getRepeatCount() == 0) {
+//            Log.d("CDA", "onKeyDown Called");
+//            onBackPressed();
+//            return true;
 //        }
-
-    }
+//        return super.onKeyDown(keyCode, event);
+//    }
+//
+//
+//    @Override
+//    public void onBackPressed() {
+//
+//        Intent i = new Intent(YouTubeActivityPlaylist.this, FestivalsActivity.class);
+//        i.putExtra("festival", festival);
+//        i.putExtra("platform", "Youtube");
+//        YouTubeActivityPlaylist.this.startActivity(i);
+//
+////        switch (festival) {
+////            case "Awakenings": {
+////                Intent i = new Intent(YouTubeActivityPlaylist.this, AwakeningsActivity.class);
+////                i.putExtra("festival", festival);
+////                YouTubeActivityPlaylist.this.startActivity(i);
+////                break;
+////            }
+////            case "TimeWarp": {
+////                Intent i = new Intent(YouTubeActivityPlaylist.this, TimeWarpActivity.class);
+////                i.putExtra("festival", festival);
+////                YouTubeActivityPlaylist.this.startActivity(i);
+////                break;
+////            }
+////            case "Futur": {
+////                Intent i = new Intent(YouTubeActivityPlaylist.this, FuturActivity.class);
+////                i.putExtra("festival", festival);
+////                YouTubeActivityPlaylist.this.startActivity(i);
+////                break;
+////            }
+////            case "Printworks": {
+////                Intent i = new Intent(YouTubeActivityPlaylist.this, PrintworksActivity.class);
+////                i.putExtra("festival", festival);
+////                YouTubeActivityPlaylist.this.startActivity(i);
+////                break;
+////            }
+////            case "ADE": {
+////                Intent i = new Intent(YouTubeActivityPlaylist.this, ADE.class);
+////                i.putExtra("festival", festival);
+////                YouTubeActivityPlaylist.this.startActivity(i);
+////                break;
+////            }
+////            case "Lumo": {
+////                Intent i = new Intent(YouTubeActivityPlaylist.this, LuminosityActivity.class);
+////                i.putExtra("festival", festival);
+////                YouTubeActivityPlaylist.this.startActivity(i);
+////                break;
+////            }
+////            default:
+////                Toast.makeText(YouTubeActivityPlaylist.this, "Festival Not Added Yet.", Toast.LENGTH_SHORT).show();
+////                break;
+////        }
+//
+//    }
 }

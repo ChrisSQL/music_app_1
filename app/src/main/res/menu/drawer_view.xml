@@ -24,6 +24,10 @@
             android:title="@string/djs" />
 
         <item
+            android:id="@+id/festivals_new"
+            android:title="@string/festivals" />
+
+        <item
             android:id="@+id/clubs"
             android:title="@string/clubs" />
 

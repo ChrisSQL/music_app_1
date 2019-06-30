@@ -46,39 +46,47 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      * @param data FCM data payload received.
      */
     private void sendNotification(RemoteMessage.Notification notification, Map<String, String> data) {
-        Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.sesh_logo);
+        Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.sesh_logo_50);
 
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
-
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, "789")
-                .setContentTitle(notification.getTitle())
-                .setContentText(notification.getBody())
-                .setAutoCancel(true)
-                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
-                .setContentIntent(pendingIntent)
-                .setContentInfo(notification.getTitle())
-                .setLargeIcon(icon)
-                .setColor(Color.RED)
-                .setLights(Color.RED, 1000, 300)
-                .setDefaults(Notification.DEFAULT_VIBRATE)
-                .setSmallIcon(R.drawable.sesh_logo);
-
-        try {
-            String picture_url = data.get("picture_url");
-            if (picture_url != null && !"".equals(picture_url)) {
-                URL url = new URL(picture_url);
-                Bitmap bigPicture = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                notificationBuilder.setStyle(
-                        new NotificationCompat.BigPictureStyle().bigPicture(bigPicture).setSummaryText(notification.getBody())
-                );
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        String dj = data.get("dj");
+
+        if (notification.getTitle() != null){
+
+            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, "789")
+                    .setContentTitle(notification.getTitle())
+                    .setContentText(notification.getBody())
+                    .setAutoCancel(true)
+                    .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+                    .setContentIntent(pendingIntent)
+                    .setContentInfo(notification.getTitle())
+                    .setLargeIcon(icon)
+                    .setColor(Color.BLACK)
+                    .setLights(Color.RED, 1000, 300)
+                    .setDefaults(Notification.DEFAULT_VIBRATE)
+                    .setSmallIcon(R.drawable.sesh_logo_50);
+
+            try {
+                String picture_url = data.get("picture_url");
+                if (picture_url != null && !"".equals(picture_url)) {
+                    URL url = new URL(picture_url);
+                    Bitmap bigPicture = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                    notificationBuilder.setStyle(
+                            new NotificationCompat.BigPictureStyle().bigPicture(bigPicture).setSummaryText(notification.getBody())
+                    );
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+            notificationManager.notify(0, notificationBuilder.build());
+
+        }
 
         // Notification Channel is required for Android O and above
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -95,6 +103,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             notificationManager.createNotificationChannel(channel);
         }
 
-        notificationManager.notify(0, notificationBuilder.build());
     }
+
+    public static String getToken(Context context) {
+        return context.getSharedPreferences("_", MODE_PRIVATE).getString("fb", "empty");
+    }
+
+
+
 }

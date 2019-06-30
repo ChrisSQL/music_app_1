@@ -245,5 +245,6 @@
     <string name="logout">Logout</string>
     <string name="facebook_group">Facebook Group</string>
     <string name="clubs">Clubs</string>
+    <string name="festival">Festivals</string>
 
 </resources>

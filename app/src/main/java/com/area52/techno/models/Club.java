@@ -8,18 +8,46 @@ public class Club {
     String facebookLink;
     String name;
     String photoUrl;
-    Location location;
+    double latitiude;
+    double longitude;
+    double miles;
 
-    public Club(String uID, String facebookLink, String name, String photoUrl, Location location) {
+    public Club(String uID, String facebookLink, String name, String photoUrl, double latitiude, double longitude, double miles) {
         this.facebookLink = facebookLink;
         this.uID = uID;
         this.name = name;
         this.photoUrl = photoUrl;
-        this.location = location;
+        this.latitiude = latitiude;
+        this.longitude = longitude;
+        this.miles = miles;
+    }
+
+    public double getMiles() {
+        return miles;
+    }
+
+    public void setMiles(double miles) {
+        this.miles = miles;
     }
 
     public Club() {
 
+    }
+
+    public double getLatitiude() {
+        return latitiude;
+    }
+
+    public void setLatitiude(double latitiude) {
+        this.latitiude = latitiude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 
     public String getName() {
@@ -53,14 +81,6 @@ public class Club {
 
     public void setFacebookLink(String facebookLink) {
         this.facebookLink = facebookLink;
-    }
-
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
     }
 
     @Override

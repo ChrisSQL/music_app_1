@@ -71,9 +71,11 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
 //                .placeholder(R.drawable.sesh_logo)
 //                .into(holder.thumbnail);
 
+        String picture = "https://graph.facebook.com/" + mylist.getFbID() + "/picture?type=large";
+
         Picasso.with(context)
-                .load(mylist.getPhotoUrl())
-                .resize(200,200)
+                .load(picture)
+                .resize(300,300)
                 .centerCrop()
                 .placeholder(R.drawable.sesh_logo)
                 .networkPolicy(NetworkPolicy.OFFLINE)
@@ -87,8 +89,8 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
                     public void onError() {
                         //Try again online if cache failed
                         Picasso.with(context)
-                                .load(mylist.getPhotoUrl())
-                                .resize(200,200)
+                                .load(picture)
+                                .resize(300,300)
                                 .centerCrop()
                                 .placeholder(R.drawable.sesh_logo)
                                 .error(R.drawable.sesh_logo)

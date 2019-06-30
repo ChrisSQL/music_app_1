@@ -9,6 +9,7 @@ import android.app.NotificationManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -38,12 +39,14 @@ import com.afollestad.appthemeengine.customizers.ATEActivityThemeCustomizer;
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.area52.techno.FacebookActivityFirebase;
 import com.area52.techno.MyAccountActivity;
+import com.area52.techno.MyFirebaseMessagingService;
 import com.area52.techno.clubs.users.MainActivityClub;
 import com.area52.techno.dj.DJList;
 import com.area52.techno.dj.MainActivityDJ;
 import com.area52.techno.dj.MyDJActivityBranch;
 import com.area52.techno.djs.DJs;
 import com.area52.techno.festivals.FestivalsActivity;
+import com.area52.techno.festivals_new.dj.MainActivityFestival;
 import com.area52.techno.fragments.EventsFragmentNew;
 import com.area52.techno.fragments.HomeFragmentDJ;
 import com.area52.techno.models.User;
@@ -80,6 +83,8 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -231,10 +236,20 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
         }
     };
 
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
-        notifications();
+        FirebaseMessaging.getInstance().subscribeToTopic("all");
+
+    //    notifications();
+
+
+
+        Log.v("FCMToken", "token "+ MyFirebaseMessagingService.getToken(this));
+    //    Toast.makeText(this, MyFirebaseMessagingService.getToken(this), Toast.LENGTH_SHORT).show();
+
 
         // Toast.makeText(this, "MediaPlayerMain", Toast.LENGTH_SHORT).show();
 
@@ -333,6 +348,8 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
 
     private void notifications() {
 
+
+
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         String channelId = "1";
@@ -343,7 +360,7 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
                     "Channel 1", NotificationManager.IMPORTANCE_HIGH);
 
             notificationChannel.setDescription("This is BNT");
-            notificationChannel.setLightColor(Color.RED);
+            notificationChannel.setLightColor(Color.BLACK);
             notificationChannel.enableVibration(true);
             notificationChannel.setShowBadge(true);
             notificationManager.createNotificationChannel(notificationChannel);
@@ -352,7 +369,7 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
                     "Channel 2", NotificationManager.IMPORTANCE_MIN);
 
             notificationChannel.setDescription("This is bTV");
-            notificationChannel.setLightColor(Color.RED);
+            notificationChannel.setLightColor(Color.BLACK);
             notificationChannel.enableVibration(true);
             notificationChannel.setShowBadge(true);
             notificationManager.createNotificationChannel(notificationChannel2);
@@ -386,7 +403,7 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
 //                    }
 //                    else {
 //
-//                        Intent i = new Intent(MainActivity.this, MyDJActivityBranch.class);
+//                        Intent i = new Intent(MainActivity.this, MyFestivalActivityBranch.class);
 //                        i.putExtra("djName", dj);
 //                        startActivity(i);
 //                    }
@@ -483,6 +500,7 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
             navigationView.getMenu().findItem(R.id.users).setIcon(R.drawable.ic_dashboard_black_24dp);
             navigationView.getMenu().findItem(R.id.facebookgroup).setIcon(R.drawable.facebook48);
             navigationView.getMenu().findItem(R.id.djs).setIcon(R.drawable.library_music);
+            navigationView.getMenu().findItem(R.id.festivals_new).setIcon(R.drawable.library_music);
         //    navigationView.getMenu().findItem(R.id.sets).setIcon(R.drawable.library_music);
         //    navigationView.getMenu().findItem(R.id.nav_members_sets).setIcon(R.drawable.library_music);
         //    navigationView.getMenu().findItem(R.id.nav_sets_techno).setIcon(R.drawable.video_icon_48);
@@ -508,6 +526,7 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
             navigationView.getMenu().findItem(R.id.users).setIcon(R.drawable.ic_dashboard_white_24dp);
             navigationView.getMenu().findItem(R.id.facebookgroup).setIcon(R.drawable.facebook48);
             navigationView.getMenu().findItem(R.id.djs).setIcon(R.drawable.library_music_white);
+            navigationView.getMenu().findItem(R.id.festivals_new).setIcon(R.drawable.library_music);
         //    navigationView.getMenu().findItem(R.id.sets).setIcon(R.drawable.library_music_white);
 
         //    navigationView.getMenu().findItem(R.id.nav_members_sets).setIcon(R.drawable.library_music_white);
@@ -575,6 +594,9 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
                 break;
             case R.id.clubs:
                 startActivity(new Intent(MainActivity.this, MainActivityClub.class));
+                break;
+            case R.id.festivals_new:
+                startActivity(new Intent(MainActivity.this, MainActivityFestival.class));
                 break;
             case R.id.facebookgroup:
 

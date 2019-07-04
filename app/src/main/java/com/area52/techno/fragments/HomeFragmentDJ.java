@@ -278,7 +278,7 @@ public class HomeFragmentDJ extends Fragment implements View.OnClickListener, Vi
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
-                // whenever data at this location is updated.
+                // whenever data at this loco is updated.
 
                 // DJ One
                 djSingle(dataSnapshot, "Sarah Mooney"); // Hannah Wants if not Brancdj
@@ -296,7 +296,7 @@ public class HomeFragmentDJ extends Fragment implements View.OnClickListener, Vi
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
-                // whenever data at this location is updated.
+                // whenever data at this loco is updated.
 
                 // DJ One
 

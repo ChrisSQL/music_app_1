@@ -8,17 +8,21 @@ public class Club {
     String facebookLink;
     String name;
     String photoUrl;
-    double latitiude;
+    double latitude;
     double longitude;
+    double lat;
+    double lon;
     double miles;
 
-    public Club(String uID, String facebookLink, String name, String photoUrl, double latitiude, double longitude, double miles) {
+    public Club(String uID, String facebookLink, String name, String photoUrl, double latitude, double longitude, double lat, double lon,double miles) {
         this.facebookLink = facebookLink;
         this.uID = uID;
         this.name = name;
         this.photoUrl = photoUrl;
-        this.latitiude = latitiude;
+        this.latitude = latitude;
         this.longitude = longitude;
+        this.lat = lat;
+        this.lon = lon;
         this.miles = miles;
     }
 
@@ -34,12 +38,12 @@ public class Club {
 
     }
 
-    public double getLatitiude() {
-        return latitiude;
+    public double getLatitude() {
+        return latitude;
     }
 
-    public void setLatitiude(double latitiude) {
-        this.latitiude = latitiude;
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
     }
 
     public double getLongitude() {
@@ -48,6 +52,22 @@ public class Club {
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLon() {
+        return lon;
+    }
+
+    public void setLon(double lon) {
+        this.lon = lon;
     }
 
     public String getName() {

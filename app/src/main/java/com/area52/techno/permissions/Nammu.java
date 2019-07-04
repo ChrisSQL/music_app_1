@@ -140,7 +140,7 @@ public class Nammu {
         }
         ArrayList<String> permissions = new ArrayList<String>();
         ArrayList<String> permissionsGranted = new ArrayList<String>();
-        //Group location
+        //Group loco
         permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
         permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
         //Group Calendar

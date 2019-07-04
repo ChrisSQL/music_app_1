@@ -59,8 +59,18 @@ public class ClubRecyclerAdapter extends RecyclerView.Adapter<ClubRecyclerAdapte
     @Override
     public void onBindViewHolder(MyHoder holder, int position) {
         Club mylist = list.get(position);
-        //holder.name.setText(mylist.getName());
-        holder.name.setText(mylist.getName() + " - " + round(mylist.getMiles(),0) + " Miles");
+        holder.name.setText(mylist.getName());
+
+        if( (int) Math.round(round(mylist.getMiles(),0)) > 200.0) {
+            holder.name.setText(mylist.getName());
+        }
+        else if( (int) Math.round(round(mylist.getMiles(),0)) == 1.0){
+            holder.name.setText(mylist.getName() + " - " + (int) Math.round(round(mylist.getMiles(),0))  + " Mile");
+        }else{
+            holder.name.setText(mylist.getName() + " - " + (int) Math.round(round(mylist.getMiles(),0))  + " Miles");
+        }
+
+        //holder.name.setText(mylist.getName() + " - " + (int) Math.round(round(mylist.getMiles(),0))  + " Miles");
         holder.name.setSelected(true);
 
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {

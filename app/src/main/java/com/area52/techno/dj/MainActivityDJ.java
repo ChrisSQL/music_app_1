@@ -99,7 +99,7 @@ public class MainActivityDJ extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
-                // whenever data at this location is updated.
+                // whenever data at this loco is updated.
                 listDJs = new ArrayList<DJ>();
                 for(DataSnapshot dataSnapshot1 :dataSnapshot.getChildren()){
 

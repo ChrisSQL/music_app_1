@@ -44,7 +44,7 @@ public class MainActivityClub extends AppCompatActivity {
     private FirebaseAuth mAuth;
     FirebaseUser user;
     private final int REQUEST_LOCATION_PERMISSION = 1;
-    GPSTracker gps = new GPSTracker(this);
+    GPSTracker gps;
 
 
     @Override
@@ -58,34 +58,9 @@ public class MainActivityClub extends AppCompatActivity {
         // If logged in log Analytics
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
+        gps = new GPSTracker(this);
 
         ActivityCompat.requestPermissions(this,new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-
-//        if (ActivityCompat.checkSelfPermission(MainActivityClub.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(MainActivityClub.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//            ActivityCompat.requestPermissions(MainActivityClub.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-//
-//            getClubsGrid();
-//
-//            return;
-//        }else{
-//            // Write you code here if permission already given.
-//            // Toast.makeText(this, "Permission Given", Toast.LENGTH_SHORT).show();
-//
-//            getClubsGrid();
-//
-//        }
-
-
-
-
-//        view.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//
-//
-//            }
-//        });
 
     }
 
@@ -104,11 +79,9 @@ public class MainActivityClub extends AppCompatActivity {
                     if(gps.canGetLocation()){
                         gps.getLatitude(); // returns latitude
                         gps.getLongitude();
+//
+                        getClubsGridDistance();
                     }
-
-                    getClubsGridDistance();
-
-
 
                 } else {
                     // permission denied, boo! Disable the
@@ -128,9 +101,6 @@ public class MainActivityClub extends AppCompatActivity {
 
     private void getClubsGridDistance() {
 
-
-
-
         myRef.addValueEventListener(new ValueEventListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
@@ -146,35 +116,27 @@ public class MainActivityClub extends AppCompatActivity {
                     String name = value.getName();
                     String photo = value.getPhotoUrl();
                     String fbID = value.getFacebookLink();
-                    String uID = value.getuID();
-                    double latitude = value.getLatitiude();
+//                    String uID = value.getuID();
+                    double latitude = value.getLatitude();
                     double longitude = value.getLongitude();
-
+//
                     fire.setName(name);
                     fire.setPhotoUrl(photo);
                     fire.setFacebookLink(fbID);
-                    fire.setuID(uID);
-                    fire.setLatitiude(latitude);
-                    fire.setLongitude(longitude);
 
-                    Location selected_location=new Location("locationA");
-                    selected_location.setLatitude(gps.getLatitude());
-                    selected_location.setLongitude(gps.getLongitude());
-                    Location near_locations=new Location("locationB");
-                    near_locations.setLatitude(latitude);
-                    near_locations.setLongitude(longitude);
-                    double distance = selected_location.distanceTo(near_locations);
+//                    fire.setuID(uID);
+//                    fire.setLatitude(latitude);
+//                    fire.setLongitude(longitude);
+//
+                    double miles = calculateDistance(latitude,longitude,gps.getLatitude(),gps.getLongitude(),"M");
 
-                    fire.setMiles(distance);
+                    fire.setMiles(miles);
 
                     list.add(fire);
 
-
-
-
                 }
 
-                // list.sort(Comparator.comparing(Club::getMiles));
+                 list.sort(Comparator.comparing(Club::getMiles));
 
             }
 
@@ -230,50 +192,50 @@ public class MainActivityClub extends AppCompatActivity {
 
 
 
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-
-                for(DataSnapshot dataSnapshot1 :dataSnapshot.getChildren()){
-
-                    Club value = dataSnapshot1.getValue(Club.class);
-                    Club fire = new Club();
-
-                    String name = value.getName();
-                    String photo = value.getPhotoUrl();
-                    String fbID = value.getFacebookLink();
-                    String uID = value.getuID();
-                    double latitude = value.getLatitiude();
-                    double longitude = value.getLongitude();
-
-                    fire.setName(name);
-                    fire.setPhotoUrl(photo);
-                    fire.setFacebookLink(fbID);
-                    fire.setuID(uID);
-                    fire.setLatitiude(latitude);
-                    fire.setLongitude(longitude);
-
-                    list.add(fire);
-
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w("Hello", "Failed to read value.", error.toException());
-            }
-        });
-
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            public void run() {
-                createGrid();
-            }
-        }, 2500);   //.5 seconds
+//        myRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                // This method is called once with the initial value and again
+//                // whenever data at this location is updated.
+//
+//                for(DataSnapshot dataSnapshot1 :dataSnapshot.getChildren()){
+//
+//                    Club value = dataSnapshot1.getValue(Club.class);
+//                    Club fire = new Club();
+//
+//                    String name = value.getName();
+//                    String photo = value.getPhotoUrl();
+//                    String fbID = value.getFacebookLink();
+//                    String uID = value.getuID();
+//                    double latitude = value.getLatitude();
+//                    double longitude = value.getLongitude();
+//
+//                    fire.setName(name);
+//                    fire.setPhotoUrl(photo);
+//                    fire.setFacebookLink(fbID);
+//                    fire.setuID(uID);
+//                    fire.setLatitude(latitude);
+//                    fire.setLongitude(longitude);
+//
+//                    list.add(fire);
+//
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError error) {
+//                // Failed to read value
+//                Log.w("Hello", "Failed to read value.", error.toException());
+//            }
+//        });
+//
+//        Handler handler = new Handler();
+//        handler.postDelayed(new Runnable() {
+//            public void run() {
+//                createGrid();
+//            }
+//        }, 2500);   //.5 seconds
     }
 
     private void getUserLocation() {

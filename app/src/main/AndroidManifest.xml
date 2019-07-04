@@ -307,6 +307,17 @@
         </activity>
 
         <activity
+            android:name=".clubs.users.MainActivityClubLocation"
+            android:label="@string/clubs"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.FullScreen.Light">
+            <intent-filter>
+                <action android:name="OPEN_ACTIVITY_CLUB" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
             android:name=".festivals_new.dj.MainActivityFestival"
             android:label="@string/festival"
             android:screenOrientation="portrait"
